@@ -1,80 +1,272 @@
-# Project Charta
-## Context and Scope
-Describe the context (domain/business area) and topic of the visualization project. Which topical aspects should be addressed? Which question(s) should the data visualization project answer? What are the expected benefits of the project? Where should the visualization product be published (e.g. website, app, intranet)?
+# Projektcharta
 
-## Project Objectives and Success Criteria
-Describe the objectives **from the client/stakeholder perspective**. For example: "Enable users to understand the distribution of sales across different regions". Try to be as specific as possible, but restrict to the concrete needs formulated by the client/stakeholders. For example: if a dashboard is needed explicitly, then state it here, otherwise leave the form of the visualization product open.
+## Kontext und Geltungsbereich
 
-Formulate success criteria (from the client/stakeholder perspective): qualitative objectives and, wherever possible, corresponding quantitative metrics with target values to be achieved within the project. These objectives should directly address the pains and gains identified in the user analysis.
+Im Schweizer Fussball sorgt derzeit der FC Thun für Aufmerksamkeit: Der FC Thun, traditionell ein Club aus der Berner Oberland-Stadt Thun, hat sich in der Super League (der höchsten Schweizer Fussballliga) als überraschend starkes Team etabliert und übertrifft dabei Teams mit weitaus grösseren Budgets und Fanbasen.
 
-It is also helpful to specify what is explicitly excluded from the project objectives (out of scope).
+Dieses Visualisierungsprojekt untersucht die Frage: **Warum ist der FC Thun so erfolgreich und was unterscheidet ihn von vermeintlich stärkeren Clubs in der Super League?**
 
-## Stakeholder Analysis
-List the people involved in and affected by the project. Describe their goals and relationships with each other. Visualisation in the form of a stakeholder map can provide a quick overview.
+Ziel ist es, anhand von Spiel- und Teamstatistiken aus der API-Football-Datenbank eine datengetriebene Antwort auf diese Frage zu liefern. Die Erkenntnisse werden in Form eines digitalen Blog-Artikels mit eingebettetem interaktivem Dashboard veröffentlicht und auf GitHub Pages öffentlich zugänglich gemacht.
 
-## User Analysis
-Analyse the target audience of the visualization product and create at least 2 personas with **relevant attributes** such as domain expertise, data literacy, technical environment (devices, screen sizes), frequency of use etc. Amend each persona with the dimensions of the customer profile side in the Value Proposition Canvas @Osterwalder2014:
+Angesprochen werden Fussballfans, Sportjournalisten und Dateninteressierte, die ein tieferes Verständnis der Leistungsfaktoren hinter den Tabellenplatzierungen erhalten möchten.
 
-* **User tasks** (jobs): What tasks are users trying to accomplish? Consider functional jobs (e.g. analysing data, making decisions), social jobs (e.g. reporting to stakeholders, collaborating with colleagues) and emotional jobs (e.g. feeling confident in their decisions).
-* **Pains**: What obstacles, risks or undesired outcomes do users currently face? What makes their current approach frustrating or inefficient?
-* **Gains**: What outcomes and benefits do users expect or desire? What would exceed their expectations?
+---
 
+## Projektziele und Erfolgskriterien
 
-## Situation Assessment
-Describe the available resources (data, personnel, material, software/tools, infrastructure, etc.) and time as well as restrictions and constraints. Possible risks that may arise during the project are also identified.
+### Projektziele
 
+- Nutzer sollen verstehen, welche sportlichen Kennzahlen den sportlichen Erfolg des FC Thun im Vergleich zu anderen Super-League-Teams erklären.
+- Nutzer sollen in der Lage sein, den FC Thun mit mehreren Teams der Super League anhand zentraler Leistungskennzahlen direkt vergleichen können.
+- Nutzer sollen sowohl eine geführte Analyse (Blogartikel) lesen als auch die Daten selbst über ein interaktives Dashboard explorieren können.
+- Die Inhalte müssen auf Deutsch verfasst und für ein breites Publikum ohne tiefe Statistikkenntnisse verständlich sein.
 
-## Visualization Concept
-Translate the project objectives into a concrete visualization concept. This corresponds to the value map side of the Value Proposition Canvas [@Osterwalder2014] – describe how the proposed visualization product addresses the users' tasks, relieves their pains and creates gains. Address the following aspects:
+### Erfolgskriterien
 
-* **Product form**: Composition of the visualization product – dashboard, data story, infographic, exploratory tool, etc.
-* **Visual encodings**: Types of charts and visualizations to be used – e.g. bar chart, line chart, scatter plot, map, etc.
-* **Interactivity**: Static vs. dynamic/interactive elements – filtering, drill-down, tooltips, linked views, etc.
-* **Narrative and annotation**: Text elements, storytelling structure, annotations and contextual information.
-* **Target medium and integration**: Embedding in the target environment – e.g. website, intranet, app, print, etc.
+| Kriterium | Messgrösse | Zielwert |
+|---|---|---|
+| Datenabdeckung | Anzahl vollständiger Spiel-Datensätze | Aktuelle Saison |
+| Merkmale | Anzahl verwendeter Variablen pro Spiel/Team | ≥ 6 (inkl. numerisch und kategorisch) |
+| Visualisierungen | Anzahl eingebetteter Charts im Blog | ≥ 5 verschiedene Visualisierungen |
+| Interaktivität | Dashboard-Filteroptionen | Mind. Team-Auswahl |
+| Zugänglichkeit | Öffentliche Online-Verfügbarkeit | GitHub Pages live |
+| Verständlichkeit | Lesbarkeit ohne Fachkenntnisse | Bewertung der Verständlichkeit durch mindestens 2 Testleser |
 
-For each design decision, articulate the intended value along three dimensions:
+### Out of Scope
 
-* **Cognitive and analytical value**: How does the design amplify the user's ability to detect patterns, identify outliers, understand distributions or discover relationships [@card1999; @vanwijk2005]?
-* **Communicative value**: How does the design support the communication of information to the target audience profile(s)? 
-* **Experiential and aesthetic value**: How do the visual and interactive qualities of the design foster engagement, trust and willingness to adopt the product in practice?
+- Live-Daten während laufender Spiele
+- Spielerindividuelle Leistungsanalysen (Fokus liegt ausschliesslich auf Teamstatistiken)
+- Wettkampf-/Wettdaten
 
-Justify the concept by mapping it explicitly to the project objectives and the user needs identified in the user analysis.
+---
 
+## Stakeholder-Analyse
 
-## Project Plan
-Divide the project into individual phases, describe them briefly and draw up a preliminary timetable, e.g. as a Gantt chart:
+| Stakeholder | Rolle | Interesse | Einfluss |
+|---|---|---|---|
+| Projektteam | Entwickler & Autoren | Erfolgreiches Projekt | Hoch |
+| Dozierende | Auftraggeber / Bewerter | Qualität, Methodik | Hoch |
+| API-Football | Datenlieferant | Korrekte Nutzung gemäss Lizenz | Mittel |
+| Fussballfans / Leser | Endnutzer Blog | Unterhaltung, Informationen über FC Thun | Gering |
+| FC Thun | Indirekt Betroffener | Positive/neutrale Darstellung | Gering |
+
+**Stakeholder Map:**
+
+```
+             [Dozierende]                                  [Projektteam]
+          Auftraggeber/Bewerter   ──── bewertet ──────►   Entwickler & Autoren
+                                                                  │
+                                                               erstellt
+                                                                  │
+                                                                  ▼
+                                                       [Blog + Dashboard]
+                                                                  │
+                                              ┌───────────────────┤
+                                              │                   │
+                                     gelesen von            nutzt Daten von
+                                              │                   │
+                                              ▼                   ▼
+                                   [Fussballfans / Leser]   [API-Football]
+                                      Endnutzer Blog        Datenlieferant
+                                              │
+                                    betrifft indirekt
+                                              │
+                                              ▼
+                                          [FC Thun]
+```
+
+---
+
+## Nutzeranalyse
+
+### Persona 1: Der neugierige Fussballfan
+
+**Name:** Luca, 27 Jahre, kaufmännischer Angestellter aus Thun  
+**Geräte:** Smartphone, Laptop  
+**Data Literacy:** Niedrig: kennt Tabellen, aber keine xG-Werte  
+**Nutzungsfrequenz:** Einmalig (teilt Artikel mit Freunden)  
+**Domain Expertise:** Kennt Spielregeln, Tabelle und Vereinsgeschichte, aber kein Wissen über Statistikmethoden oder Datenanalyse
+
+**User Tasks (Jobs):**
+
+- *Funktional:* Verstehen, warum der FC Thun gut spielt
+- *Sozial:* Artikel mit Freunden teilen
+- *Emotional:* Stolz auf den lokalen Club
+
+**Pains:**
+
+- Komplexe Statistikseiten, die ohne Kontext schwer verständlich sind
+- Fehlende Erklärungen zu Fachbegriffen
+- Lange Texte ohne visuelle Auflockerung
+
+**Gains:**
+
+- Klare, intuitive Grafiken die man sofort versteht
+- Kurze Erklärungen direkt bei den Charts
+- "Aha-Erlebnis" beim Lesen
+
+---
+
+### Persona 2: Die datenhungrige Sportjournalistin
+
+**Name:** Miriam, 34 Jahre, Sportredakteurin bei einem regionalen Medienportal  
+**Geräte:** Laptop, Desktop im Büro  
+**Data Literacy:** Mittel-hoch: kennt Grundstatistiken, interessiert an neuen Metriken  
+**Nutzungsfrequenz:** Einmalig, als Recherche-Grundlage für eigene Artikel  
+**Domain Expertise:** Tiefes Wissen über Schweizer Fussball, Vereinsstrukturen und Transfermarkt. Vertraut mit Grundstatistiken aber wenig Erfahrung mit erweiterten Metriken
+
+**User Tasks (Jobs):**
+
+- *Funktional:* Fundierte Argumente für eigene Berichte finden
+- *Sozial:* Glaubwürdige Quellen zitieren
+- *Emotional:* Stolz auf einen gut recherchierten, datenbasierten Artikel sein
+
+**Pains:**
+
+- Fehlende Quellenangaben bei Visualisierungen
+- Unklare Methodik hinter den Daten
+- Kein Exportformat für eigene Weiterverwendung
+
+**Gains:**
+
+- Klar dokumentierte Datenquellen und Methodik
+- Interaktive Filtermöglichkeiten
+- Klare Visualisierungen mit nachvollziehbarer Datenquelle, die als Referenz für eigene Artikel genutzt werden können
+
+---
+
+## Lagebeurteilung
+
+### Verfügbare Ressourcen
+
+| Ressource | Details |
+|---|---|
+| **Daten** | API-Football (kostenloser Plan: 100 Requests/Tag; alle Endpoints inkl. Fixtures, Standings, Statistics) |
+| **Personal** | 3 Teammitglieder mit Python-Kenntnissen und Erfahrung in Matplotlib |
+| **Software** | Python, Quarto, Streamlit, GitHub, GitHub Pages |
+| **Infrastruktur** | GitHub Repository (Quarto-Projekt), GitHub Pages für Deployment |
+| **Zeit** | 12 Wochen |
+
+### Einschränkungen & Risiken
+
+| Risiko | Wahrscheinlichkeit | Auswirkung | Massnahme |
+|---|---|---|---|
+| API Rate Limit (100 Req/Tag) | Mittel | Mittel | Daten einmalig herunterladen |
+| Unvollständige Spieldaten für CH Super League | Mittel | Hoch | Vorab Coverage der Liga prüfen |
+| Datenlücken bei älteren Saisons | Hoch | Niedrig | Auf aktuelle Saison fokussieren |
+| Teamkoordination | Niedrig | Mittel | Wöchentliche Updates |
+
+---
+
+## Visualisierungskonzept
+
+### Produkt
+
+Das Visualisierungsprodukt besteht aus zwei komplementären Teilen:
+
+1. **Digitaler Blog-Artikel**: Eine narrative Data Story, die den Leser Schritt für Schritt durch die Analyse führt. Von der Tabellenübersicht über Defensiv-/Offensivstatistiken bis zur "Geheimformel" des FC Thun.
+2. **Interaktives Dashboard**: Ein exploratives Tool, das es dem Nutzer erlaubt, Teams selbst zu vergleichen und eigene Fragen zu stellen.
+
+### Visual Encodings
+
+| Visualisierung | Einsatz | Begründung |
+|---|---|---|
+| Balkendiagramm | Team-Ranking nach Kennzahlen | Eignet sich für Rangvergleiche, da Längenunterschiede schnell wahrgenommen werden |
+| Liniendiagramm | Saisonverlauf: Punkte, Form über Zeit | Zeigt zeitliche Entwicklungen und Trends intuitiv auf einen Blick |
+| Scatter Plot | Korrelation z.B Ballbesitz vs. Punkte | Macht Zusammenhänge und Ausreisser direkt sichtbar |
+| Radar Chart | Stärken-/Schwächenprofil FC Thun vs. Konkurrenz | Ermöglicht multidimensionalen Teamvergleich in einer einzigen kompakten Grafik |
+| Heatmap | Spielstatistiken über alle Runden | Zeigt Muster und Häufungen über Zeit |
+| Tabelle | Detaillierte Standingstabelle mit Sortierung | Erlaubt präzisen Zahlenvergleich für Nutzer mit höherer Datenliteralität |
+
+### Interaktivität
+
+- **Blog:** Tooltips auf Charts, minimale Interaktivität
+- **Dashboard:** Team-Auswahl-Dropdown, Saison-Filter, vergleichende Ansicht (2 Teams gleichzeitig)
+
+### Erzählstruktur
+
+Der Blog folgt einer klaren Erzählstruktur:
+
+1. **Hook:** "Wie schlägt ein kleiner Club aus Thun die Grossen?"
+2. **Kontext:** Kurze Vorstellung der Super League und der Ausgangslage
+3. **Analyse:** Schritt-für-Schritt Aufdeckung der Stärken
+4. **Fazit:** Zusammenfassung der wichtigsten Erkenntnisse
+
+### Zielmedium
+
+- Blog: GitHub Pages (öffentlich zugänglich, responsive)
+- Dashboard: Streamlit
+
+### Wertdimensionen
+
+**Kognitiver & analytischer Wert:**  
+Scatter Plots und Radar Charts ermöglichen es, Muster und Ausreisser sofort zu erkennen. Der Vergleich mehrerer Teams in einem Diagramm fördert das Erkennen von Zusammenhängen zwischen Spielstil und Erfolg.
+
+**Kommunikativer Wert:**  
+Die narrative Struktur des Blogs führt auch Nicht-Statistiker durch die Analyse. Einfache Sprache, klare Labels und direkte Annotationen machen die Erkenntnisse zugänglich.
+
+**Experiential & ästhetischer Wert:**  
+Einheitliches Farbschema, klares Layout ohne Informationsüberflutung, interaktive Elemente fördern Engagement und Wiederbesuch.
+
+### Verknüpfung mit den Personas
+
+| Design-Entscheidung | Persona 1: Luca (Fussballfan) | Persona 2: Miriam (Journalistin) |
+|---|---|---|
+| Blog-Struktur | Führt ihn ohne Vorkenntnisse durch die Analyse (Pain: überfrachtete Statistikseiten) | Gibt ihr einen schnellen Überblick für die eigene Recherche |
+| Einfache Labels direkt im Chart | Erklärt Fachbegriffe wie xG ohne externes Nachschlagen (Gain: Aha-Erlebnis) | Spart Zeit beim Interpretieren der Grafiken |
+| Radar Chart | Intuitiver Vergleich ohne Zahlenkenntnisse | Liefert zitierfähige visuelle Belege für Artikel |
+| Interaktives Dashboard | Kann selbst FC Thun gegen andere Vereine stellen | Ermöglicht eigene explorative Analyse nach Bedarf |
+| Einheitliches Farbschema | Emotionale Verbindung zum Verein, erhöht Engagement | Professionelle Konsistenz, stärkt Glaubwürdigkeit |
+| Öffentlich auf GitHub Pages | Einfach teilbar mit Freunden | Direkt verlinkbar als Quelle im eigenen Artikel |
+
+---
+
+## Projektplan
 
 ```{mermaid}
 %%| label: fig-project-plan
-%%| fig-cap: Preliminary project plan in the form of a Gantt chart.
+%%| fig-cap: Projektplan als Gantt-Diagramm.
 gantt
-    title Project Plan
+    title Projektplan FC Thun Visualisierungsprojekt
     dateFormat YYYY-MM-DD
-    tickInterval 5day
-    section Project Understanding
-        Initiation workshop and context analysis     :a1, 2024-07-01, 1d
-        Stakeholder and user analysis     :a3, 2024-07-02, 5d
-        Situation assessment    :a4, 2024-07-06, 1d
-        Project objectives and visualization concept    :a5, 2024-07-07, 1d
-        Sign project charta: milestone, m1, 2024-07-08, 1d
-    
-    section Data Acquisition and Exploration
-        Acquire data :a6, 2024-07-08, 3d
-        Exploratory data analysis   :a7, 2024-07-09, 2d
-        Discuss data report: milestone, m2, 2024-07-11, 1d
-        
-    section Visual Encoding and Design
-        Overview charts   :a8, 2024-07-11, 3d
-        Maps :a9, 2024-07-11, 5d
-        Implement Dashboard prototype :a10, 2024-07-16, 5d
-        Complete visualization report :a10, 2024-07-21, 1d
-    section Evaluation
-        Prepare presentation :a10, 2024-07-22, 2d
-        Project presentation : milestone, m2, 2024-07-24, 4m
+    tickInterval 7day
+
+    section Projektinitialisierung
+        Team- und Themenfindung             :done, a1, 2026-02-17, 7d
+        Projektziele und Erfolgskriterien   :done, a2, 2026-02-24, 5d
+        Stakeholder und User Analyse        :done, a3, 2026-03-01, 5d
+        Visualisierungskonzept              :done, a4, 2026-03-06, 5d
+        Projektcharta fertigstellen         :done, a5, 2026-03-11, 9d
+        Projektcharta unterzeichnen         :milestone, m1, 2026-03-20, 1d
+
+    section Datenakquise und Exploration
+        API-Football Setup und Datenabruf   :a6, 2026-03-20, 7d
+        Explorative Datenanalyse EDA        :a7, 2026-03-27, 10d
+        Datenbericht erstellen              :a8, 2026-04-06, 15d
+        Datenbericht besprechen             :milestone, m2, 2026-04-21, 1d
+
+    section Visualisierung und Design
+        Blog-Struktur und Grundlayout       :a9, 2026-04-21, 7d
+        Visualisierungen und Charts         :a10, 2026-04-28, 14d
+        Data Story                          :a11, 2026-05-05, 14d
+        Dashboard-Prototyp                  :a12, 2026-05-05, 16d
+        Visualisierungsbericht              :a13, 2026-05-11, 10d
+        Visualisierungsbericht abgeben      :milestone, m3, 2026-05-21, 1d
+
+    section Evaluation und Abgabe
+        Review und Ueberarbeitung           :a14, 2026-05-21, 7d
+        Deployment GitHub Pages Streamlit   :a15, 2026-05-21, 11d
+        Praesentation vorbereiten           :a16, 2026-05-25, 7d
+        Abgabe und Praesentation            :milestone, m4, 2026-06-01, 1d
 ```
 
-See [Mermaid syntax for Gantt charts](https://mermaid.js.org/syntax/gantt.html). It might not be displayed correctly in Safari &#8594; use Chrome. [Live editor with export functionality](https://mermaid.live/)
+---
 
-## Roles and Contact Details
-List the people involved in the development work here with their role titles, tasks and contact details.
+## Rollen und Kontaktdaten
+
+| Name | Rolle | Aufgaben | Kontakt |
+|---|---|---|---|
+| Raphael Blaauw | Dashboard & Deployment | Streamlit-App, GitHub Pages Setup, Doku | blaaurap@students.zhaw.ch |
+| Marco Rosasco | Project Lead | API-Anbindung, Datenpipeline, EDA | rosasmar@students.zhaw.ch |
+| Sandro Kostenzer | Visualisierung & Design | Chart-Entwicklung, Ästhetik | kostesa3@students.zhaw.ch |
+| Manuel Dömer | Auftraggeber / Coach | Review, Coaching-Sessions | doem@zhaw.ch |
