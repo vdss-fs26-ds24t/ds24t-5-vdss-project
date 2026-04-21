@@ -1,0 +1,13 @@
+team_id,team_name,fixtures_played_home,fixtures_played_away,fixtures_played_total,fixtures_wins_home,fixtures_wins_away,fixtures_wins_total,fixtures_draws_home,fixtures_draws_away,fixtures_draws_total,fixtures_loses_home,fixtures_loses_away,fixtures_loses_total,goals_for_home,goals_for_away,goals_for_total,goals_for_avg_home,goals_for_avg_away,goals_for_avg_total,goals_against_home,goals_against_away,goals_against_total,goals_against_avg_home,goals_against_avg_away,goals_against_avg_total,biggest_wins_home,biggest_wins_away,biggest_loses_home,biggest_loses_away,biggest_streak_wins,biggest_streak_draws,biggest_streak_loses,biggest_goals_for_home,biggest_goals_for_away,biggest_goals_against_home,biggest_goals_against_away,clean_sheet_home,clean_sheet_away,clean_sheet_total,failed_to_score_home,failed_to_score_away,failed_to_score_total,penalty_scored_total,penalty_missed_total
+551,FC Basel 1893,16,17,33,7,8,15,6,2,8,3,7,10,25,26,51,1.6,1.5,1.5,15,30,45,0.9,1.8,1.4,4-1,0-3,1-2,5-1,2,2,1,4,4,3,5,5,4,9,3,3,6,8,0
+565,BSC Young Boys,16,17,33,8,5,13,4,5,9,4,7,11,36,29,65,2.3,1.7,2.0,20,40,60,1.3,2.4,1.8,6-1,1-4,2-6,5-0,3,2,4,6,4,6,5,6,1,7,2,3,5,5,0
+606,FC Lugano,16,17,33,10,6,16,3,6,9,3,5,8,30,20,50,1.9,1.2,1.5,18,20,38,1.1,1.2,1.2,4-1,2-5,1-3,4-0,5,4,2,4,5,3,4,4,5,9,0,4,4,5,0
+630,FC Sion,17,16,33,8,5,13,6,7,13,3,4,7,25,26,51,1.5,1.6,1.5,12,23,35,0.7,1.4,1.1,4-0,0-4,0-2,3-1,2,4,1,4,4,2,3,8,4,12,5,3,8,9,0
+644,FC Luzern,17,16,33,4,6,10,6,4,10,7,6,13,38,26,64,2.2,1.6,1.9,35,26,61,2.1,1.6,1.8,6-0,0-4,2-5,4-1,3,3,4,6,4,5,4,2,3,5,0,4,4,6,0
+783,FC Zurich,17,16,33,6,4,10,1,3,4,10,9,19,27,18,45,1.6,1.1,1.4,33,30,63,1.9,1.9,1.9,3-0,1-3,0-4,3-0,3,1,5,3,3,4,4,2,0,2,3,5,8,5,0
+1011,FC ST. Gallen,17,16,33,10,7,17,2,7,9,5,2,7,32,32,64,1.9,2.0,1.9,19,21,40,1.1,1.3,1.2,5-0,1-5,1-4,3-1,3,2,2,5,5,4,3,6,2,8,2,1,3,9,0
+1012,FC Thun,17,16,33,12,12,24,2,0,2,3,4,7,42,33,75,2.5,2.1,2.3,20,17,37,1.2,1.1,1.1,5-1,0-4,1-3,4-2,10,1,2,5,4,3,4,2,4,6,2,1,3,5,0
+1013,Grasshoppers,16,17,33,3,3,6,5,4,9,8,10,18,22,18,40,1.4,1.1,1.2,28,37,65,1.8,2.2,2.0,3-0,2-6,0-4,6-0,1,3,5,3,6,4,6,2,3,5,3,7,10,5,0
+1014,Lausanne,16,17,33,5,5,10,5,4,9,6,8,14,28,19,47,1.8,1.1,1.4,27,30,57,1.7,1.8,1.7,5-0,1-3,0-4,5-1,2,2,4,5,3,4,5,2,3,5,3,5,8,4,0
+2180,FC Winterthur,16,17,33,2,2,4,4,3,7,10,12,22,19,16,35,1.2,0.9,1.1,37,49,86,2.3,2.9,2.6,4-2,1-3,1-5,6-1,1,2,5,4,3,5,6,0,0,0,4,7,11,2,0
+2184,Servette FC,17,16,33,5,4,9,7,6,13,5,6,11,30,27,57,1.8,1.7,1.7,26,31,57,1.5,1.9,1.7,5-0,2-4,1-4,4-2,2,5,2,5,4,4,4,4,2,6,4,0,4,2,0

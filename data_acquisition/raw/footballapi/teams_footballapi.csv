@@ -1,0 +1,13 @@
+team_id,team_name,team_code,country,founded,national,logo,venue_name,venue_city,venue_capacity
+551,FC Basel 1893,BAS,Switzerland,1893,False,https://media.api-sports.io/football/teams/551.png,St. Jakob-Park,Basel,37994
+565,BSC Young Boys,YOU,Switzerland,1898,False,https://media.api-sports.io/football/teams/565.png,Stadion Wankdorf,Bern,31700
+606,FC Lugano,LUG,Switzerland,1908,False,https://media.api-sports.io/football/teams/606.png,Stadio di Cornaredo,Lugano,5476
+630,FC Sion,SIO,Switzerland,1909,False,https://media.api-sports.io/football/teams/630.png,Stade de Tourbillon,Sion,14283
+644,FC Luzern,LUZ,Switzerland,1901,False,https://media.api-sports.io/football/teams/644.png,swissporarena,Luzern,16490
+783,FC Zurich,ZUR,Switzerland,1896,False,https://media.api-sports.io/football/teams/783.png,Stadion Letzigrund,Zürich,26114
+1011,FC ST. Gallen,GAL,Switzerland,1879,False,https://media.api-sports.io/football/teams/1011.png,kybunpark,St. Gallen,20029
+1012,FC Thun,THU,Switzerland,1898,False,https://media.api-sports.io/football/teams/1012.png,Stockhorn Arena,Thun,10014
+1013,Grasshoppers,GRA,Switzerland,1886,False,https://media.api-sports.io/football/teams/1013.png,Stadion Letzigrund,Zürich,26114
+1014,Lausanne,LAU,Switzerland,1896,False,https://media.api-sports.io/football/teams/1014.png,Stade de la Tuilière,Lausanne,13132
+2180,FC Winterthur,WIN,Switzerland,1896,False,https://media.api-sports.io/football/teams/2180.png,Stadion Schützenwiese,Winterthur,8700
+2184,Servette FC,SER,Switzerland,1890,False,https://media.api-sports.io/football/teams/2184.png,Stade de Genève,Lancy,28229

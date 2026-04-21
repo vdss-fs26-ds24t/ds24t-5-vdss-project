@@ -1,0 +1,13 @@
+rank,team_id,team_name,points,goals_diff,form,status,description,played,win,draw,lose,goals_for,goals_against,home_played,home_win,home_draw,home_lose,home_goals_for,home_goals_against,away_played,away_win,away_draw,away_lose,away_goals_for,away_goals_against,update
+1,1012,FC Thun,74,38,WLLWW,same,Championship round,33,24,2,7,75,37,17,12,2,3,42,20,16,12,0,4,33,17,2026-04-19T00:00:00+00:00
+2,1011,FC ST. Gallen,60,24,DWDDW,same,Championship round,33,17,9,7,64,40,17,10,2,5,32,19,16,7,7,2,32,21,2026-04-19T00:00:00+00:00
+3,606,FC Lugano,57,12,WWDDL,same,Championship round,33,16,9,8,50,38,16,10,3,3,30,18,17,6,6,5,20,20,2026-04-19T00:00:00+00:00
+4,551,FC Basel 1893,53,6,LDWWL,same,Championship round,33,15,8,10,51,45,16,7,6,3,25,15,17,8,2,7,26,30,2026-04-19T00:00:00+00:00
+5,630,FC Sion,52,16,WWDWD,same,Championship round,33,13,13,7,51,35,17,8,6,3,25,12,16,5,7,4,26,23,2026-04-19T00:00:00+00:00
+6,565,BSC Young Boys,48,5,DDDWL,same,Championship round,33,13,9,11,65,60,16,8,4,4,36,20,17,5,5,7,29,40,2026-04-19T00:00:00+00:00
+7,644,FC Luzern,40,3,DLWLW,same,Relegation Round,33,10,10,13,64,61,17,4,6,7,38,35,16,6,4,6,26,26,2026-04-19T00:00:00+00:00
+8,2184,Servette FC,40,0,DWWLW,same,Relegation Round,33,9,13,11,57,57,17,5,7,5,30,26,16,4,6,6,27,31,2026-04-19T00:00:00+00:00
+9,1014,Lausanne,39,-10,LWLLW,same,Relegation Round,33,10,9,14,47,57,16,5,5,6,28,27,17,5,4,8,19,30,2026-04-19T00:00:00+00:00
+10,783,FC Zurich,34,-18,LLWLL,same,Relegation Round,33,10,4,19,45,63,17,6,1,10,27,33,16,4,3,9,18,30,2026-04-19T00:00:00+00:00
+11,1013,Grasshoppers,27,-25,WLLLL,same,Relegation Round,33,6,9,18,40,65,16,3,5,8,22,28,17,3,4,10,18,37,2026-04-19T00:00:00+00:00
+12,2180,FC Winterthur,19,-51,LLLWD,same,Relegation Round,33,4,7,22,35,86,16,2,4,10,19,37,17,2,3,12,16,49,2026-04-19T00:00:00+00:00

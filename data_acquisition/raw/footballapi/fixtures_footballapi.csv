@@ -1,0 +1,229 @@
+fixture_id,date,referee,venue_name,venue_city,status_long,status_short,round,home_team_id,home_team_name,home_team_winner,away_team_id,away_team_name,away_team_winner,goals_home,goals_away,score_ht_home,score_ht_away,score_ft_home,score_ft_away
+1382294,2025-07-25T18:30:00+00:00,"Sven Wolfensberger, Switzerland",Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 1,783,FC Zurich,False,630,FC Sion,True,2.0,3.0,1.0,0.0,2.0,3.0
+1382296,2025-07-26T16:00:00+00:00,"Urs Schnyder, Switzerland",Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 1,1011,FC ST. Gallen,True,551,FC Basel 1893,False,2.0,1.0,0.0,1.0,2.0,1.0
+1382295,2025-07-26T16:00:00+00:00,"Anojen Kanagasingam, Switzerland",Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 1,1013,Grasshoppers,False,644,FC Luzern,True,2.0,3.0,2.0,2.0,2.0,3.0
+1382297,2025-07-26T18:30:00+00:00,"Luca Piccolo, Switzerland",Stadion Wankdorf,Bern,Match Finished,FT,Regular Season - 1,565,BSC Young Boys,True,2184,Servette FC,False,3.0,1.0,2.0,1.0,3.0,1.0
+1382299,2025-07-27T14:00:00+00:00,"Lukas Fahndrich, Switzerland",Stadio di Cornaredo,Lugano,Match Finished,FT,Regular Season - 1,606,FC Lugano,False,1012,FC Thun,True,1.0,2.0,1.0,0.0,1.0,2.0
+1382298,2025-07-27T14:00:00+00:00,"Luca Cibelli, Switzerland",Stade de la Tuiliere,Lausanne,Match Finished,FT,Regular Season - 1,1014,Lausanne,True,2180,FC Winterthur,False,3.0,2.0,0.0,1.0,3.0,2.0
+1382301,2025-08-02T16:00:00+00:00,"Lukas Fahndrich, Switzerland",Stadion Schützenwiese,Winterthur,Match Finished,FT,Regular Season - 2,2180,FC Winterthur,,565,BSC Young Boys,,1.0,1.0,0.0,1.0,1.0,1.0
+1382300,2025-08-02T16:00:00+00:00,"Luca Cibelli, Switzerland",Stade de Genève,Geneva,Match Finished,FT,Regular Season - 2,2184,Servette FC,False,1011,FC ST. Gallen,True,1.0,4.0,1.0,3.0,1.0,4.0
+1382302,2025-08-02T18:30:00+00:00,"Sven Wolfensberger, Switzerland",St. Jakob-Park,Basel,Match Finished,FT,Regular Season - 2,551,FC Basel 1893,True,1013,Grasshoppers,False,2.0,1.0,1.0,0.0,2.0,1.0
+1382303,2025-08-03T12:00:00+00:00,"Lionel Tschudi, Switzerland",Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 2,1012,FC Thun,True,1014,Lausanne,False,2.0,1.0,1.0,0.0,2.0,1.0
+1382305,2025-08-03T14:30:00+00:00,"Luca Piccolo, Switzerland",Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 2,630,FC Sion,True,606,FC Lugano,False,4.0,0.0,2.0,0.0,4.0,0.0
+1382304,2025-08-03T14:30:00+00:00,"Johannes von Mandach, Switzerland",Swissporarena,Luzern,Match Finished,FT,Regular Season - 2,644,FC Luzern,,783,FC Zurich,,1.0,1.0,0.0,0.0,1.0,1.0
+1382306,2025-08-06T18:30:00+00:00,"Luca Cibelli, Switzerland",St. Jakob-Park,Basel,Match Finished,FT,Regular Season - 4,551,FC Basel 1893,True,565,BSC Young Boys,False,4.0,1.0,1.0,1.0,4.0,1.0
+1382308,2025-08-09T16:00:00+00:00,"Nico Gianforte, Switzerland",Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 3,1011,FC ST. Gallen,True,2180,FC Winterthur,False,5.0,0.0,3.0,0.0,5.0,0.0
+1382309,2025-08-09T18:30:00+00:00,"Anojen Kanagasingam, Switzerland",Swissporarena,Luzern,Match Finished,FT,Regular Season - 3,644,FC Luzern,False,1012,FC Thun,True,1.0,2.0,1.0,1.0,1.0,2.0
+1382310,2025-08-10T12:00:00+00:00,"Sandro Schärer, Switzerland",Stadion Wankdorf,Bern,Match Finished,FT,Regular Season - 3,565,BSC Young Boys,,630,FC Sion,,0.0,0.0,0.0,0.0,0.0,0.0
+1382312,2025-08-10T14:30:00+00:00,"Mirel Turkes, Switzerland",Stadio di Cornaredo,Lugano,Match Finished,FT,Regular Season - 3,606,FC Lugano,True,551,FC Basel 1893,False,3.0,1.0,2.0,0.0,3.0,1.0
+1382311,2025-08-10T14:30:00+00:00,"Urs Schnyder, Switzerland",Stade de la Tuiliere,Lausanne,Match Finished,FT,Regular Season - 3,1014,Lausanne,False,783,FC Zurich,True,1.0,2.0,1.0,1.0,1.0,2.0
+1382307,2025-08-10T14:30:00+00:00,"Johannes von Mandach, Switzerland",Stade de Genève,Geneva,Match Finished,FT,Regular Season - 3,2184,Servette FC,,1013,Grasshoppers,,1.0,1.0,0.0,1.0,1.0,1.0
+1382314,2025-08-23T16:00:00+00:00,"Marijan Drmic, Croatia",Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 4,783,FC Zurich,False,1012,FC Thun,True,0.0,4.0,0.0,2.0,0.0,4.0
+1382315,2025-08-24T12:00:00+00:00,"Johannes von Mandach, Switzerland",Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 4,1013,Grasshoppers,,2180,FC Winterthur,,2.0,2.0,1.0,0.0,2.0,2.0
+1382317,2025-08-24T14:30:00+00:00,"Lionel Tschudi, Switzerland",Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 4,1011,FC ST. Gallen,False,644,FC Luzern,True,0.0,1.0,0.0,1.0,0.0,1.0
+1382318,2025-08-30T16:00:00+00:00,"Sandro Schärer, Switzerland",Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 5,1012,FC Thun,,1013,Grasshoppers,,1.0,1.0,0.0,0.0,1.0,1.0
+1382319,2025-08-30T16:00:00+00:00,"Anojen Kanagasingam, Switzerland",Stadion Schützenwiese,Winterthur,Match Finished,FT,Regular Season - 5,2180,FC Winterthur,False,783,FC Zurich,True,1.0,3.0,0.0,0.0,1.0,3.0
+1382320,2025-08-30T18:30:00+00:00,"Sven Wolfensberger, Switzerland",Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 5,630,FC Sion,False,551,FC Basel 1893,True,0.0,1.0,0.0,1.0,0.0,1.0
+1382321,2025-08-31T12:00:00+00:00,"Desiree Grundbacher, Switzerland",Stade de la Tuiliere,Lausanne,Match Finished,FT,Regular Season - 5,1014,Lausanne,False,1011,FC ST. Gallen,True,1.0,2.0,0.0,0.0,1.0,2.0
+1382323,2025-08-31T14:30:00+00:00,"Lukas Fahndrich, Switzerland",Stadion Wankdorf,Bern,Match Finished,FT,Regular Season - 5,565,BSC Young Boys,True,606,FC Lugano,False,3.0,1.0,1.0,1.0,3.0,1.0
+1382322,2025-08-31T14:30:00+00:00,"Alessandro Dudic, Switzerland",Stade de Genève,Geneva,Match Finished,FT,Regular Season - 5,2184,Servette FC,,644,FC Luzern,,2.0,2.0,0.0,1.0,2.0,2.0
+1382325,2025-09-13T16:00:00+00:00,"Urs Schnyder, Switzerland",Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 6,783,FC Zurich,True,2184,Servette FC,False,2.0,1.0,2.0,0.0,2.0,1.0
+1382324,2025-09-13T16:00:00+00:00,"Lionel Tschudi, Switzerland",Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 6,1012,FC Thun,False,551,FC Basel 1893,True,1.0,3.0,0.0,2.0,1.0,3.0
+1382326,2025-09-13T18:30:00+00:00,"Alessandro Dudic, Switzerland",Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 6,1011,FC ST. Gallen,True,606,FC Lugano,False,1.0,0.0,1.0,0.0,1.0,0.0
+1382327,2025-09-14T12:00:00+00:00,"Mirel Turkes, Switzerland",Stadion Schützenwiese,Winterthur,Match Finished,FT,Regular Season - 6,2180,FC Winterthur,False,630,FC Sion,True,2.0,3.0,1.0,3.0,2.0,3.0
+1382329,2025-09-14T14:30:00+00:00,"Lukas Fahndrich, Switzerland",Swissporarena,Luzern,Match Finished,FT,Regular Season - 6,644,FC Luzern,False,565,BSC Young Boys,True,1.0,2.0,0.0,0.0,1.0,2.0
+1382328,2025-09-14T14:30:00+00:00,"Luca Cibelli, Switzerland",Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 6,1013,Grasshoppers,True,1014,Lausanne,False,3.0,1.0,1.0,0.0,3.0,1.0
+1382316,2025-09-17T17:00:00+00:00,"Urs Schnyder, Switzerland",Stadio di Cornaredo,Lugano,Match Finished,FT,Regular Season - 4,606,FC Lugano,,1014,Lausanne,,1.0,1.0,1.0,0.0,1.0,1.0
+1382313,2025-09-17T17:00:00+00:00,"Luca Cibelli, Switzerland",Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 4,630,FC Sion,False,2184,Servette FC,True,0.0,2.0,0.0,0.0,0.0,2.0
+1382331,2025-09-27T16:00:00+00:00,"Nico Gianforte, Switzerland",Stadio di Cornaredo,Lugano,Match Finished,FT,Regular Season - 7,606,FC Lugano,True,1013,Grasshoppers,False,2.0,1.0,0.0,0.0,2.0,1.0
+1382332,2025-09-27T16:00:00+00:00,"Fedayi San, Switzerland",Stade de Genève,Geneva,Match Finished,FT,Regular Season - 7,2184,Servette FC,True,2180,FC Winterthur,False,4.0,0.0,1.0,0.0,4.0,0.0
+1382335,2025-09-27T18:30:00+00:00,"Sven Wolfensberger, Switzerland",Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 7,783,FC Zurich,True,1011,FC ST. Gallen,False,3.0,1.0,0.0,1.0,3.0,1.0
+1382334,2025-09-28T12:00:00+00:00,"Luca Piccolo, Switzerland",Stadion Wankdorf,Bern,Match Finished,FT,Regular Season - 7,565,BSC Young Boys,True,1012,FC Thun,False,4.0,2.0,0.0,0.0,4.0,2.0
+1382330,2025-09-28T14:30:00+00:00,"Alessandro Dudic, Switzerland",St. Jakob-Park,Basel,Match Finished,FT,Regular Season - 7,551,FC Basel 1893,False,644,FC Luzern,True,1.0,2.0,0.0,1.0,1.0,2.0
+1382333,2025-09-28T14:30:00+00:00,"Johannes von Mandach, Switzerland",Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 7,630,FC Sion,,1014,Lausanne,,0.0,0.0,0.0,0.0,0.0,0.0
+1382336,2025-10-04T16:00:00+00:00,"Luca Cibelli, Switzerland",Swissporarena,Luzern,Match Finished,FT,Regular Season - 8,644,FC Luzern,,630,FC Sion,,3.0,3.0,2.0,0.0,3.0,3.0
+1382337,2025-10-04T16:00:00+00:00,"Lukas Fahndrich, Switzerland",Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 8,1011,FC ST. Gallen,False,1012,FC Thun,True,1.0,2.0,1.0,2.0,1.0,2.0
+1382338,2025-10-04T18:30:00+00:00,"Lionel Tschudi, Switzerland",Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 8,1013,Grasshoppers,True,783,FC Zurich,False,3.0,0.0,1.0,0.0,3.0,0.0
+1382339,2025-10-05T12:00:00+00:00,"Mirel Turkes, Switzerland",Stade de la Tuiliere,Lausanne,Match Finished,FT,Regular Season - 8,1014,Lausanne,True,565,BSC Young Boys,False,5.0,0.0,2.0,0.0,5.0,0.0
+1382341,2025-10-05T14:30:00+00:00,"Desiree Blanco, Switzerland",Stadion Schützenwiese,Winterthur,Match Finished,FT,Regular Season - 8,2180,FC Winterthur,False,606,FC Lugano,True,2.0,4.0,1.0,0.0,2.0,4.0
+1382340,2025-10-05T14:30:00+00:00,"Anojen Kanagasingam, Switzerland",Stade de Genève,Geneva,Match Finished,FT,Regular Season - 8,2184,Servette FC,False,551,FC Basel 1893,True,0.0,3.0,0.0,2.0,0.0,3.0
+1382342,2025-10-18T16:00:00+00:00,"Urs Schnyder, Switzerland",St. Jakob-Park,Basel,Match Finished,FT,Regular Season - 9,551,FC Basel 1893,True,2180,FC Winterthur,False,3.0,0.0,3.0,0.0,3.0,0.0
+1382343,2025-10-18T16:00:00+00:00,"Nico Gianforte, Switzerland",Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 9,1012,FC Thun,True,2184,Servette FC,False,3.0,1.0,2.0,1.0,3.0,1.0
+1382344,2025-10-18T18:30:00+00:00,"Alessandro Dudic, Switzerland",Stadio di Cornaredo,Lugano,Match Finished,FT,Regular Season - 9,606,FC Lugano,True,783,FC Zurich,False,1.0,0.0,1.0,0.0,1.0,0.0
+1382345,2025-10-19T12:00:00+00:00,,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 9,1013,Grasshoppers,False,630,FC Sion,True,0.0,1.0,0.0,0.0,0.0,1.0
+1382347,2025-10-19T14:30:00+00:00,,Stadion Wankdorf,Bern,Match Finished,FT,Regular Season - 9,565,BSC Young Boys,False,1011,FC ST. Gallen,True,1.0,2.0,0.0,0.0,1.0,2.0
+1382346,2025-10-19T14:30:00+00:00,,Swissporarena,Luzern,Match Finished,FT,Regular Season - 9,644,FC Luzern,,1014,Lausanne,,2.0,2.0,0.0,0.0,2.0,2.0
+1382348,2025-10-25T16:00:00+00:00,"Lukas Fahndrich, Switzerland",Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 10,630,FC Sion,False,1012,FC Thun,True,0.0,1.0,0.0,1.0,0.0,1.0
+1382350,2025-10-25T16:00:00+00:00,"Johannes von Mandach, Switzerland",Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 10,1011,FC ST. Gallen,True,1013,Grasshoppers,False,5.0,0.0,3.0,0.0,5.0,0.0
+1382349,2025-10-25T18:30:00+00:00,"Fedayi San, Switzerland",Stadion Schützenwiese,Winterthur,Match Finished,FT,Regular Season - 10,2180,FC Winterthur,,644,FC Luzern,,2.0,2.0,2.0,0.0,2.0,2.0
+1382351,2025-10-26T13:00:00+00:00,"Urs Schnyder, Switzerland",Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 10,783,FC Zurich,False,565,BSC Young Boys,True,2.0,3.0,2.0,1.0,2.0,3.0
+1382352,2025-10-26T15:30:00+00:00,"Lionel Tschudi, Switzerland",Stade de la Tuiliere,Lausanne,Match Finished,FT,Regular Season - 10,1014,Lausanne,True,551,FC Basel 1893,False,5.0,1.0,3.0,0.0,5.0,1.0
+1382353,2025-10-26T15:30:00+00:00,"Luca Cibelli, Switzerland",Stade de Genève,Geneva,Match Finished,FT,Regular Season - 10,2184,Servette FC,True,606,FC Lugano,False,2.0,1.0,1.0,1.0,2.0,1.0
+1382358,2025-10-28T19:30:00+00:00,"Alessandro Dudic, Switzerland",Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 11,630,FC Sion,True,1011,FC ST. Gallen,False,3.0,2.0,3.0,1.0,3.0,2.0
+1382359,2025-10-28T19:30:00+00:00,"Luca Piccolo, Switzerland",Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 11,1012,FC Thun,True,2180,FC Winterthur,False,3.0,0.0,2.0,0.0,3.0,0.0
+1382354,2025-10-29T19:30:00+00:00,"Lukas Fahndrich, Switzerland",St. Jakob-Park,Basel,Match Finished,FT,Regular Season - 11,551,FC Basel 1893,True,783,FC Zurich,False,2.0,0.0,1.0,0.0,2.0,0.0
+1382356,2025-10-29T19:30:00+00:00,"Anojen Kanagasingam, Switzerland",Stade de la Tuiliere,Lausanne,Match Finished,FT,Regular Season - 11,1014,Lausanne,False,2184,Servette FC,True,1.0,3.0,0.0,0.0,1.0,3.0
+1382357,2025-10-30T19:30:00+00:00,"Johannes von Mandach, Switzerland",Stadio di Cornaredo,Lugano,Match Finished,FT,Regular Season - 11,606,FC Lugano,True,644,FC Luzern,False,2.0,0.0,0.0,0.0,2.0,0.0
+1382355,2025-10-30T19:30:00+00:00,"Nico Gianforte, Switzerland",Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 11,1013,Grasshoppers,,565,BSC Young Boys,,3.0,3.0,2.0,1.0,3.0,3.0
+1382362,2025-11-01T17:00:00+00:00,"Marijan Drmic, Croatia",Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 12,1012,FC Thun,True,630,FC Sion,False,2.0,1.0,1.0,1.0,2.0,1.0
+1382363,2025-11-01T17:00:00+00:00,"Alessandro Dudic, Switzerland",Stadion Schützenwiese,Winterthur,Match Finished,FT,Regular Season - 12,2180,FC Winterthur,True,2184,Servette FC,False,4.0,2.0,0.0,1.0,4.0,2.0
+1382365,2025-11-01T19:30:00+00:00,"Luca Cibelli, Switzerland",Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 12,783,FC Zurich,False,1014,Lausanne,True,1.0,2.0,1.0,1.0,1.0,2.0
+1382364,2025-11-02T15:30:00+00:00,"Fedayi San, Switzerland",Stadion Wankdorf,Bern,Match Finished,FT,Regular Season - 12,565,BSC Young Boys,,551,FC Basel 1893,,0.0,0.0,0.0,0.0,0.0,0.0
+1382361,2025-11-02T15:30:00+00:00,"Sven Wolfensberger, Switzerland",Swissporarena,Luzern,Match Finished,FT,Regular Season - 12,644,FC Luzern,True,1013,Grasshoppers,False,6.0,0.0,3.0,0.0,6.0,0.0
+1382371,2025-11-08T17:00:00+00:00,"Luca Piccolo, Switzerland",Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 13,783,FC Zurich,True,644,FC Luzern,False,3.0,2.0,0.0,2.0,3.0,2.0
+1382370,2025-11-08T17:00:00+00:00,"Anojen Kanagasingam, Switzerland",Stadion Schützenwiese,Winterthur,Match Finished,FT,Regular Season - 13,2180,FC Winterthur,False,1013,Grasshoppers,True,0.0,1.0,0.0,0.0,0.0,1.0
+1382368,2025-11-08T19:30:00+00:00,"Desiree Blanco, Switzerland",Stade de Genève,Geneva,Match Finished,FT,Regular Season - 13,2184,Servette FC,False,1012,FC Thun,True,0.0,1.0,0.0,0.0,0.0,1.0
+1382366,2025-11-09T13:00:00+00:00,"Urs Schnyder, Switzerland",St. Jakob-Park,Basel,Match Finished,FT,Regular Season - 13,551,FC Basel 1893,False,606,FC Lugano,True,0.0,1.0,0.0,0.0,0.0,1.0
+1382369,2025-11-09T15:30:00+00:00,"Lukas Fahndrich, Switzerland",Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 13,1011,FC ST. Gallen,False,565,BSC Young Boys,True,1.0,4.0,1.0,2.0,1.0,4.0
+1382367,2025-11-09T15:30:00+00:00,"Nico Gianforte, Switzerland",Stade de la Tuiliere,Lausanne,Match Finished,FT,Regular Season - 13,1014,Lausanne,,630,FC Sion,,2.0,2.0,2.0,2.0,2.0,2.0
+1382377,2025-11-22T17:00:00+00:00,"Lionel Tschudi, Switzerland",Stadion Wankdorf,Bern,Match Finished,FT,Regular Season - 14,565,BSC Young Boys,True,2180,FC Winterthur,False,5.0,0.0,4.0,0.0,5.0,0.0
+1382373,2025-11-22T17:00:00+00:00,"Sandro Schärer, Switzerland",Swissporarena,Luzern,Match Finished,FT,Regular Season - 14,644,FC Luzern,,2184,Servette FC,,2.0,2.0,2.0,0.0,2.0,2.0
+1382376,2025-11-22T19:30:00+00:00,"Nico Gianforte, Switzerland",Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 14,1012,FC Thun,False,606,FC Lugano,True,0.0,1.0,0.0,0.0,0.0,1.0
+1382374,2025-11-23T13:00:00+00:00,"Sven Wolfensberger, Switzerland",Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 14,630,FC Sion,,783,FC Zurich,,2.0,2.0,2.0,1.0,2.0,2.0
+1382375,2025-11-23T15:30:00+00:00,"Johannes von Mandach, Switzerland",Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 14,1011,FC ST. Gallen,True,1014,Lausanne,False,1.0,0.0,0.0,0.0,1.0,0.0
+1382372,2025-11-23T15:30:00+00:00,"Luca Piccolo, Switzerland",Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 14,1013,Grasshoppers,,551,FC Basel 1893,,1.0,1.0,1.0,1.0,1.0,1.0
+1382360,2025-11-26T18:00:00+00:00,"Alessandro Dudic, Switzerland",Stadio di Cornaredo,Lugano,Match Finished,FT,Regular Season - 12,606,FC Lugano,False,1011,FC ST. Gallen,True,1.0,3.0,1.0,1.0,1.0,3.0
+1382380,2025-11-29T17:00:00+00:00,"Mirel Turkes, Switzerland",Stadio di Cornaredo,Lugano,Match Finished,FT,Regular Season - 15,606,FC Lugano,,630,FC Sion,,1.0,1.0,1.0,0.0,1.0,1.0
+1382383,2025-11-29T17:00:00+00:00,"Urs Schnyder, Switzerland",Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 15,783,FC Zurich,True,1013,Grasshoppers,False,1.0,0.0,1.0,0.0,1.0,0.0
+1382381,2025-11-29T19:30:00+00:00,L. Cibelli,Swissporarena,Luzern,Match Finished,FT,Regular Season - 15,644,FC Luzern,False,2180,FC Winterthur,True,1.0,3.0,1.0,1.0,1.0,3.0
+1382382,2025-11-30T13:00:00+00:00,L. Fahndrich,Stade de Genève,Geneva,Match Finished,FT,Regular Season - 15,2184,Servette FC,,565,BSC Young Boys,,4.0,4.0,2.0,2.0,4.0,4.0
+1382378,2025-11-30T15:30:00+00:00,S. Scharer,St. Jakob-Park,Basel,Match Finished,FT,Regular Season - 15,551,FC Basel 1893,,1011,FC ST. Gallen,,0.0,0.0,0.0,0.0,0.0,0.0
+1382379,2025-11-30T15:30:00+00:00,M. Drmic,Stade de la Tuiliere,Lausanne,Match Finished,FT,Regular Season - 15,1014,Lausanne,True,1012,FC Thun,False,2.0,1.0,2.0,0.0,2.0,1.0
+1382388,2025-12-06T17:00:00+00:00,U. Schnyder,Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 16,1012,FC Thun,True,644,FC Luzern,False,4.0,1.0,3.0,0.0,4.0,1.0
+1382384,2025-12-06T17:00:00+00:00,L. Tschudi,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 16,1013,Grasshoppers,False,2184,Servette FC,True,0.0,1.0,0.0,1.0,0.0,1.0
+1382387,2025-12-06T19:30:00+00:00,S. Wolfensberger,Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 16,1011,FC ST. Gallen,False,783,FC Zurich,True,1.0,2.0,1.0,2.0,1.0,2.0
+1382389,2025-12-07T13:00:00+00:00,L. Fahndrich,Stadion Schützenwiese,Winterthur,Match Finished,FT,Regular Season - 16,2180,FC Winterthur,False,551,FC Basel 1893,True,1.0,2.0,0.0,1.0,1.0,2.0
+1382386,2025-12-07T15:30:00+00:00,A. Kanagasingam,Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 16,630,FC Sion,True,565,BSC Young Boys,False,2.0,0.0,2.0,0.0,2.0,0.0
+1382385,2025-12-07T15:30:00+00:00,J. von Mandach,Stade de la Tuiliere,Lausanne,Match Finished,FT,Regular Season - 16,1014,Lausanne,,606,FC Lugano,,0.0,0.0,0.0,0.0,0.0,0.0
+1382392,2025-12-13T17:00:00+00:00,M. Turkes,Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 17,630,FC Sion,True,1013,Grasshoppers,False,1.0,0.0,1.0,0.0,1.0,0.0
+1382395,2025-12-13T17:00:00+00:00,J. von Mandach,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 17,783,FC Zurich,,2180,FC Winterthur,,2.0,2.0,0.0,1.0,2.0,2.0
+1382393,2025-12-13T19:30:00+00:00,L. Piccolo,Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 17,1012,FC Thun,False,1011,FC ST. Gallen,True,0.0,2.0,0.0,1.0,0.0,2.0
+1382394,2025-12-14T13:00:00+00:00,D. Blanco,Stadion Wankdorf,Bern,Match Finished,FT,Regular Season - 17,565,BSC Young Boys,True,644,FC Luzern,False,2.0,0.0,1.0,0.0,2.0,0.0
+1382390,2025-12-14T15:30:00+00:00,N. Gianforte,St. Jakob-Park,Basel,Match Finished,FT,Regular Season - 17,551,FC Basel 1893,,1014,Lausanne,,0.0,0.0,0.0,0.0,0.0,0.0
+1382391,2025-12-14T15:30:00+00:00,U. Schnyder,Stadio di Cornaredo,Lugano,Match Finished,FT,Regular Season - 17,606,FC Lugano,True,2184,Servette FC,False,4.0,2.0,3.0,1.0,4.0,2.0
+1382398,2025-12-16T19:30:00+00:00,L. Fahndrich,Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 18,1011,FC ST. Gallen,True,630,FC Sion,False,3.0,1.0,0.0,1.0,3.0,1.0
+1382399,2025-12-16T19:30:00+00:00,M. Turkes,Stadion Schützenwiese,Winterthur,Match Finished,FT,Regular Season - 18,2180,FC Winterthur,False,1012,FC Thun,True,1.0,4.0,1.0,3.0,1.0,4.0
+1382400,2025-12-17T19:30:00+00:00,A. Dudic,Stadion Wankdorf,Bern,Match Finished,FT,Regular Season - 18,565,BSC Young Boys,False,1013,Grasshoppers,True,2.0,6.0,1.0,3.0,2.0,6.0
+1382396,2025-12-17T19:30:00+00:00,L. Piccolo,Swissporarena,Luzern,Match Finished,FT,Regular Season - 18,644,FC Luzern,False,551,FC Basel 1893,True,1.0,2.0,0.0,0.0,1.0,2.0
+1382401,2025-12-17T19:30:00+00:00,N. Gianforte,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 18,783,FC Zurich,False,606,FC Lugano,True,0.0,1.0,0.0,0.0,0.0,1.0
+1382407,2025-12-20T17:00:00+00:00,A. Kanagasingam,Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 19,1012,FC Thun,True,783,FC Zurich,False,4.0,2.0,0.0,2.0,4.0,2.0
+1382402,2025-12-20T19:30:00+00:00,S. Wolfensberger,St. Jakob-Park,Basel,Match Finished,FT,Regular Season - 19,551,FC Basel 1893,,2184,Servette FC,,1.0,1.0,0.0,1.0,1.0,1.0
+1382404,2025-12-21T13:00:00+00:00,L. Tschudi,Stade de la Tuiliere,Lausanne,Match Finished,FT,Regular Season - 19,1014,Lausanne,False,644,FC Luzern,True,0.0,4.0,0.0,0.0,0.0,4.0
+1382405,2025-12-21T15:30:00+00:00,L. Cibelli,Stadio di Cornaredo,Lugano,Match Finished,FT,Regular Season - 19,606,FC Lugano,True,565,BSC Young Boys,False,3.0,0.0,2.0,0.0,3.0,0.0
+1382403,2025-12-21T15:30:00+00:00,S. Scharer,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 19,1013,Grasshoppers,False,1011,FC ST. Gallen,True,1.0,2.0,1.0,1.0,1.0,2.0
+1382406,2026-01-14T19:30:00+00:00,J. von Mandach,Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 19,630,FC Sion,True,2180,FC Winterthur,False,2.0,0.0,0.0,0.0,2.0,0.0
+1382397,2026-01-14T19:30:00+00:00,S. Scharer,Stade de Genève,Geneva,Match Finished,FT,Regular Season - 18,2184,Servette FC,False,1014,Lausanne,True,0.0,1.0,0.0,0.0,0.0,1.0
+1382410,2026-01-17T17:00:00+00:00,U. Schnyder,Swissporarena,Luzern,Match Finished,FT,Regular Season - 20,644,FC Luzern,False,606,FC Lugano,True,2.0,5.0,1.0,3.0,2.0,5.0
+1382413,2026-01-17T19:30:00+00:00,L. Fahndrich,Stadion Wankdorf,Bern,Match Finished,FT,Regular Season - 20,565,BSC Young Boys,False,1014,Lausanne,True,1.0,3.0,1.0,2.0,1.0,3.0
+1382411,2026-01-18T13:00:00+00:00,J. von Mandach,Stade de Genève,Geneva,Match Finished,FT,Regular Season - 20,2184,Servette FC,,783,FC Zurich,,1.0,1.0,1.0,1.0,1.0,1.0
+1382408,2026-01-18T15:30:00+00:00,S. Wolfensberger,St. Jakob-Park,Basel,Match Finished,FT,Regular Season - 20,551,FC Basel 1893,,630,FC Sion,,1.0,1.0,1.0,0.0,1.0,1.0
+1382409,2026-01-18T15:30:00+00:00,L. Cibelli,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 20,1013,Grasshoppers,False,1012,FC Thun,True,1.0,3.0,0.0,2.0,1.0,3.0
+1382415,2026-01-24T17:00:00+00:00,D. Blanco,Stadio di Cornaredo,Lugano,Match Finished,FT,Regular Season - 21,606,FC Lugano,True,2180,FC Winterthur,False,4.0,1.0,3.0,0.0,4.0,1.0
+1382414,2026-01-24T17:00:00+00:00,L. Piccolo,Stade de la Tuiliere,Lausanne,Match Finished,FT,Regular Season - 21,1014,Lausanne,,1013,Grasshoppers,,1.0,1.0,0.0,0.0,1.0,1.0
+1382416,2026-01-24T19:30:00+00:00,N. Gianforte,Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 21,630,FC Sion,,644,FC Luzern,,1.0,1.0,1.0,1.0,1.0,1.0
+1382418,2026-01-25T13:00:00+00:00,A. Kanagasingam,Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 21,1012,FC Thun,True,565,BSC Young Boys,False,4.0,1.0,0.0,0.0,4.0,1.0
+1382419,2026-01-25T15:30:00+00:00,F. San,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 21,783,FC Zurich,False,551,FC Basel 1893,True,3.0,4.0,2.0,2.0,3.0,4.0
+1382417,2026-01-25T15:30:00+00:00,M. Turkes,Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 21,1011,FC ST. Gallen,False,2184,Servette FC,True,2.0,4.0,2.0,0.0,2.0,4.0
+1382424,2026-01-31T17:00:00+00:00,A. Dudic,Stadion Schützenwiese,Winterthur,Match Finished,FT,Regular Season - 22,2180,FC Winterthur,True,1014,Lausanne,False,2.0,1.0,1.0,0.0,2.0,1.0
+1382423,2026-01-31T17:00:00+00:00,L. Cibelli,Stade de Genève,Geneva,Match Finished,FT,Regular Season - 22,2184,Servette FC,,630,FC Sion,,3.0,3.0,2.0,1.0,3.0,3.0
+1382421,2026-01-31T19:30:00+00:00,N. Gianforte,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 22,1013,Grasshoppers,,606,FC Lugano,,1.0,1.0,0.0,0.0,1.0,1.0
+1382422,2026-02-01T13:00:00+00:00,F. San,Swissporarena,Luzern,Match Finished,FT,Regular Season - 22,644,FC Luzern,,1011,FC ST. Gallen,,2.0,2.0,0.0,1.0,2.0,2.0
+1382420,2026-02-01T15:30:00+00:00,S. Wolfensberger,St. Jakob-Park,Basel,Match Finished,FT,Regular Season - 22,551,FC Basel 1893,False,1012,FC Thun,True,1.0,2.0,0.0,1.0,1.0,2.0
+1382425,2026-02-01T15:30:00+00:00,U. Schnyder,Stadion Wankdorf,Bern,Match Finished,FT,Regular Season - 22,565,BSC Young Boys,True,783,FC Zurich,False,3.0,0.0,1.0,0.0,3.0,0.0
+1494530,2026-02-07T17:00:00+00:00,D. Blanco,Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 23,630,FC Sion,,644,FC Luzern,,0.0,0.0,0.0,0.0,0.0,0.0
+1494531,2026-02-07T17:00:00+00:00,L. Piccolo,Stadion Schützenwiese,Winterthur,Match Finished,FT,Regular Season - 23,2180,FC Winterthur,,606,FC Lugano,,1.0,1.0,0.0,0.0,1.0,1.0
+1494532,2026-02-07T19:30:00+00:00,M. Turkes,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 23,1013,Grasshoppers,,565,BSC Young Boys,,1.0,1.0,0.0,1.0,1.0,1.0
+1494533,2026-02-08T13:00:00+00:00,A. Dudic,Stade de Genève,Geneva,Match Finished,FT,Regular Season - 23,2184,Servette FC,False,1012,FC Thun,True,1.0,3.0,0.0,1.0,1.0,3.0
+1494534,2026-02-08T15:30:00+00:00,U. Schnyder,St. Jakob-Park,Basel,Match Finished,FT,Regular Season - 23,551,FC Basel 1893,True,783,FC Zurich,False,2.0,1.0,0.0,1.0,2.0,1.0
+1494535,2026-02-08T15:30:00+00:00,N. Gianforte,Stade de la Tuiliere,Lausanne,Match Finished,FT,Regular Season - 23,1014,Lausanne,,1011,FC ST. Gallen,,1.0,1.0,1.0,1.0,1.0,1.0
+1494536,2026-02-10T19:30:00+00:00,S. Scharer,Swissporarena,Luzern,Match Finished,FT,Regular Season - 24,644,FC Luzern,True,1013,Grasshoppers,False,4.0,3.0,2.0,2.0,4.0,3.0
+1494537,2026-02-11T19:30:00+00:00,U. Schnyder,Stadio di Cornaredo,Lugano,Match Finished,FT,Regular Season - 24,606,FC Lugano,,2184,Servette FC,,1.0,1.0,1.0,0.0,1.0,1.0
+1494539,2026-02-11T19:30:00+00:00,S. Wolfensberger,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 24,783,FC Zurich,True,2180,FC Winterthur,False,3.0,0.0,2.0,0.0,3.0,0.0
+1494538,2026-02-11T19:30:00+00:00,L. Cibelli,Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 24,1011,FC ST. Gallen,True,565,BSC Young Boys,False,2.0,1.0,2.0,0.0,2.0,1.0
+1494540,2026-02-12T19:30:00+00:00,A. Kanagasingam,Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 24,630,FC Sion,True,551,FC Basel 1893,False,2.0,0.0,1.0,0.0,2.0,0.0
+1494541,2026-02-12T19:30:00+00:00,M. Turkes,Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 24,1012,FC Thun,True,1014,Lausanne,False,5.0,1.0,2.0,1.0,5.0,1.0
+1494543,2026-02-14T17:00:00+00:00,L. Fahndrich,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 25,783,FC Zurich,False,644,FC Luzern,True,1.0,4.0,0.0,2.0,1.0,4.0
+1494542,2026-02-14T17:00:00+00:00,N. Gianforte,Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 25,1011,FC ST. Gallen,,1013,Grasshoppers,,0.0,0.0,0.0,0.0,0.0,0.0
+1494544,2026-02-14T19:30:00+00:00,J. von Mandach,Stadion Wankdorf,Bern,Match Finished,FT,Regular Season - 25,565,BSC Young Boys,True,2180,FC Winterthur,False,6.0,1.0,1.0,0.0,6.0,1.0
+1494545,2026-02-15T13:00:00+00:00,M. Drmic,Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 25,1012,FC Thun,True,630,FC Sion,False,1.0,0.0,1.0,0.0,1.0,0.0
+1494546,2026-02-15T15:30:00+00:00,F. San,St. Jakob-Park,Basel,Match Finished,FT,Regular Season - 25,551,FC Basel 1893,,606,FC Lugano,,1.0,1.0,1.0,0.0,1.0,1.0
+1494547,2026-02-15T15:30:00+00:00,A. Kanagasingam,Stade de la Tuiliere,Lausanne,Match Finished,FT,Regular Season - 25,1014,Lausanne,,2184,Servette FC,,3.0,3.0,2.0,1.0,3.0,3.0
+1382412,2026-02-18T18:00:00+00:00,A. Dudic,Stadion Schützenwiese,Winterthur,Match Finished,FT,Regular Season - 20,2180,FC Winterthur,False,1011,FC ST. Gallen,True,1.0,5.0,0.0,2.0,1.0,5.0
+1494548,2026-02-21T17:00:00+00:00,L. Cibelli,Stade de Genève,Geneva,Match Finished,FT,Regular Season - 26,2184,Servette FC,,1011,FC ST. Gallen,,1.0,1.0,1.0,1.0,1.0,1.0
+1494550,2026-02-21T19:30:00+00:00,L. Piccolo,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 26,1013,Grasshoppers,False,783,FC Zurich,True,1.0,2.0,0.0,1.0,1.0,2.0
+1494551,2026-02-22T13:00:00+00:00,S. Wolfensberger,Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 26,630,FC Sion,True,565,BSC Young Boys,False,3.0,1.0,2.0,0.0,3.0,1.0
+1494552,2026-02-22T15:30:00+00:00,U. Schnyder,Stadio di Cornaredo,Lugano,Match Finished,FT,Regular Season - 26,606,FC Lugano,True,1014,Lausanne,False,2.0,1.0,1.0,0.0,2.0,1.0
+1494553,2026-02-22T15:30:00+00:00,A. Dudic,Swissporarena,Luzern,Match Finished,FT,Regular Season - 26,644,FC Luzern,True,551,FC Basel 1893,False,4.0,2.0,1.0,1.0,4.0,2.0
+1494549,2026-02-25T18:00:00+00:00,H. Sanli,Stadion Schützenwiese,Winterthur,Match Finished,FT,Regular Season - 26,2180,FC Winterthur,False,1012,FC Thun,True,0.0,3.0,0.0,0.0,0.0,3.0
+1494554,2026-02-28T17:00:00+00:00,D. Blanco,Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 27,1011,FC ST. Gallen,True,2180,FC Winterthur,False,2.0,1.0,0.0,1.0,2.0,1.0
+1494555,2026-02-28T17:00:00+00:00,N. Gianforte,Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 27,1012,FC Thun,True,644,FC Luzern,False,2.0,1.0,2.0,1.0,2.0,1.0
+1494556,2026-02-28T19:30:00+00:00,L. Fahndrich,Stade de Genève,Geneva,Match Finished,FT,Regular Season - 27,2184,Servette FC,,630,FC Sion,,0.0,0.0,0.0,0.0,0.0,0.0
+1494557,2026-03-01T13:00:00+00:00,A. Kanagasingam,Stade de la Tuiliere,Lausanne,Match Finished,FT,Regular Season - 27,1014,Lausanne,False,551,FC Basel 1893,True,1.0,2.0,0.0,1.0,1.0,2.0
+1494559,2026-03-01T15:30:00+00:00,U. Schnyder,Stadion Wankdorf,Bern,Match Finished,FT,Regular Season - 27,565,BSC Young Boys,True,783,FC Zurich,False,3.0,0.0,0.0,0.0,3.0,0.0
+1494558,2026-03-01T15:30:00+00:00,M. Drmic,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 27,1013,Grasshoppers,True,606,FC Lugano,False,1.0,0.0,1.0,0.0,1.0,0.0
+1494560,2026-03-03T19:30:00+00:00,S. Scharer,Stadion Schützenwiese,Winterthur,Match Finished,FT,Regular Season - 28,2180,FC Winterthur,,2184,Servette FC,,1.0,1.0,0.0,0.0,1.0,1.0
+1494561,2026-03-04T19:30:00+00:00,F. San,Stadio di Cornaredo,Lugano,Match Finished,FT,Regular Season - 28,606,FC Lugano,True,630,FC Sion,False,2.0,1.0,1.0,1.0,2.0,1.0
+1494562,2026-03-04T19:30:00+00:00,L. Fahndrich,Swissporarena,Luzern,Match Finished,FT,Regular Season - 28,644,FC Luzern,False,565,BSC Young Boys,True,1.0,2.0,0.0,0.0,1.0,2.0
+1494563,2026-03-04T19:30:00+00:00,S. Wolfensberger,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 28,783,FC Zurich,False,1014,Lausanne,True,1.0,2.0,0.0,1.0,1.0,2.0
+1494564,2026-03-05T19:30:00+00:00,L. Cibelli,St. Jakob-Park,Basel,Match Finished,FT,Regular Season - 28,551,FC Basel 1893,True,1013,Grasshoppers,False,1.0,0.0,0.0,0.0,1.0,0.0
+1494565,2026-03-05T19:30:00+00:00,J. von Mandach,Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 28,1012,FC Thun,,1011,FC ST. Gallen,,2.0,2.0,0.0,1.0,2.0,2.0
+1494567,2026-03-07T17:00:00+00:00,A. Dudic,Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 29,630,FC Sion,,2180,FC Winterthur,,1.0,1.0,0.0,1.0,1.0,1.0
+1494566,2026-03-07T17:00:00+00:00,M. Turkes,Stade de Genève,Geneva,Match Finished,FT,Regular Season - 29,2184,Servette FC,True,783,FC Zurich,False,2.0,1.0,1.0,0.0,2.0,1.0
+1494568,2026-03-07T19:30:00+00:00,A. Kanagasingam,Stadio di Cornaredo,Lugano,Match Finished,FT,Regular Season - 29,606,FC Lugano,False,644,FC Luzern,True,1.0,3.0,0.0,1.0,1.0,3.0
+1494569,2026-03-08T13:00:00+00:00,U. Schnyder,Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 29,1011,FC ST. Gallen,True,551,FC Basel 1893,False,3.0,0.0,3.0,0.0,3.0,0.0
+1494571,2026-03-08T15:30:00+00:00,S. Scharer,Stadion Wankdorf,Bern,Match Finished,FT,Regular Season - 29,565,BSC Young Boys,False,1012,FC Thun,True,1.0,2.0,1.0,0.0,1.0,2.0
+1494570,2026-03-08T15:30:00+00:00,H. Qovanaj,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 29,1013,Grasshoppers,False,1014,Lausanne,True,2.0,3.0,1.0,1.0,2.0,3.0
+1494573,2026-03-14T17:00:00+00:00,A. Dudic,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 30,783,FC Zurich,False,630,FC Sion,True,1.0,2.0,0.0,0.0,1.0,2.0
+1494572,2026-03-14T17:00:00+00:00,D. Blanco,Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 30,1012,FC Thun,True,1013,Grasshoppers,False,5.0,1.0,2.0,1.0,5.0,1.0
+1494575,2026-03-15T13:00:00+00:00,L. Cibelli,Stade de la Tuiliere,Lausanne,Match Finished,FT,Regular Season - 30,1014,Lausanne,False,565,BSC Young Boys,True,0.0,2.0,0.0,1.0,0.0,2.0
+1494576,2026-03-15T15:30:00+00:00,N. Gianforte,St. Jakob-Park,Basel,Match Finished,FT,Regular Season - 30,551,FC Basel 1893,True,2184,Servette FC,False,3.0,1.0,1.0,0.0,3.0,1.0
+1494577,2026-03-15T15:30:00+00:00,U. Schnyder,Swissporarena,Luzern,Match Finished,FT,Regular Season - 30,644,FC Luzern,False,2180,FC Winterthur,True,1.0,2.0,1.0,2.0,1.0,2.0
+1494574,2026-03-17T18:00:00+00:00,A. Kanagasingam,Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 30,1011,FC ST. Gallen,,606,FC Lugano,,1.0,1.0,1.0,0.0,1.0,1.0
+1494579,2026-03-21T17:00:00+00:00,L. Fahndrich,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 31,783,FC Zurich,True,1012,FC Thun,False,2.0,1.0,1.0,1.0,2.0,1.0
+1494578,2026-03-21T17:00:00+00:00,M. Drmic,Stade de Genève,Geneva,Match Finished,FT,Regular Season - 31,2184,Servette FC,True,1013,Grasshoppers,False,5.0,0.0,4.0,0.0,5.0,0.0
+1494580,2026-03-21T19:30:00+00:00,S. Wolfensberger,Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 31,630,FC Sion,,1011,FC ST. Gallen,,1.0,1.0,1.0,1.0,1.0,1.0
+1494581,2026-03-22T13:00:00+00:00,L. Piccolo,Stadion Schützenwiese,Winterthur,Match Finished,FT,Regular Season - 31,2180,FC Winterthur,False,551,FC Basel 1893,True,0.0,2.0,0.0,1.0,0.0,2.0
+1494583,2026-03-22T15:30:00+00:00,F. San,Stadion Wankdorf,Bern,Match Finished,FT,Regular Season - 31,565,BSC Young Boys,,606,FC Lugano,,1.0,1.0,1.0,0.0,1.0,1.0
+1494582,2026-03-22T15:30:00+00:00,J. von Mandach,Swissporarena,Luzern,Match Finished,FT,Regular Season - 31,644,FC Luzern,True,1014,Lausanne,False,4.0,0.0,2.0,0.0,4.0,0.0
+1494585,2026-04-04T16:00:00+00:00,J. von Mandach,Stadio di Cornaredo,Lugano,Match Finished,FT,Regular Season - 32,606,FC Lugano,True,1012,FC Thun,False,1.0,0.0,0.0,0.0,1.0,0.0
+1494584,2026-04-04T16:00:00+00:00,A. Dudic,Stade de la Tuiliere,Lausanne,Match Finished,FT,Regular Season - 32,1014,Lausanne,True,2180,FC Winterthur,False,2.0,1.0,1.0,1.0,2.0,1.0
+1494586,2026-04-04T18:30:00+00:00,L. Fahndrich,St. Jakob-Park,Basel,Match Finished,FT,Regular Season - 32,551,FC Basel 1893,,565,BSC Young Boys,,3.0,3.0,2.0,1.0,3.0,3.0
+1494587,2026-04-06T12:00:00+00:00,F. San,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 32,1013,Grasshoppers,False,630,FC Sion,True,0.0,4.0,0.0,1.0,0.0,4.0
+1494589,2026-04-06T14:30:00+00:00,U. Schnyder,Kybunpark,St. Gallen,Match Finished,FT,Regular Season - 32,1011,FC ST. Gallen,True,783,FC Zurich,False,2.0,1.0,1.0,1.0,2.0,1.0
+1494588,2026-04-06T14:30:00+00:00,L. Cibelli,Stade de Genève,Geneva,Match Finished,FT,Regular Season - 32,2184,Servette FC,True,644,FC Luzern,False,3.0,0.0,1.0,0.0,3.0,0.0
+1494595,2026-04-11T16:00:00+00:00,S. Wolfensberger,Letzigrund Stadion,Zurich,Match Finished,FT,Regular Season - 33,783,FC Zurich,False,606,FC Lugano,True,0.0,1.0,0.0,0.0,0.0,1.0
+1494593,2026-04-11T16:00:00+00:00,U. Schnyder,Stadion Schützenwiese,Winterthur,Match Finished,FT,Regular Season - 33,2180,FC Winterthur,False,1013,Grasshoppers,True,0.0,2.0,0.0,1.0,0.0,2.0
+1494594,2026-04-12T14:30:00+00:00,N. Gianforte,Stadion Wankdorf,Bern,Match Finished,FT,Regular Season - 33,565,BSC Young Boys,,2184,Servette FC,,1.0,1.0,0.0,0.0,1.0,1.0
+1494591,2026-04-12T14:30:00+00:00,A. Kanagasingam,Stade de Tourbillon,Sion,Match Finished,FT,Regular Season - 33,630,FC Sion,True,1014,Lausanne,False,3.0,0.0,0.0,0.0,3.0,0.0
+1494590,2026-04-12T14:30:00+00:00,L. Piccolo,Swissporarena,Luzern,Match Finished,FT,Regular Season - 33,644,FC Luzern,,1011,FC ST. Gallen,,2.0,2.0,1.0,0.0,2.0,2.0
+1494592,2026-04-18T18:30:00+00:00,M. Turkes,Stockhorn Arena,Thun,Match Finished,FT,Regular Season - 33,1012,FC Thun,True,551,FC Basel 1893,False,3.0,1.0,1.0,0.0,3.0,1.0
+1538468,2026-04-25T16:00:00+00:00,,Letzigrund Stadion,,Not Started,NS,Relegation Group - 34,1013,Grasshoppers,,644,FC Luzern,,,,,,,
+1538469,2026-04-25T16:00:00+00:00,,Stade de la Tuiliere,Lausanne,Not Started,NS,Relegation Group - 34,1014,Lausanne,,783,FC Zurich,,,,,,,
+1538483,2026-04-25T18:30:00+00:00,,Stockhorn Arena,Thun,Not Started,NS,Championship Group - 34,1012,FC Thun,,606,FC Lugano,,,,,,,
+1538484,2026-04-26T12:00:00+00:00,,St. Jakob-Park,Basel,Not Started,NS,Championship Group - 34,551,FC Basel 1893,,630,FC Sion,,,,,,,
+1538485,2026-04-26T14:30:00+00:00,,Stadion Wankdorf,Bern,Not Started,NS,Championship Group - 34,565,BSC Young Boys,,1011,FC ST. Gallen,,,,,,,
+1538470,2026-04-26T14:30:00+00:00,,,Geneva,Not Started,NS,Relegation Group - 34,2184,Servette FC,,2180,FC Winterthur,,,,,,,
+1538471,2026-05-02T16:00:00+00:00,,Stade de la Tuiliere,Lausanne,Not Started,NS,Relegation Group - 35,1014,Lausanne,,644,FC Luzern,,,,,,,
+1538472,2026-05-02T16:00:00+00:00,,,Winterthur,Not Started,NS,Relegation Group - 35,2180,FC Winterthur,,783,FC Zurich,,,,,,,
+1538486,2026-05-02T18:30:00+00:00,,St. Jakob-Park,Basel,Not Started,NS,Championship Group - 35,551,FC Basel 1893,,1012,FC Thun,,,,,,,
+1538487,2026-05-03T12:00:00+00:00,,Kybunpark,St. Gallen,Not Started,NS,Championship Group - 35,1011,FC ST. Gallen,,630,FC Sion,,,,,,,
+1538488,2026-05-03T14:30:00+00:00,,Stadio di Cornaredo,Lugano,Not Started,NS,Championship Group - 35,606,FC Lugano,,565,BSC Young Boys,,,,,,,
+1538473,2026-05-03T14:30:00+00:00,,Letzigrund Stadion,,Not Started,NS,Relegation Group - 35,1013,Grasshoppers,,2184,Servette FC,,,,,,,
+1538475,2026-05-09T16:00:00+00:00,,Letzigrund Stadion,,Not Started,NS,Relegation Group - 36,783,FC Zurich,,1013,Grasshoppers,,,,,,,
+1538474,2026-05-09T16:00:00+00:00,,,Winterthur,Not Started,NS,Relegation Group - 36,2180,FC Winterthur,,1014,Lausanne,,,,,,,
+1538476,2026-05-09T18:30:00+00:00,,Swissporarena,Luzern,Not Started,NS,Relegation Group - 36,644,FC Luzern,,2184,Servette FC,,,,,,,
+1538489,2026-05-10T12:00:00+00:00,,Stadio di Cornaredo,Lugano,Not Started,NS,Championship Group - 36,606,FC Lugano,,1011,FC ST. Gallen,,,,,,,
+1538491,2026-05-10T14:30:00+00:00,,Stadion Wankdorf,Bern,Not Started,NS,Championship Group - 36,565,BSC Young Boys,,551,FC Basel 1893,,,,,,,
+1538490,2026-05-10T14:30:00+00:00,,Stade de Tourbillon,Sion,Not Started,NS,Championship Group - 36,630,FC Sion,,1012,FC Thun,,,,,,,
+1538478,2026-05-12T18:30:00+00:00,,Swissporarena,Luzern,Not Started,NS,Relegation Group - 37,644,FC Luzern,,783,FC Zurich,,,,,,,
+1538477,2026-05-12T18:30:00+00:00,,Letzigrund Stadion,,Not Started,NS,Relegation Group - 37,1013,Grasshoppers,,2180,FC Winterthur,,,,,,,
+1538479,2026-05-12T18:30:00+00:00,,,Geneva,Not Started,NS,Relegation Group - 37,2184,Servette FC,,1014,Lausanne,,,,,,,
+1538492,2026-05-14T14:30:00+00:00,,St. Jakob-Park,Basel,Not Started,NS,Championship Group - 37,551,FC Basel 1893,,1011,FC ST. Gallen,,,,,,,
+1538493,2026-05-14T14:30:00+00:00,,Stade de Tourbillon,Sion,Not Started,NS,Championship Group - 37,630,FC Sion,,606,FC Lugano,,,,,,,
+1538494,2026-05-14T14:30:00+00:00,,Stockhorn Arena,Thun,Not Started,NS,Championship Group - 37,1012,FC Thun,,565,BSC Young Boys,,,,,,,
+1538482,2026-05-16T16:00:00+00:00,,Letzigrund Stadion,,Not Started,NS,Relegation Group - 38,783,FC Zurich,,2184,Servette FC,,,,,,,
+1538480,2026-05-16T16:00:00+00:00,,Stade de la Tuiliere,Lausanne,Not Started,NS,Relegation Group - 38,1014,Lausanne,,1013,Grasshoppers,,,,,,,
+1538481,2026-05-16T16:00:00+00:00,,,Winterthur,Not Started,NS,Relegation Group - 38,2180,FC Winterthur,,644,FC Luzern,,,,,,,
+1538497,2026-05-17T14:30:00+00:00,,Stadion Wankdorf,Bern,Not Started,NS,Championship Group - 38,565,BSC Young Boys,,630,FC Sion,,,,,,,
+1538495,2026-05-17T14:30:00+00:00,,Stadio di Cornaredo,Lugano,Not Started,NS,Championship Group - 38,606,FC Lugano,,551,FC Basel 1893,,,,,,,
+1538496,2026-05-17T14:30:00+00:00,,Kybunpark,St. Gallen,Not Started,NS,Championship Group - 38,1011,FC ST. Gallen,,1012,FC Thun,,,,,,,

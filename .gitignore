@@ -130,3 +130,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# EDA profiling reports (gross, lokal erzeugt)
+eda/reports/*.html
+
+# FBref Quelldaten (gross, lokal ablegen — nicht committen)
+# HTML-Datei in data_acquisition/fbref_html/ ablegen
+data_acquisition/fbref_html/*.html
+data_acquisition/fbref_html/*_files/
