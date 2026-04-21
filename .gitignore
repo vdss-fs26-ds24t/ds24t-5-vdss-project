@@ -134,9 +134,7 @@ dmypy.json
 # EDA profiling reports (gross, lokal erzeugt)
 eda/reports/*.html
 
-# Rohdaten (werden via Notebook neu gezogen, nicht committet)
-data_acquisition/raw/*.csv
-
-# FBref lokal gespeicherte HTML-Seite (gross, nicht committen)
-data_acquisition/*.html
-data_acquisition/*_files/
+# FBref Quelldaten (gross, lokal ablegen — nicht committen)
+# HTML-Datei in data_acquisition/fbref_html/ ablegen
+data_acquisition/fbref_html/*.html
+data_acquisition/fbref_html/*_files/
