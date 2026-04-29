@@ -1,147 +1,336 @@
-# Data Report
-All information on the data used in the project is compiled in the data report in order to ensure the traceability and reproducibility of the results and to enable a systematic expansion of the database.
+# Datenbericht
 
-Typically, in the exploratory analysis of the acquired raw data, quality and other issues are identified, which require pre-processing, merging of individual datasets and feature engineering into processed datasets. Therefore, this template provides a separate section for the processed data, which then serves as a starting point for the modelling activities. This needs to be adapted to the specific project requirements.
+Alle Informationen zu den im Projekt verwendeten Daten sind hier zusammengefasst, um die Nachvollziehbarkeit und Reproduzierbarkeit der Ergebnisse sicherzustellen und eine systematische Erweiterung der Datenbasis zu ermöglichen. Das Projekt analysiert **warum der FC Thun in der Swiss Super League so erfolgreich ist**, indem Spieldaten auf Match-Ebene mit aggregierten Teamstatistiken aus drei unabhängigen Quellen kombiniert werden.
 
-## Raw data
-### Overview Raw Datasets
+Ursprünglich war API-Football als alleinige Datenquelle geplant. Im Verlauf der Datenakquise stellte sich jedoch heraus, dass die dort verfügbaren Teamstatistiken für eine differenzierte Analyse nicht ausreichen — insbesondere fehlten detaillierte Defensiv- und Angriffskennzahlen sowie eine belastbare Schussstatistik. Die Datenbasis wurde daher mit SportMonks (Angriffe, gefährliche Angriffe, Spielrating) und FBref (Schusseffizienz, Torhüterstatistiken, Zweikampfquoten) gezielt ergänzt.
 
-: Overview of raw datasets used in the project. {#tbl-raw-overview}
+Die Rohdaten werden so gespeichert, wie sie von der jeweiligen API oder Scraping-Quelle geliefert wurden. In einem einzigen Verarbeitungsschritt werden alle teambasierten Statistiken in einem analysebereiteten Datensatz zusammengeführt — dokumentiert in @sec-processed-data. Dieser zusammengeführte Datensatz ist die eigentliche Datengrundlage für alle Visualisierungen; der umfassende Datenkatalog und die explorative Datenanalyse befinden sich daher ausschliesslich in @sec-merged.
 
-| Name | Quelle | Storage location |
-|----------------|-----------------------------------------|--------------------------------------------------------------------------|
-| Dataset 1      | Name/short description of the data source | Link and/or short description of the location where the data is stored, e.g. accessible to the team |
-| Dataset 2      | …                                       | …                                                                        |
+---
 
-### Details Dataset 1
+## Rohdaten {#sec-raw-data}
 
-- Description of what information the dataset contains
-- Details of the data source/provider
-- Information on data procurement: description and possibly references to resources (download scripts, tools, online services, ...). Any new team member should be able to acquire the data indepentendently following these instructions.
-- Legal aspects of data use, licences, etc.
-- Data governance aspects: Categorisation of the data based on internal business requirements, e.g. public, business-relevant, personal
-- If applicable: categorisation into dependent (target variable, regressor) and independent (regressor) variables
-- ...
+### Übersicht Rohdatensätze
 
-#### Data Catalogue
-The data catalogue basically represents an extended schema of a relational database.
+: Übersicht aller für das Projekt erhobenen Rohdatensätze. {#tbl-raw-overview}
 
+| Name | Quelle | Speicherort |
+|-------------------------------|--------------------------------------|--------------------------------------|
+| `fixtures_footballapi.csv` | API-Football (api-sports.io) | `data_acquisition/raw/footballapi/` |
+| `standings_footballapi.csv` | API-Football (api-sports.io) | `data_acquisition/raw/footballapi/` |
+| `team_statistics_footballapi.csv` | API-Football (api-sports.io) | `data_acquisition/raw/footballapi/` |
+| `teams_footballapi.csv` | API-Football (api-sports.io) | `data_acquisition/raw/footballapi/` |
+| `team_season_stats_sportmonks.csv` | SportMonks API | `data_acquisition/raw/sportmonks/` |
+| `teams_sportmonks.csv` | SportMonks API | `data_acquisition/raw/sportmonks/` |
+| `standard_fbref.csv` | FBref / Sports Reference LLC | `data_acquisition/raw/fbref/` |
+| `keeper_fbref.csv` | FBref / Sports Reference LLC | `data_acquisition/raw/fbref/` |
+| `shooting_fbref.csv` | FBref / Sports Reference LLC | `data_acquisition/raw/fbref/` |
+| `misc_fbref.csv` | FBref / Sports Reference LLC | `data_acquisition/raw/fbref/` |
 
-: Data catalogue for Dataset 1. {#tbl-data-catalogue}
+Die vollständige Spaltenübersicht aller Rohdateien — inklusive Datentypen, Wertebereiche und Beschreibungen — findet sich im Datenkatalog des zusammengeführten Datensatzes (@tbl-cat-merged). Dort ist auch dokumentiert, welche Spalten aus welcher Quelle stammen (erkennbar am Spaltenpräfix `standings_`, `stats_`, `sm_`, `fbref_`).
 
-| Column index | Column name |  Datatype | Values (Range, validation rules) | Short description |
-|---|---|---|---|---|
-| 1 |   |   |   |   |
-| 2 |   |   |   |   |
-|   |   |   |   |   |
+---
 
+### Datensatzgruppe 1: API-Football {#sec-raw-footballapi}
 
-#### If applicable: Entity Relationship Diagram
+**Beschreibung:** API-Football (api-sports.io) ist eine kommerzielle REST-API mit strukturierten Fussballdaten. Für dieses Projekt wurden vier Endpunkte für die Swiss Super League 2025/26 (Liga-ID 207) abgefragt:
 
+- **`teams_footballapi.csv`** — Stammdaten der 12 Teams (Name, Kürzel, Stadion, Gründungsjahr)
+- **`fixtures_footballapi.csv`** — 228 Spielergebnisse der laufenden Saison (Datum, Tore, Halbzeitergebnis, Status, Runde)
+- **`standings_footballapi.csv`** — Aktuelle Tabelle mit Punkten, Tordifferenz, Form und Heim-/Auswärtsbilanz
+- **`team_statistics_footballapi.csv`** — Saisonstatistiken pro Team (Siege, Tore, Serien, Clean Sheets, Elfmeterbilanz)
 
-#### Data Chracteristics and Quality
+Diese vier Dateien teilen den numerischen `team_id` als gemeinsamen Schlüssel. `fixtures_footballapi` verwendet `home_team_id` und `away_team_id` als Fremdschlüssel — sie ist die einzige Datei mit Granularität auf Spielebene (eine Zeile pro Spiel), alle anderen sind Team-Aggregate.
 
-The methods of exploratory data analysis are used to describe relevant characteristics of the data and identify data quality issues. This includes, for example, 
+```
+teams_footballapi (12 Zeilen)
+  team_id ──┬──► standings_footballapi.team_id
+            ├──► team_statistics_footballapi.team_id
+            ├──► fixtures_footballapi.home_team_id
+            └──► fixtures_footballapi.away_team_id
+```
 
-the univariate andalysis of numerical variables:
+Der API-Football `team_id` dient im gesamten Projekt als **kanonischer Primärschlüssel** — er ist in allen vier API-Football-Dateien konsistent und verknüpft die Fixture-Daten direkt mit den Teamstatistiken. Wie die Spieldaten zur Analysezeit mit dem zusammengeführten Teamdatensatz gejoint werden, ist in @sec-fixture-join beschrieben.
 
-* Number or fraction
-    * of unique values
-    * of missing values
-    * of zero values
-    * of negative values
-* Frequency distribution
-* Extreme values (minimum and maximum)
-* Histogram
-* Measures of central tendency:
-    * arithmetic mean
-    * median
-    * mode
-* Measures of dispersion and visualisation of dispersion:
-    * Range
-    * Quantiles and interquartile range (IQR)
-    * Box plot
-    * Variance and standard deviation 
+**Datenquelle/Anbieter:** [api-sports.io](https://api-sports.io) — tägliche Aktualisierung, weltweite Abdeckung.
 
-and for categorical variables:
+**Datenbeschaffung:** Über `data_acquisition/fetch_data.ipynb` mit dem API-Key als Umgebungsvariable `API_FOOTBALL_KEY`. Der kostenlose Plan (100 Anfragen/Tag) reicht für alle vier Dateien in einer Sitzung. Neue Teammitglieder erstellen ein kostenloses Konto auf [api-sports.io](https://api-sports.io), setzen die Umgebungsvariable und führen das Notebook von oben nach unten aus.
 
-* number of classes
-* and the corresponding distribution of values
-* fraction of missing values
+**Rechtliche Aspekte:** Lizenziert unter den [api-sports.io Nutzungsbedingungen](https://api-sports.io/terms). Keine kommerzielle Nutzung oder Weitergabe ohne kostenpflichtigen Plan. Die CSV-Dateien sind lokal gespeichert und nicht im Repository veröffentlicht (`.gitignore`).
 
-The correlation between variables in the form of
+**Data Governance:** Intern — *geschäftsrelevant*. Keine personenbezogenen Daten.
 
-* correlation coefficients (e.g. Pearson, Spearman, Kendall)
-* and corresponding visualizations, e.g. scatter plot, heatmap, grouped box plot (for categorical-numerical relationships), ...
+**Datenqualität und -eigenschaften:**
 
+- Alle vier Dateien decken exakt die 12 Super-League-Teams ab — kein Team fehlt.
+- `fixtures_footballapi.csv`: 228 Zeilen; noch nicht gespielte Partien haben `goals_home / goals_away = null`.
+- `standings` und `team_statistics` sind intern konsistent: `goals_for` stimmt in beiden Dateien überein.
+- Keine doppelten `fixture_id`-Werte gefunden.
 
-The results the exploratory data analysis should be summarised here (code and full output in the `eda` subfolder) and the implications for the subsequent data pre-processing, visualization design and implementation steps should be discussed. Is the data quality and quantity sufficient to achieve the visualisation goals? Is it necessary to acquire additional or different data? Are there any limitations that need to be considered in the design and implementation of the visualisation product? Are there any specific data characteristics that can be used to enhance the visualisation design? For example, if there are a lot of missing values in a dataset, this might need to be taken into account in the design of the visualisation product, e.g. by using specific visual encodings to indicate missing values or by providing options for filtering or imputing missing values. 
+---
 
-Tip: `Ydata-profiling` is a Python library that can be used to perform exploratory data analysis and generate a comprehensive report on the characteristics of the data, including the distribution of values, missing values, correlations between variables, and more. This can be a useful tool to generate the full analysis in the code section and then only include the relevant information here in the data report.
+### Datensatzgruppe 2: SportMonks {#sec-raw-sportmonks}
 
-This is an example on how to incorporate executable Python code and show a figure output:
+**Beschreibung:** SportMonks ist eine abonnementbasierte Sport-Daten-API. Zwei Endpunkte wurden abgefragt:
+
+- **`teams_sportmonks.csv`** — Stammdaten der 12 Teams im SportMonks-Format
+- **`team_season_stats_sportmonks.csv`** — Aggregierte Saisonstatistiken als Durchschnittswerte pro Spiel (Ballbesitz, Angriffe, gefährliche Angriffe, Eckbälle, Tacklings, Fouls, Karten, Abseits, Gesamtschüsse, Nachspielzeittore, Spielrating)
+
+SportMonks liefert Metriken, die bei API-Football nicht verfügbar sind — insbesondere die Unterscheidung zwischen einfachen und gefährlichen Angriffen sowie ein zusammengesetztes Spielrating.
+
+**Datenquelle/Anbieter:** [SportMonks](https://www.sportmonks.com) — Sport-Daten-Plattform mit weltweiter Fussballabdeckung.
+
+**Datenbeschaffung:** Über `data_acquisition/fetch_sportmonks.ipynb` mit dem API-Key als Umgebungsvariable `SPORTMONKS_API_KEY`. Ein SportMonks-Konto mit Zugang zum Football API Plan ist erforderlich (kostenloser Testplan deckt die verwendeten Endpunkte ab).
+
+**Rechtliche Aspekte:** Lizenziert unter den [SportMonks Nutzungsbedingungen](https://www.sportmonks.com/terms-conditions/). Keine Weitergabe der Daten. Ausschliesslich für interne akademische Zwecke.
+
+**Data Governance:** Intern — *geschäftsrelevant*. Keine personenbezogenen Daten.
+
+**Datenqualität und -eigenschaften:**
+
+- Alle 12 Teams vorhanden; `games_played = 33` für alle — vollständige Saisonabdeckung.
+- `red_cards` ist null für FC Basel 1893 (keine Roten Karten; SportMonks lässt Nullwerte weg). Im zusammengeführten Datensatz als 0 zu interpretieren.
+
+---
+
+### Datensatzgruppe 3: FBref (Football Reference) {#sec-raw-fbref}
+
+**Beschreibung:** FBref (Football Reference, betrieben von Sports Reference LLC) aggregiert Spielerstatistiken auf Teamebene. Vier Tabellen wurden für die Swiss Super League 2025/26 gescrapt:
+
+- **`standard_fbref.csv`** — Standardleistung: Tore, Assists, Ballbesitz, Durchschnittsalter, Karten
+- **`keeper_fbref.csv`** — Torhüterstatistiken: Gegentore, Paraden, Parade-Quote, Clean Sheets
+- **`shooting_fbref.csv`** — Schussstatistiken: Schüsse gesamt, Schüsse aufs Tor, Abschlusseffizienz (Tore/Schuss)
+- **`misc_fbref.csv`** — Verschiedenes: Fouls, Abseits, Flanken, Balleroberungen, gewonnene Zweikämpfe
+
+FBref liefert die detailliertesten Schuss- und Defensivkennzahlen, die bei den beiden APIs nicht verfügbar sind.
+
+**Datenquelle/Anbieter:** [FBref.com](https://fbref.com) — Sports Reference LLC. Zugrunde liegende Daten von StatsBomb.
+
+**Datenbeschaffung:** Gescrapt mit `data_acquisition/fetch_fbref.ipynb` und `pandas.read_html`. Kein API-Key erforderlich — Daten öffentlich zugänglich. Scraping-Rate: mindestens 3 Sekunden zwischen Anfragen (gemäss FBref `robots.txt`). Die vier Tabellen entsprechen den FBref-Seiten für die Super League unter `/en/comps/60/`.
+
+**Rechtliche Aspekte:** Öffentlich zugänglich; Sports Reference LLC erwartet Quellenangabe ("Data provided by Sports Reference LLC"). Keine kommerzielle Nutzung. [FBref Nutzungsbedingungen](https://www.sports-reference.com/termsofuse.html).
+
+**Data Governance:** Öffentliche Daten. Keine personenbezogenen Informationen (ausschliesslich aggregierte Teamstatistiken).
+
+**Datenqualität und -eigenschaften:**
+
+- Alle vier Dateien: 12 Zeilen, `Playing Time_MP = 33` — vollständige Saisonabdeckung, keine fehlenden Werte.
+- `Performance_CrdY` und `Performance_CrdR` erscheinen in `standard_fbref` und `misc_fbref` mit identischen Werten — bekannte Redundanz, im Merge wird nur eine Quelle verwendet.
+
+---
+
+## Verarbeitete Daten {#sec-processed-data}
+
+### Übersicht verarbeitete Datensätze
+
+: Übersicht der verarbeiteten Datensätze. {#tbl-processed-overview}
+
+| Name | Quelle | Speicherort |
+|-------------------------------|----------------------------------|--------------------------------------|
+| `team_season_stats_merged.csv` | Zusammengeführt aus allen 3 Rohdatenquellen | `data_acquisition/processed/` |
+
+---
+
+### `team_season_stats_merged.csv` {#sec-merged}
+
+**Beschreibung:** Eine einzelne flache Tabelle mit einer Zeile pro Team (12 Zeilen, 105 Spalten), die alle teambasierten Statistiken aus API-Football, SportMonks und FBref in einem analysebereiteten Datensatz vereint. Dies ist die eigentliche Datengrundlage für alle Visualisierungen und die Data Story. Spieldaten auf Match-Ebene (`fixtures_footballapi.csv`) werden separat gehalten und bei Bedarf per Join angereichert — siehe @sec-fixture-join.
+
+**Verarbeitungsschritte:** Ausgeführt durch `data_acquisition/merge_data.ipynb`. Die Schritte im Überblick:
+
+1. **Basistabelle:** `teams_footballapi.csv` liefert die 12 kanonischen Team-Einträge. Der API-Football `team_id` wird als Primärschlüssel verwendet, `team_name` ist der kanonische Anzeigename für alle Visualisierungen.
+2. **Standings-Join:** `standings_footballapi.csv` wird über `team_id` gejoint. Spalten mit Präfix `standings_`.
+3. **Team-Statistiken-Join:** `team_statistics_footballapi.csv` wird über `team_id` gejoint. Spalten mit Präfix `stats_`.
+4. **SportMonks-Join:** `team_season_stats_sportmonks.csv` wird über die Zuordnung `SM_TO_FAPI_ID` gejoint. Spalten mit Präfix `sm_`.
+5. **FBref-Joins (×4):** Jede FBref-Datei wird über die Zuordnung `FBREF_TO_FAPI_ID` gejoint. Spalten mit Präfix `fbref_`.
+
+**Warum ein Crosswalk notwendig ist:** {#sec-crosswalk} Die drei Datenquellen verwenden inkompatible Identifier:
+
+| Quelle | ID-Typ | Beispiel |
+|--------|--------|---------|
+| API-Football | Numerisch `team_id` | 1012 = FC Thun |
+| SportMonks | Anderes numerisches `team_id` | 10655 = Thun |
+| FBref | Squadname (String) | "Thun" |
+
+Das Merge-Notebook definiert zwei Python-Dictionaries, die diese Unterschiede deterministisch auflösen, und gibt eine Crosswalk-Tabelle zur manuellen Kontrolle aus. API-Football `team_id` und `team_name` sind die kanonischen Werte, da sie in Fixtures, Tabelle und Teamstatistiken konsistent verwendet werden.
+
+**Reproduktion:** `data_acquisition/merge_data.ipynb` von oben nach unten ausführen. Es werden keine API-Keys benötigt — nur die Rohdaten in `data_acquisition/raw/` müssen vorhanden sein.
+
+**Wie Fixture-Daten gejoint werden:** {#sec-fixture-join} `fixtures_footballapi.csv` wird als separate Datei belassen, da sie eine andere Granularität hat (eine Zeile pro Spiel, nicht pro Team). Da beide Dateien den API-Football `team_id` teilen, ist der Join eine einzige Operation zur Analysezeit:
+
+```python
+import pandas as pd
+
+fixtures   = pd.read_csv("data_acquisition/raw/footballapi/fixtures_footballapi.csv")
+team_stats = pd.read_csv("data_acquisition/processed/team_season_stats_merged.csv")
+
+fixtures_enriched = (
+    fixtures
+    .merge(team_stats, left_on="home_team_id", right_on="team_id", suffixes=("", "_home"))
+    .merge(team_stats, left_on="away_team_id", right_on="team_id", suffixes=("", "_away"))
+)
+```
+
+Das Ergebnis hat 228 Zeilen mit allen Heim- und Auswärts-Teamstatistiken als `<spalte>_home` / `<spalte>_away`. Der Join wird bewusst **nicht vorab gespeichert** — jedes Analyse-Notebook kann ihn in zwei Zeilen reproduzieren.
+
+#### Datenkatalog
+
+: Datenkatalog für `team_season_stats_merged.csv` — Basis- und Schlüsselspalten. Die vollständige Spaltenliste ist via `pd.read_csv(...).columns.tolist()` abrufbar. {#tbl-cat-merged}
+
+| Präfix | Spalte | Datentyp | Beschreibung |
+|--------|--------|----------|--------------|
+| *(Basis)* | `team_id` | int | API-Football Team-Identifier (Primärschlüssel) |
+| *(Basis)* | `team_name` | string | Kanonischer Team-Anzeigename |
+| *(Basis)* | `venue_name` | string | Name des Heimstadions |
+| *(Basis)* | `venue_capacity` | int | Stadionkapazität |
+| *(Basis)* | `founded` | int | Gründungsjahr |
+| `standings_` | `standings_rank` | int | Tabellenposition (1 = Tabellenführer) |
+| `standings_` | `standings_points` | int | Gesamtpunkte |
+| `standings_` | `standings_goals_diff` | int | Tordifferenz |
+| `standings_` | `standings_form` | string | Letzte 5 Resultate (z.B. "WLLWW") |
+| `standings_` | `standings_home_*` / `standings_away_*` | int | Heim-/Auswärtsbilanz (Siege, Remis, Niederlagen, Tore) |
+| `stats_` | `stats_fixtures_wins_total` | int | Saisonsiege |
+| `stats_` | `stats_goals_for_avg_total` | float | Ø erzielte Tore pro Spiel |
+| `stats_` | `stats_goals_against_avg_total` | float | Ø kassierte Tore pro Spiel |
+| `stats_` | `stats_clean_sheet_total` | int | Spiele ohne Gegentor |
+| `stats_` | `stats_biggest_streak_wins` | int | Längste Siegesserie |
+| `stats_` | `stats_penalty_scored_total` / `_missed_total` | int | Elfmeterbilanz |
+| `sm_` | `sm_ball_possession_pct` | float | Ø Ballbesitz % pro Spiel (SportMonks) |
+| `sm_` | `sm_attacks` | float | Ø Angriffe pro Spiel |
+| `sm_` | `sm_dangerous_attacks` | float | Ø gefährliche Angriffe pro Spiel |
+| `sm_` | `sm_shots` | int | Schüsse gesamt (Saison) |
+| `sm_` | `sm_corners` | float | Ø Eckbälle pro Spiel |
+| `sm_` | `sm_tackles` | float | Ø Tacklings pro Spiel |
+| `sm_` | `sm_fouls` | float | Ø Fouls pro Spiel |
+| `sm_` | `sm_yellow_cards` | float | Ø Gelbe Karten pro Spiel |
+| `sm_` | `sm_red_cards` | float | Ø Rote Karten pro Spiel |
+| `sm_` | `sm_offsides` | float | Ø Abseitsstellungen pro Spiel |
+| `sm_` | `sm_rating` | float | Ø SportMonks-Spielrating pro Spiel |
+| `sm_` | `sm_injury_time_goals` | int | Tore in der Nachspielzeit (Saison) |
+| `fbref_` | `fbref_poss` | float | Ø Ballbesitz % (FBref) |
+| `fbref_` | `fbref_age` | float | Ø Kaderalter |
+| `fbref_` | `fbref_goals` | int | Erzielte Tore |
+| `fbref_` | `fbref_assists` | int | Assists |
+| `fbref_` | `fbref_goals_against` | int | Kassierte Tore |
+| `fbref_` | `fbref_goals_against_90` | float | Kassierte Tore pro 90 Min. |
+| `fbref_` | `fbref_saves` | int | Paraden |
+| `fbref_` | `fbref_save_pct` | float | Parade-Quote |
+| `fbref_` | `fbref_clean_sheets` | int | Clean Sheets |
+| `fbref_` | `fbref_shots` | int | Schüsse gesamt |
+| `fbref_` | `fbref_shots_on_target` | int | Schüsse aufs Tor |
+| `fbref_` | `fbref_shots_on_target_pct` | float | Schussgenauigkeit % |
+| `fbref_` | `fbref_goals_per_shot` | float | Tore pro Schuss (Abschlusseffizienz) |
+| `fbref_` | `fbref_interceptions` | int | Balleroberungen |
+| `fbref_` | `fbref_tackles_won` | int | Gewonnene Zweikämpfe |
+| `fbref_` | `fbref_crosses` | int | Flanken |
+| `fbref_` | `fbref_fouls` | int | Begangene Fouls |
+| `fbref_` | `fbref_offsides` | int | Abseitsstellungen |
+| `fbref_` | `fbref_yellow_cards` | int | Gelbe Karten |
+| `fbref_` | `fbref_red_cards` | int | Rote Karten |
+
+#### Entity-Relationship-Diagramm
+
+Der verarbeitete Datensatz und die Fixture-Datei bilden eine einfache Zwei-Tabellen-Struktur. Beide Joins verwenden dieselbe `team_id`-Spalte — die Tabelle wird dabei zweimal eingebunden (einmal für Heim, einmal für Auswärts):
+
+```
+team_season_stats_merged.csv          fixtures_footballapi.csv
+  team_id (PK) ◄────────────────────── home_team_id (FK)
+  team_id (PK) ◄────────────────────── away_team_id (FK)
+```
+
+#### Datencharakteristik und -qualität
 
 ```{python}
-#| label: fig-demo
-#| fig-cap: "Distribution of monthly revenue across product categories (sample data)."
+#| label: fig-team-overview
+#| fig-cap: "Tabellenübersicht: Punkte, Ø Tore pro Spiel und Ø Ballbesitz aller 12 Super-League-Teams. FC Thun ist hervorgehoben."
 #| echo: true
 #| code-fold: true
+import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 
-# Sample data
-categories = ['Electronics', 'Clothing', 'Food', 'Books', 'Sports']
-revenue = [42000, 28500, 35200, 12800, 19400]
+df = pd.read_csv("../data_acquisition/processed/team_season_stats_merged.csv")
+df = df.sort_values("standings_points", ascending=True)
 
-# Create the bar chart
-fig, ax = plt.subplots(figsize=(6, 3.75))
+fig, axes = plt.subplots(1, 3, figsize=(12, 5))
+metrics = [
+    ("standings_points",          "Punkte"),
+    ("stats_goals_for_avg_total", "Ø Tore / Spiel"),
+    ("sm_ball_possession_pct",    "Ø Ballbesitz %"),
+]
 
-bars = ax.bar(categories, revenue, color='#4C78A8', edgecolor='white')
+for ax, (col, label) in zip(axes, metrics):
+    colors = ["#E63946" if n == "FC Thun" else "#4C78A8"
+              for n in df["team_name"]]
+    ax.barh(df["team_name"], df[col], color=colors)
+    ax.set_xlabel(label)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.tick_params(axis="y", labelsize=8)
 
-ax.set_xlabel('Product Category')
-ax.set_title('Monthly Revenue by Product Category')
-
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-ax.yaxis.set_visible(False)
-ax.tick_params(axis='x', length=0)
-
-# Add value labels on bars
-for bar, val in zip(bars, revenue):
-    ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 500,
-            f'{val:,.0f}', ha='center', va='bottom', fontsize=9)
-
+thun_patch = mpatches.Patch(color="#E63946", label="FC Thun")
+fig.legend(handles=[thun_patch], loc="lower right", fontsize=9)
+fig.suptitle("Swiss Super League 2025/26 — Teamübersicht", fontsize=11)
 plt.tight_layout()
 plt.show()
 ```
 
-Then the figure can be referenced with @fig-demo.
+@fig-team-overview zeigt sofort zwei für die Data Story relevante Erkenntnisse: Der FC Thun führt die Tabelle mit grossem Abstand an (+14 Punkte vor dem Zweitplatzierten), liegt beim Ballbesitz aber im Mittelfeld — ein Hinweis darauf, dass der Erfolg eher auf Effizienz als auf Ballkontrolle basiert.
 
-## Processed Data
-### Overview Processed Datasets
+```{python}
+#| label: fig-correlation-heatmap
+#| fig-cap: "Pearson-Korrelations-Heatmap der wichtigsten numerischen Leistungsmetriken. Starke positive Korrelationen mit den Punkten weisen auf erklärende Variablen für den Teamerfolg hin."
+#| echo: true
+#| code-fold: true
 
-: Overview of processed datasets used in the project. {#tbl-processed-overview}
+key_cols = {
+    "standings_points":              "Punkte",
+    "stats_goals_for_avg_total":     "Tore/Spiel",
+    "stats_goals_against_avg_total": "Gegentore/Spiel",
+    "sm_ball_possession_pct":        "Ballbesitz %",
+    "sm_dangerous_attacks":          "Gef. Angriffe",
+    "fbref_save_pct":                "Parade-%",
+    "fbref_goals_per_shot":          "Tore/Schuss",
+    "fbref_tackles_won":             "Zweikämpfe gew.",
+    "standings_goals_diff":          "Tordifferenz",
+}
 
-| Name | Quelle | Storage location |
-|----------------|-----------------------------------------|--------------------------------------------------------------------------|
-| Processed Dataset 1      | Name/short description of the data source | Link and/or short description of the location where the data is stored, e.g. accessible to the team |
-| Processed Dataset 2      | …                                       | …                                                                        |
+corr = df[list(key_cols)].rename(columns=key_cols).corr()
 
-### Details Processed Dataset 1
+fig, ax = plt.subplots(figsize=(8, 6))
+im = ax.imshow(corr, cmap="RdBu_r", vmin=-1, vmax=1)
+ax.set_xticks(range(len(corr)))
+ax.set_yticks(range(len(corr)))
+ax.set_xticklabels(corr.columns, rotation=45, ha="right", fontsize=8)
+ax.set_yticklabels(corr.columns, fontsize=8)
 
-- Description of what information the dataset contains
-- Details and reasons for the processing steps -> Traceability and ensuring reproducibility
-- How can the data be accessed? Description, scripts, tools, ...
-- ...
+for i in range(len(corr)):
+    for j in range(len(corr)):
+        ax.text(j, i, f"{corr.iloc[i, j]:.2f}", ha="center", va="center",
+                fontsize=7, color="white" if abs(corr.iloc[i, j]) > 0.6 else "black")
 
-#### Data Catalogue
+fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+ax.set_title("Pearson-Korrelation — Wichtige Teammetriken", fontsize=11)
+plt.tight_layout()
+plt.show()
+```
 
+@fig-correlation-heatmap zeigt die stärksten Prädiktoren für Ligapunkte: Tordifferenz (r ≈ 1,0, per Definition), Tore pro Spiel, Parade-Quote und Abschlusseffizienz. Ballbesitz zeigt eine schwächere Korrelation — konsistent mit der Beobachtung, dass FC Thun ohne Ballbesitzdominanz erfolgreich ist. Diese Muster leiten die Variablenauswahl für das Visualisierungsprodukt.
 
-#### If applicable: Entity Relationship Diagram
+```{python}
+#| label: tbl-summary-stats
+#| tbl-cap: "Deskriptive Statistiken der wichtigsten numerischen Spalten im zusammengeführten Datensatz."
+#| echo: true
+#| code-fold: true
 
+summary = df[list(key_cols)].rename(columns=key_cols).describe().round(2).T
+summary.index.name = "Kennzahl"
+summary
+```
 
-#### Data Chracteristics and Quality
+**Zusammenfassung Datenqualität:**
 
-
-### Details Processed Dataset 2
-...
+- Form: 12 Zeilen × 105 Spalten — alle 12 Teams vorhanden, keine Duplikate.
+- Fehlende Werte: 1 (`sm_red_cards` für FC Basel 1893 — SportMonks lässt Nullwerte weg; als 0 zu behandeln).
+- Ballbesitzwerte aus FBref (`fbref_poss`) und SportMonks (`sm_ball_possession_pct`) stimmen für alle Teams auf ±0,5 Prozentpunkte überein — bestätigt quellenübergreifende Konsistenz.
+- `standings_goals_for` und `stats_goals_for_total` sind für alle Teams identisch (interne Konsistenzprüfung API-Football bestanden).
+- **Ausreichend für die Visualisierungsziele:** Der Datensatz bietet ≥ 6 Variablen pro Team gemäss den Projekterfolgskriterien. Vollständige Abdeckung der Saison 2025/26. Identifizierte Einschränkung: nur saisonale Aggregate — keine rundenweisen Teamstatistiken von FBref oder SportMonks. Zeitliche Trendanalysen auf Teamebene sind daher auf das beschränkt, was aus `fixtures_footballapi.csv` abgeleitet werden kann.
