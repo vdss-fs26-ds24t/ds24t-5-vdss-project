@@ -7,7 +7,7 @@ language:
   section-title-appendices: "Appendix"
 
 website:
-  title: "Sample Project"
+  title: "FC Thun — Die Thun-Formel"
   search: true
   sidebar:
     style: "floating"
@@ -16,7 +16,8 @@ website:
       - index.qmd
       - project_charta.qmd
       - data_report.qmd
-      - datastory.qmd
+      - text: "Die Thun-Formel"
+        href: datastory.qmd
       - viz_design_report.qmd
       - evaluation.qmd
       - meeting_notes.qmd
