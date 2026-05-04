@@ -18,6 +18,8 @@ website:
       - data_report.qmd
       - text: "Die Thun-Formel"
         href: datastory.qmd
+      - text: "Die Thun-Formel Alternative"
+        href: datastory_alt.qmd
       - viz_design_report.qmd
       - evaluation.qmd
       - meeting_notes.qmd

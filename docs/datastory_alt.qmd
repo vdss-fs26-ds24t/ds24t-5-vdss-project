@@ -1,0 +1,1129 @@
+---
+title: "Die Thun-Formel"
+subtitle: "Wie ein Aufsteiger die Swiss Super League neu liest"
+number-sections: false
+format:
+  html:
+    toc: false
+    css: styles.css
+    self-contained: false
+---
+
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+from IPython.display import HTML, display
+
+df = pd.read_csv("../data_acquisition/processed/team_season_stats_merged.csv")
+df = df.sort_values("standings_points", ascending=False).reset_index(drop=True)
+
+THUN_RED = "#E63946"
+THUN_DARK = "#141414"
+INK = "#202020"
+MUTED = "#6f6f6f"
+LIGHT = "#f5f2ed"
+LINE = "#ded8ce"
+GRAY = "#c9c9c9"
+
+thun = df[df["team_name"] == "FC Thun"].iloc[0]
+league_avg = df.mean(numeric_only=True)
+runner_up_points = df[df["standings_rank"] == 2]["standings_points"].iloc[0]
+points_gap = int(thun["standings_points"] - runner_up_points)
+possession_rank = int(df["sm_ball_possession_pct"].rank(ascending=False, method="min")[df["team_name"] == "FC Thun"].iloc[0])
+save_rank = int(df["fbref_save_pct"].rank(ascending=False, method="min")[df["team_name"] == "FC Thun"].iloc[0])
+gps_rank = int(df["fbref_goals_per_shot"].rank(ascending=False, method="min")[df["team_name"] == "FC Thun"].iloc[0])
+clean_sheet_rank = int(df["stats_clean_sheet_total"].rank(ascending=False, method="min")[df["team_name"] == "FC Thun"].iloc[0])
+thun_shots_per_goal = float(thun["fbref_shots"] / thun["fbref_goals"])
+league_shots_per_goal = float(df["fbref_shots"].sum() / df["fbref_goals"].sum())
+df["danger_per_possession"] = df["sm_dangerous_attacks"] / df["sm_ball_possession_pct"]
+danger_rank = int(df["sm_dangerous_attacks"].rank(ascending=False, method="min")[df["team_name"] == "FC Thun"].iloc[0])
+goals_rank = int(df["fbref_goals"].rank(ascending=False, method="min")[df["team_name"] == "FC Thun"].iloc[0])
+danger_eff_rank = int(df["danger_per_possession"].rank(ascending=False, method="min")[df["team_name"] == "FC Thun"].iloc[0])
+
+def team_colors(names):
+    return [THUN_RED if name == "FC Thun" else GRAY for name in names]
+
+def story_layout(fig, height=500, title=None):
+    fig.update_layout(
+        height=height,
+        title=title,
+        title_font=dict(size=20, color=INK, family="Arial Black, Arial, sans-serif"),
+        font=dict(family="Arial, sans-serif", color=INK),
+        plot_bgcolor="white",
+        paper_bgcolor="white",
+        margin=dict(l=28, r=28, t=72 if title else 36, b=36),
+        hoverlabel=dict(bgcolor="white", font_size=13),
+    )
+    return fig
+```
+
+```{=html}
+<style>
+  .quarto-title-block { display: none; }
+  main.content {
+    max-width: 1180px;
+    padding-top: 0;
+  }
+  .page-columns .content {
+    grid-column: body-content-start / body-content-end;
+  }
+  .story-wrap {
+    --thun-red: #E63946;
+    --ink: #202020;
+    --muted: #6f6f6f;
+    --paper: #fbfaf7;
+    --sand: #f5f2ed;
+    --line: #ded8ce;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .story-wrap h1,
+  .story-wrap h2,
+  .story-wrap h3 {
+    letter-spacing: 0;
+  }
+  .story-wrap .anchorjs-link {
+    display: none;
+  }
+  .story-hero {
+    min-height: 78vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: #111;
+  }
+  .story-hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.45) contrast(1.08);
+  }
+  .story-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,.15) 20%, rgba(0,0,0,.86) 100%);
+  }
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto 8vh auto;
+    color: white;
+  }
+  .eyebrow {
+    color: var(--thun-red);
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .hero-copy h1 {
+    font-size: clamp(2.8rem, 6vw, 5.8rem);
+    line-height: .92;
+    margin: 0 0 22px 0;
+    font-weight: 950;
+    max-width: 900px;
+  }
+  .hero-copy p {
+    font-size: clamp(1.05rem, 2vw, 1.45rem);
+    line-height: 1.45;
+    max-width: 720px;
+    color: #efefef;
+    margin: 0;
+  }
+  .chapter {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 64px 20px;
+  }
+  .chapter.tight { padding-top: 42px; }
+  .chapter-head {
+    display: grid;
+    grid-template-columns: 86px 1fr;
+    gap: 24px;
+    align-items: start;
+    margin-bottom: 28px;
+  }
+  .chapter-number {
+    color: var(--thun-red);
+    font-size: 4rem;
+    line-height: .85;
+    font-weight: 950;
+  }
+  .chapter h2 {
+    font-size: clamp(2rem, 3.4vw, 3.05rem);
+    line-height: 1.05;
+    margin: 0;
+    font-weight: 950;
+  }
+  .lead {
+    font-size: 1.18rem;
+    line-height: 1.75;
+    max-width: 760px;
+    color: #2d2d2d;
+  }
+  .muted { color: var(--muted); }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 34px 0;
+  }
+  .stat-card {
+    border-top: 3px solid var(--thun-red);
+    background: white;
+    padding: 22px;
+    min-height: 128px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.06);
+  }
+  .stat-value {
+    color: var(--thun-red);
+    font-size: 2.45rem;
+    line-height: 1;
+    font-weight: 950;
+    margin-bottom: 10px;
+  }
+  .stat-label {
+    color: var(--muted);
+    font-size: .93rem;
+    line-height: 1.35;
+  }
+  .pullquote {
+    margin: 38px 0;
+    padding: 26px 30px;
+    background: #191919;
+    color: white;
+    border-left: 7px solid var(--thun-red);
+    font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+    line-height: 1.35;
+    font-weight: 800;
+  }
+  .note {
+    background: white;
+    border: 1px solid var(--line);
+    padding: 18px 22px;
+    color: var(--muted);
+    font-size: .95rem;
+    line-height: 1.55;
+  }
+  .table-shell {
+    max-width: 980px;
+    margin: 10px auto 36px auto;
+    padding: 0 20px;
+  }
+  .league-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 10px 24px rgba(0,0,0,.06);
+    font-size: .95rem;
+  }
+  .league-table th {
+    padding: 12px 10px;
+    text-align: right;
+    color: var(--muted);
+    border-bottom: 1px solid var(--line);
+    font-size: .78rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .league-table th.team-col,
+  .league-table td.team-col {
+    text-align: left;
+  }
+  .league-table td {
+    padding: 12px 10px;
+    text-align: right;
+    border-bottom: 1px solid #eee9df;
+    vertical-align: middle;
+  }
+  .league-table tr.thun-row {
+    background: #fff1f2;
+    color: #111;
+    font-weight: 850;
+  }
+  .league-table tr.thun-row td {
+    border-top: 2px solid var(--thun-red);
+    border-bottom: 2px solid var(--thun-red);
+  }
+  .rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: #efefef;
+    color: #222;
+    font-weight: 850;
+  }
+  .thun-row .rank-badge {
+    background: var(--thun-red);
+    color: white;
+  }
+  .points-cell {
+    min-width: 150px;
+  }
+  .points-wrap {
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    gap: 10px;
+    align-items: center;
+  }
+  .points-track {
+    height: 8px;
+    background: #eee9df;
+    overflow: hidden;
+  }
+  .points-bar {
+    height: 100%;
+    background: #b9b3aa;
+  }
+  .thun-row .points-bar {
+    background: var(--thun-red);
+  }
+  .table-caption {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.45;
+  }
+  .visual-shell {
+    max-width: 980px;
+    margin: 8px auto 34px auto;
+    padding: 0 20px;
+  }
+  .moment-card {
+    background: white;
+    box-shadow: 0 10px 24px rgba(0,0,0,.06);
+    padding: 28px;
+  }
+  .metric-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+  .metric-box {
+    border-top: 3px solid #b9b3aa;
+    background: #fbfaf7;
+    padding: 20px;
+  }
+  .metric-box.thun {
+    border-top-color: var(--thun-red);
+    background: #fff1f2;
+  }
+  .metric-box .big {
+    display: block;
+    font-size: clamp(2.5rem, 6vw, 4.8rem);
+    line-height: .9;
+    font-weight: 950;
+    color: #191919;
+  }
+  .metric-box.thun .big {
+    color: var(--thun-red);
+  }
+  .metric-box .small {
+    display: block;
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: .95rem;
+    line-height: 1.35;
+  }
+  .shot-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 16px;
+    align-items: center;
+    margin: 12px 0;
+  }
+  .shot-label {
+    font-weight: 850;
+  }
+  .shot-track {
+    height: 14px;
+    background: #eee9df;
+    position: relative;
+  }
+  .shot-fill {
+    height: 100%;
+    background: #b9b3aa;
+  }
+  .shot-fill.thun {
+    background: var(--thun-red);
+  }
+  .hundred-grid {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    gap: 5px;
+    margin: 24px 0 8px 0;
+  }
+  .save-dot {
+    aspect-ratio: 1;
+    background: #e4dfd6;
+  }
+  .save-dot.saved {
+    background: var(--thun-red);
+  }
+  .formula-board {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    gap: 12px;
+    align-items: stretch;
+    margin-top: 24px;
+  }
+  .formula-tile,
+  .formula-result {
+    background: white;
+    box-shadow: 0 10px 24px rgba(0,0,0,.06);
+    padding: 22px;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .formula-tile strong,
+  .formula-result strong {
+    color: var(--thun-red);
+    font-size: 2.2rem;
+    line-height: 1;
+  }
+  .formula-tile span,
+  .formula-result span {
+    color: var(--muted);
+    line-height: 1.35;
+    margin-top: 12px;
+  }
+  .formula-op {
+    align-self: center;
+    color: var(--thun-red);
+    font-size: 2rem;
+    font-weight: 950;
+  }
+  .formula-result {
+    background: #191919;
+    color: white;
+  }
+  .formula-result span {
+    color: #e8e8e8;
+  }
+  .rank-jump {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .rank-card {
+    background: white;
+    box-shadow: 0 10px 24px rgba(0,0,0,.06);
+    padding: 22px;
+    min-height: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 3px solid #b9b3aa;
+  }
+  .rank-card.thun {
+    border-top-color: var(--thun-red);
+    background: #fff1f2;
+  }
+  .rank-card .rank-label {
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.3;
+  }
+  .rank-card .rank-value {
+    font-size: clamp(2.8rem, 6vw, 4.6rem);
+    line-height: .9;
+    font-weight: 950;
+    color: #191919;
+  }
+  .rank-card.thun .rank-value {
+    color: var(--thun-red);
+  }
+  .rank-card .rank-note {
+    color: var(--muted);
+    font-size: .86rem;
+    line-height: 1.35;
+  }
+  .formula {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 34px 0;
+  }
+  .formula-step {
+    background: #191919;
+    color: white;
+    padding: 24px;
+    min-height: 180px;
+  }
+  .formula-step strong {
+    color: var(--thun-red);
+    display: block;
+    font-size: 2.2rem;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .image-break {
+    position: relative;
+    min-height: 62vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    background: #111;
+  }
+  .image-break img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(.48) contrast(1.04);
+  }
+  .image-break::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,.8), rgba(0,0,0,.15));
+  }
+  .image-break div {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    padding: 0 20px;
+  }
+  .image-break h2 {
+    font-size: clamp(2.2rem, 5vw, 4.8rem);
+    line-height: 1;
+    margin: 0 0 18px 0;
+    font-weight: 950;
+  }
+  .footer-note {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 34px 20px 52px 20px;
+    color: var(--muted);
+    font-size: .88rem;
+    border-top: 1px solid var(--line);
+  }
+  @media (max-width: 760px) {
+    .chapter { padding: 56px 18px; }
+    .chapter-head { grid-template-columns: 1fr; gap: 10px; }
+    .chapter-number { font-size: 2.7rem; }
+    .stat-grid, .formula { grid-template-columns: 1fr; }
+    .metric-pair,
+    .formula-board,
+    .rank-jump {
+      grid-template-columns: 1fr;
+    }
+    .formula-op {
+      display: none;
+    }
+    .shot-row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .hundred-grid {
+      grid-template-columns: repeat(10, 1fr);
+    }
+    .league-table {
+      font-size: .82rem;
+    }
+    .league-table th:nth-child(4),
+    .league-table th:nth-child(5),
+    .league-table th:nth-child(6),
+    .league-table td:nth-child(4),
+    .league-table td:nth-child(5),
+    .league-table td:nth-child(6) {
+      display: none;
+    }
+    .points-cell {
+      min-width: 110px;
+    }
+    .hero-copy { margin-bottom: 6vh; }
+  }
+</style>
+
+<div class="story-wrap">
+<section class="story-hero">
+  <img src="pics/stockhorn_arena.jpg" alt="Stockhorn Arena in Thun">
+  <div class="hero-copy">
+    <div class="eyebrow">Swiss Super League 2025/26</div>
+    <h1>Die Thun-Formel</h1>
+    <p>Wer in Thun ins Stadion geht, kennt dieses Gefühl: nah dran, nicht riesig, aber mit viel Herz. Und plötzlich steht genau dieser Club ganz oben. Die Daten zeigen: Das ist weniger Märchen als Methode.</p>
+  </div>
+</section>
+```
+
+```{=html}
+<section class="chapter tight">
+  <div class="chapter-head">
+    <div class="chapter-number">01</div>
+    <h2>Der Club, der nicht in diese Tabelle passen sollte</h2>
+  </div>
+  <p class="lead">
+    Im Sommer 2025 kommt der FC Thun zurück in die höchste Liga. In Thun hofft man, klar. Aber man kennt auch die
+    Verhältnisse: stabil bleiben, nicht untergehen, vielleicht die Top 6 angreifen. Auf dem Papier ist Thun kein
+    natürlicher Titelkandidat.
+  </p>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-value">1898</div>
+      <div class="stat-label">Gegründet. Kein Projektclub, sondern ein Verein, der zur Stadt gehört.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">10'398</div>
+      <div class="stat-label">Plätze in der Stockhorn Arena. Gross genug für Lärm, klein genug, dass jeder Abend persönlich bleibt.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">€15.9M</div>
+      <div class="stat-label">Kaderwert. Im Vergleich zur Konkurrenz eher Werkzeugkiste als Luxusgarage.</div>
+    </div>
+  </div>
+  <p class="lead">
+    Genau deshalb fühlt sich diese Saison anders an. Thun gewinnt nicht, weil es die grösste Bühne oder die teuersten
+    Namen hat. Thun gewinnt, weil der Club aus seinen Momenten mehr macht als andere aus ihrer Überlegenheit.
+  </p>
+</section>
+```
+
+```{=html}
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-number">02</div>
+    <h2>Die Tabelle als Schockmoment</h2>
+  </div>
+  <p class="lead">
+    Die Geschichte beginnt nicht mit einer taktischen Feinheit, sondern mit einem Blick auf die Tabelle.
+    FC Thun steht auf Rang 1, mit 74 Punkten und 14 Punkten Vorsprung auf St. Gallen. Für einen Aufsteiger ist das
+    nicht einfach eine gute Saison. Es ist der Moment, in dem man zweimal hinschaut.
+  </p>
+</section>
+```
+
+```{python}
+#| echo: false
+#| warning: false
+
+df_table = df.sort_values("standings_rank", ascending=True).copy()
+max_points = df_table["standings_points"].max()
+
+rows = []
+for _, row in df_table.iterrows():
+    is_thun = row["team_name"] == "FC Thun"
+    tr_class = " class=\"thun-row\"" if is_thun else ""
+    points_width = float(row["standings_points"] / max_points * 100)
+    team_name = row["team_name"]
+    goals = f"{int(row['standings_goals_for'])}:{int(row['standings_goals_against'])}"
+    goal_diff = int(row["standings_goals_diff"])
+    goal_diff_label = f"+{goal_diff}" if goal_diff > 0 else str(goal_diff)
+    rows.append(f"""
+      <tr{tr_class}>
+        <td><span class="rank-badge">{int(row['standings_rank'])}</span></td>
+        <td class="team-col">{team_name}</td>
+        <td>{int(row['standings_played'])}</td>
+        <td>{int(row['standings_win'])}</td>
+        <td>{int(row['standings_draw'])}</td>
+        <td>{int(row['standings_lose'])}</td>
+        <td>{goals}</td>
+        <td>{goal_diff_label}</td>
+        <td class="points-cell">
+          <div class="points-wrap">
+            <strong>{int(row['standings_points'])}</strong>
+            <span class="points-track"><span class="points-bar" style="width: {points_width:.1f}%"></span></span>
+          </div>
+        </td>
+      </tr>
+    """)
+
+display(HTML(f"""
+<div class="table-shell">
+  <table class="league-table">
+    <thead>
+      <tr>
+        <th>Rang</th>
+        <th class="team-col">Team</th>
+        <th>Sp.</th>
+        <th>S</th>
+        <th>U</th>
+        <th>N</th>
+        <th>Tore</th>
+        <th>+/-</th>
+        <th>Punkte</th>
+      </tr>
+    </thead>
+    <tbody>
+      {''.join(rows)}
+    </tbody>
+  </table>
+  <div class="table-caption">
+    FC Thun steht nach 33 Spielen bei {int(thun['standings_points'])} Punkten.
+    Der Vorsprung auf Rang 2 beträgt {points_gap} Punkte.
+  </div>
+</div>
+"""))
+```
+
+```{=html}
+<section class="chapter tight">
+  <div class="pullquote">
+    Ein Aufsteiger gewinnt nicht knapp. Er gewinnt so deutlich, dass die Tabelle selbst zur Schlagzeile wird.
+  </div>
+  <p class="lead">
+    Ab hier wird die Frage spannender: Nicht <em>ob</em> Thun erfolgreich ist, sondern <em>wie</em>.
+    Denn wer nur nach den üblichen Zeichen von Dominanz sucht, verpasst den Kern dieser Saison.
+  </p>
+</section>
+```
+
+```{=html}
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-number">03</div>
+    <h2>Das Ballbesitz-Paradox</h2>
+  </div>
+  <p class="lead">
+    Dominante Teams haben oft viel Ballbesitz. Sie kontrollieren Räume, Tempo und Gegner.
+    Thun erzählt eine andere Version von Kontrolle: nicht über Minuten am Ball, sondern über die Qualität der Momente.
+    Der entscheidende Sprung passiert dort, wo Ballbesitz in Gefahr verwandelt wird.
+  </p>
+</section>
+```
+
+```{python}
+#| echo: false
+#| warning: false
+
+display(HTML(f"""
+<div class="visual-shell">
+  <div class="moment-card">
+    <div class="rank-jump">
+      <div class="rank-card">
+        <div class="rank-label">Ballbesitz</div>
+        <div class="rank-value">#{possession_rank}</div>
+        <div class="rank-note">{thun['sm_ball_possession_pct']:.1f}% im Schnitt. Nicht die Dominanzzahl eines Favoriten.</div>
+      </div>
+      <div class="rank-card thun">
+        <div class="rank-label">Gefährliche Angriffe</div>
+        <div class="rank-value">#{danger_rank}</div>
+        <div class="rank-note">{thun['sm_dangerous_attacks']:.1f} pro Spiel. Aus wenig Kontrolle wird viel Druck.</div>
+      </div>
+      <div class="rank-card thun">
+        <div class="rank-label">Gefahr pro Ballbesitz</div>
+        <div class="rank-value">#{danger_eff_rank}</div>
+        <div class="rank-note">Eine einfache Wirkungszahl: gefährliche Angriffe geteilt durch Ballbesitz.</div>
+      </div>
+      <div class="rank-card thun">
+        <div class="rank-label">Tore</div>
+        <div class="rank-value">#{goals_rank}</div>
+        <div class="rank-note">{int(thun['fbref_goals'])} Tore. Am Ende wird aus Gefahr auch Ertrag.</div>
+      </div>
+    </div>
+  </div>
+</div>
+"""))
+```
+
+```{=html}
+<section class="chapter tight">
+  <p class="lead">
+    Das ist die eigentliche Pointe: Thun hat nicht den meisten Ball. Aber wenn Thun den Ball in die gefährlichen Zonen
+    bringt, entsteht mehr Wirkung als bei jedem anderen Team der Liga.
+  </p>
+</section>
+```
+
+```{python}
+#| echo: false
+#| warning: false
+
+plot_df = df.copy()
+plot_df["highlight"] = plot_df["team_name"].where(plot_df["team_name"] == "FC Thun", "Andere Teams")
+plot_df["label"] = plot_df["team_name"].where(plot_df["team_name"] == "FC Thun", "")
+plot_df["possession_rank"] = plot_df["sm_ball_possession_pct"].rank(ascending=False, method="min").astype(int)
+plot_df["danger_rank"] = plot_df["sm_dangerous_attacks"].rank(ascending=False, method="min").astype(int)
+plot_df["danger_eff_rank"] = plot_df["danger_per_possession"].rank(ascending=False, method="min").astype(int)
+
+fig = px.scatter(
+    plot_df,
+    x="sm_ball_possession_pct",
+    y="sm_dangerous_attacks",
+    color="highlight",
+    color_discrete_map={"FC Thun": THUN_RED, "Andere Teams": GRAY},
+    text="label",
+    hover_name="team_name",
+    custom_data=[
+        "team_name",
+        "possession_rank",
+        "danger_rank",
+        "danger_eff_rank",
+        "sm_ball_possession_pct",
+        "sm_dangerous_attacks",
+    ],
+    labels={
+        "sm_ball_possession_pct": "Durchschnittlicher Ballbesitz (%)",
+        "sm_dangerous_attacks": "Gefährliche Angriffe pro Spiel",
+        "highlight": "",
+    },
+)
+fig.update_traces(
+    textposition="top center",
+    marker=dict(size=15, line=dict(width=1.5, color="white"), opacity=0.88),
+    hovertemplate=(
+        "<b>%{customdata[0]}</b><br>"
+        "Ballbesitz-Rang: %{customdata[1]}<br>"
+        "Rang gefährliche Angriffe: %{customdata[2]}<br>"
+        "Rang Gefahr pro Ballbesitz: %{customdata[3]}<br>"
+        "Ballbesitz: %{customdata[4]:.1f}%<br>"
+        "Gefährliche Angriffe: %{customdata[5]:.1f}<extra></extra>"
+    ),
+)
+fig.update_layout(
+    legend=dict(orientation="h", y=1.08, x=0),
+    xaxis=dict(showgrid=True, gridcolor="#eee8de", zeroline=False),
+    yaxis=dict(showgrid=True, gridcolor="#eee8de", zeroline=False),
+)
+fig.add_vline(x=league_avg["sm_ball_possession_pct"], line_dash="dot", line_color="#777")
+fig.add_annotation(
+    x=float(thun["sm_ball_possession_pct"]),
+    y=float(thun["sm_dangerous_attacks"]),
+    text=f"Rang {possession_rank} beim Ballbesitz, Rang {danger_rank} bei gefährlichen Angriffen",
+    showarrow=True,
+    arrowhead=2,
+    ax=92,
+    ay=-44,
+    bgcolor="white",
+    bordercolor=THUN_RED,
+    font=dict(size=13, color=INK),
+)
+story_layout(fig, height=500, title="Wenig Ballbesitz, viel Gefahr")
+fig.show()
+```
+
+```{=html}
+<section class="chapter tight">
+  <p class="lead">
+    Der Scatterplot ist nur noch der Beleg. Die einfachere Lesart steckt in den Rängen:
+    Thun ist beim Ballbesitz kein Ligaprimus, aber bei der Gefahr, die daraus entsteht, ganz vorne.
+  </p>
+  <div class="note">
+    Lesart: Die gestrichelte Linie markiert den Liga-Durchschnitt beim Ballbesitz.
+    Thun steht weit oben, aber nicht weit rechts. Genau dort liegt das Paradox.
+  </div>
+</section>
+```
+
+```{=html}
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-number">04</div>
+    <h2>Vorne zählt jeder Abschluss</h2>
+  </div>
+  <p class="lead">
+    Wenn ein Team weniger über Ballbesitz dominiert, muss es seine Chancen besser nutzen.
+    Bei Thun ist das nicht abstrakt. Es bedeutet: Nicht endlos anlaufen, sondern bereit sein, wenn der Moment kommt.
+  </p>
+</section>
+```
+
+```{python}
+#| echo: false
+#| warning: false
+
+max_shots_per_goal = max(thun_shots_per_goal, league_shots_per_goal)
+thun_bar = thun_shots_per_goal / max_shots_per_goal * 100
+league_bar = league_shots_per_goal / max_shots_per_goal * 100
+
+display(HTML(f"""
+<div class="visual-shell">
+  <div class="moment-card">
+    <div class="metric-pair">
+      <div class="metric-box thun">
+        <span class="big">{thun_shots_per_goal:.1f}</span>
+        <span class="small">Schüsse braucht Thun im Schnitt für ein Tor.</span>
+      </div>
+      <div class="metric-box">
+        <span class="big">{league_shots_per_goal:.1f}</span>
+        <span class="small">Schüsse braucht die Liga im Schnitt für ein Tor.</span>
+      </div>
+    </div>
+    <div class="shot-row">
+      <div class="shot-label">FC Thun</div>
+      <div class="shot-track"><div class="shot-fill thun" style="width: {thun_bar:.1f}%"></div></div>
+    </div>
+    <div class="shot-row">
+      <div class="shot-label">Liga</div>
+      <div class="shot-track"><div class="shot-fill" style="width: {league_bar:.1f}%"></div></div>
+    </div>
+    <div class="table-caption">
+      Je kürzer der Balken, desto schneller wird aus einem Abschluss ein Tor. Thun liegt mit 75 Toren aus
+      578 Schüssen in der Top-Gruppe der Liga.
+    </div>
+  </div>
+</div>
+"""))
+```
+
+```{=html}
+<section class="chapter tight">
+  <p class="lead">
+    Das ist der Unterschied zwischen Druck und Wirkung. Andere Teams kommen ebenfalls zu starken Effizienzwerten.
+    Aber Thun verbindet diese Genauigkeit mit 74 Punkten. Für die Menschen auf den Rängen fühlt sich das an wie
+    Kaltschnäuzigkeit; in den Daten sieht es aus wie ein klares Muster.
+  </p>
+</section>
+```
+
+```{=html}
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-number">05</div>
+    <h2>Hinten hält die Saison</h2>
+  </div>
+  <p class="lead">
+    Eine Underdog-Saison kippt schnell, wenn sie defensiv wackelt. Thun kippt nicht.
+    Von 100 Schüssen aufs Tor werden rund 76 gehalten. Nur Lugano steht in dieser Kennzahl noch knapp höher.
+  </p>
+</section>
+```
+
+```{python}
+#| echo: false
+#| warning: false
+
+saved = int(round(float(thun["fbref_save_pct"])))
+dots = "".join(
+    f'<span class="save-dot{" saved" if i < saved else ""}"></span>'
+    for i in range(100)
+)
+
+display(HTML(f"""
+<div class="visual-shell">
+  <div class="moment-card">
+    <div class="metric-pair">
+      <div class="metric-box thun">
+        <span class="big">{thun['fbref_save_pct']:.1f}%</span>
+        <span class="small">Paradequote des FC Thun. Rang {save_rank} der Liga.</span>
+      </div>
+      <div class="metric-box">
+        <span class="big">{league_avg['fbref_save_pct']:.1f}%</span>
+        <span class="small">Liga-Durchschnitt. Thun liegt deutlich darüber.</span>
+      </div>
+    </div>
+    <div class="hundred-grid">{dots}</div>
+    <div class="table-caption">
+      Jeder Block steht für einen von 100 Schüssen aufs Tor. Rot markiert die Schüsse, die Thun statistisch hält.
+    </div>
+  </div>
+</div>
+"""))
+```
+
+```{=html}
+<section class="chapter tight">
+  <div class="pullquote">
+    Was im Stadion wie Kampfgeist aussieht, zeigt sich in den Daten als Muster:
+    vorne wenig verschwenden, hinten wenig verschenken.
+  </div>
+</section>
+```
+
+```{=html}
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-number">06</div>
+    <h2>Die Arbeit zwischen den Highlights</h2>
+  </div>
+  <p class="lead">
+    Effizienz wirkt im Rückblick elegant. Auf dem Platz ist sie Arbeit:
+    Zweikämpfe, gefährliche Angriffe, Läufe, die keiner in der Zusammenfassung sieht. Weil diese Kennzahlen
+    unterschiedliche Einheiten haben, vergleichen wir sie nicht roh, sondern als Ligaindex.
+    100 bedeutet Liga-Durchschnitt.
+  </p>
+</section>
+```
+
+```{python}
+#| echo: false
+#| warning: false
+
+work_metrics = [
+    ("sm_dangerous_attacks", "Gefährliche Angriffe", "{:.1f} pro Spiel"),
+    ("fbref_tackles_won", "Gewonnene Tackles", "{:.0f}"),
+    ("stats_biggest_streak_wins", "Längste Siegesserie", "{:.0f} Spiele"),
+    ("standings_goals_diff", "Tordifferenz", "{:+.0f}"),
+]
+
+work_rows = []
+for col, label, fmt in work_metrics:
+    avg = float(league_avg[col])
+    value = float(thun[col])
+    index = value / avg * 100 if avg != 0 else 100
+    rank = int(df[col].rank(ascending=False, method="min")[df["team_name"] == "FC Thun"].iloc[0])
+    work_rows.append({
+        "Kennzahl": label,
+        "Index": index,
+        "Wert": fmt.format(value),
+        "Liga": fmt.format(avg),
+        "Rang": rank,
+    })
+work_df = pd.DataFrame(work_rows).sort_values("Index", ascending=True)
+
+fig = go.Figure()
+fig.add_trace(go.Bar(
+    y=work_df["Kennzahl"],
+    x=work_df["Index"],
+    orientation="h",
+    name="FC Thun",
+    marker_color=THUN_RED,
+    text=work_df["Index"].map(lambda x: f"{x:.0f}"),
+    textposition="outside",
+    customdata=work_df[["Wert", "Liga", "Rang"]],
+    hovertemplate=(
+        "<b>%{y}</b><br>"
+        "Index: %{x:.0f} (Liga = 100)<br>"
+        "FC Thun: %{customdata[0]}<br>"
+        "Liga-Schnitt: %{customdata[1]}<br>"
+        "Liga-Rang: %{customdata[2]}<extra></extra>"
+    ),
+))
+fig.update_layout(
+    showlegend=False,
+    xaxis=dict(
+        title="Ligaindex (100 = Durchschnitt)",
+        showgrid=True,
+        gridcolor="#eee8de",
+        zeroline=False,
+        range=[0, max(210, work_df["Index"].max() * 1.18)],
+    ),
+    yaxis=dict(title=""),
+)
+fig.add_vline(x=100, line_dash="dot", line_color="#777")
+fig.add_annotation(
+    x=100,
+    y=1.08,
+    yref="paper",
+    text="Liga-Durchschnitt",
+    showarrow=False,
+    font=dict(size=12, color="#666"),
+)
+story_layout(fig, height=450, title="Arbeitswerte als Ligaindex: Was über 100 liegt, ist über Schnitt")
+fig.show()
+```
+
+```{=html}
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-number">07</div>
+    <h2>Die Formel in einer Grafik</h2>
+  </div>
+  <p class="lead">
+    Am Ende braucht es kein kompliziertes Profil, um Thuns Saison zu verstehen.
+    Die Formel ist fast schon unverschämt einfach: nicht der meiste Ball, sondern die besseren Momente.
+  </p>
+</section>
+```
+
+```{python}
+#| echo: false
+#| warning: false
+
+display(HTML(f"""
+<div class="visual-shell">
+  <div class="formula-board">
+    <div class="formula-tile">
+      <strong>{thun['sm_ball_possession_pct']:.1f}%</strong>
+      <span>Ballbesitz. Nicht dominant, sondern im Mittelfeld der Liga.</span>
+    </div>
+    <div class="formula-op">+</div>
+    <div class="formula-tile">
+      <strong>{thun_shots_per_goal:.1f}</strong>
+      <span>Schüsse pro Tor. Wenn Thun abschliesst, passiert überdurchschnittlich oft etwas.</span>
+    </div>
+    <div class="formula-op">+</div>
+    <div class="formula-tile">
+      <strong>{thun['fbref_save_pct']:.1f}%</strong>
+      <span>Paradequote. Die Defensive hält die engen Momente am Leben.</span>
+    </div>
+    <div class="formula-op">=</div>
+    <div class="formula-result">
+      <strong>{int(thun['standings_points'])}</strong>
+      <span>Punkte. Aus kleinen Vorteilen wird ein grosser Abstand.</span>
+    </div>
+  </div>
+</div>
+"""))
+```
+
+```{=html}
+<section class="chapter tight">
+  <div class="formula">
+    <div class="formula-step">
+      <strong>1</strong>
+      Nicht versuchen, wie die Reichsten der Liga zu spielen.
+    </div>
+    <div class="formula-step">
+      <strong>2</strong>
+      Die wenigen richtig guten Momente konsequent nutzen.
+    </div>
+    <div class="formula-step">
+      <strong>3</strong>
+      Hinten stabil bleiben, wenn ein Spiel auf der Kippe steht.
+    </div>
+  </div>
+</section>
+```
+
+```{=html}
+<section class="image-break">
+  <img src="pics/thun_aufstieg.jpg" alt="FC Thun feiert den Aufstieg im Mai 2025">
+  <div>
+    <div class="eyebrow">2. Mai 2025</div>
+    <h2>Vom Aufstieg zur Ansage</h2>
+    <p>Der Jubel in der Challenge League war der Anfang. Die Super-League-Saison zeigt, dass daraus mehr wurde als eine schöne Rückkehr.</p>
+  </div>
+</section>
+```
+
+```{=html}
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-number">08</div>
+    <h2>Kein Märchen, ein Muster</h2>
+  </div>
+  <p class="lead">
+    Die einfachste Erzählung wäre: kleiner Club überrascht die Grossen. Sie ist schön, aber zu bequem.
+    Für Thun fühlt es sich emotional an, weil man weiss, woher dieser Club kommt. Die Daten erzählen dazu die
+    ruhigere zweite Stimme: Thun ist nicht zufällig oben.
+  </p>
+  <p class="lead">
+    Genau darin liegt die Underdog-Qualität: nicht darin, dass Thun klein bleibt.
+    Sondern darin, dass der Club seine begrenzteren Mittel so präzise einsetzt, dass die Liga plötzlich anders aussieht.
+    Was von aussen wie Überraschung wirkt, sieht von innen aus wie Arbeit, Vertrauen und ein ziemlich klarer Plan.
+  </p>
+  <div class="pullquote">
+    Die grossen Clubs hatten mehr Besitz, mehr Namen, mehr Erwartung. Thun hatte den Moment. Und die Formel.
+  </div>
+</section>
+
+<div class="footer-note">
+  Daten: API-Football, SportMonks, FBref, Swiss Super League 2025/26.<br>
+  Vereinsinfos: Transfermarkt, Wikipedia, Blick Sport. Bilder: Wikimedia Commons (CC BY-SA 3.0).<br>
+  Hinweis: Die Analyse nutzt aggregierte Teamwerte aus dem verarbeiteten Datensatz <code>team_season_stats_merged.csv</code>.
+</div>
+</div>
+```
