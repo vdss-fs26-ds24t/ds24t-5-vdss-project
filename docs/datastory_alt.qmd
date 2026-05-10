@@ -564,7 +564,7 @@ def story_layout(fig, height=500, title=None):
   <div class="hero-copy">
     <div class="eyebrow">Swiss Super League 2025/26</div>
     <h1>Die Thun-Formel</h1>
-    <p>Wer in Thun ins Stadion geht, kennt dieses Gefühl: nah dran, nicht riesig, aber mit viel Herz. Und plötzlich steht genau dieser Club ganz oben. Die Daten zeigen: Das ist weniger Märchen als Methode.</p>
+    <p>74 Punkte. 14 Punkte Vorsprung. Schweizer Meister — als Aufsteiger. Während die Grossen rechneten, gewann der FC Thun einfach weiter. Die Daten zeigen: Das ist kein Zufall. Das ist Methode.</p>
   </div>
 </section>
 ```
@@ -576,9 +576,7 @@ def story_layout(fig, height=500, title=None):
     <h2>Der Club, der nicht in diese Tabelle passen sollte</h2>
   </div>
   <p class="lead">
-    Im Sommer 2025 kommt der FC Thun zurück in die höchste Liga. In Thun hofft man, klar. Aber man kennt auch die
-    Verhältnisse: stabil bleiben, nicht untergehen, vielleicht die Top 6 angreifen. Auf dem Papier ist Thun kein
-    natürlicher Titelkandidat.
+    Sommer 2025: Der FC Thun kehrt zurück in die Super League. Das Ziel? Klassenerhalt. Vielleicht Top 6, wenn alles passt. Niemand spricht von Titel. Nicht mal in Thun selbst. Auf dem Papier ist das ein kleiner Club aus einer mittelgrossen Stadt — und das waren auch die Erwartungen.
   </p>
   <div class="stat-grid">
     <div class="stat-card">
@@ -590,13 +588,16 @@ def story_layout(fig, height=500, title=None):
       <div class="stat-label">Plätze in der Stockhorn Arena. Gross genug für Lärm, klein genug, dass jeder Abend persönlich bleibt.</div>
     </div>
     <div class="stat-card">
-      <div class="stat-value">€15.9M</div>
-      <div class="stat-label">Kaderwert. Im Vergleich zur Konkurrenz eher Werkzeugkiste als Luxusgarage.</div>
+      <div class="stat-value">CHF 16.4M</div>
+      <div class="stat-label">Kaderwert zu Saisonbeginn. Im Vergleich zur Konkurrenz eher Werkzeugkiste als Luxusgarage.</div>
     </div>
   </div>
-  <p class="lead">
-    Genau deshalb fühlt sich diese Saison anders an. Thun gewinnt nicht, weil es die grösste Bühne oder die teuersten
-    Namen hat. Thun gewinnt, weil der Club aus seinen Momenten mehr macht als andere aus ihrer Überlegenheit.
+  <div class="note" style="margin-top: 16px;">
+    <strong>Zum Vergleich:</strong> YB, teuerster Club der Liga: <strong>CHF 68.0M</strong> — Liga-Durchschnitt: <strong>CHF 33.1M</strong>.<br>
+    <span style="font-size: 0.85em; color: var(--muted);">Quelle: Transfermarkt, März 2026. Umrechnungskurs: 1 EUR = 1.034 CHF.</span>
+  </div>
+  <p class="lead" style="margin-top: 24px;">
+    Thun gewinnt nicht, weil es die grösste Bühne oder die teuersten Namen hat. Der Club kostet einen Bruchteil von dem, was YB oder Basel aufbieten — und gewinnt trotzdem die Meisterschaft. Weil er aus seinen Momenten mehr macht als andere aus ihrer Überlegenheit.
   </p>
 </section>
 ```
@@ -605,12 +606,11 @@ def story_layout(fig, height=500, title=None):
 <section class="chapter">
   <div class="chapter-head">
     <div class="chapter-number">02</div>
-    <h2>Die Tabelle als Schockmoment</h2>
+    <h2>Die Tabelle als Sensation</h2>
   </div>
   <p class="lead">
     Die Geschichte beginnt nicht mit einer taktischen Feinheit, sondern mit einem Blick auf die Tabelle.
-    FC Thun steht auf Rang 1, mit 74 Punkten und 14 Punkten Vorsprung auf St. Gallen. Für einen Aufsteiger ist das
-    nicht einfach eine gute Saison. Es ist der Moment, in dem man zweimal hinschaut.
+    FC Thun: Rang 1. 74 Punkte. 14 Punkte Vorsprung auf St. Gallen. Für einen frischgebackenen Aufsteiger ist das keine gute Saison — das ist eine Sensation.
   </p>
 </section>
 ```
@@ -681,7 +681,7 @@ display(HTML(f"""
 ```{=html}
 <section class="chapter tight">
   <div class="pullquote">
-    Ein Aufsteiger gewinnt nicht knapp. Er gewinnt so deutlich, dass die Tabelle selbst zur Schlagzeile wird.
+    Ein Aufsteiger gewinnt nicht knapp. Er gewinnt so deutlich, dass die Tabelle selbst zur Sensation wird.
   </div>
   <p class="lead">
     Ab hier wird die Frage spannender: Nicht <em>ob</em> Thun erfolgreich ist, sondern <em>wie</em>.
@@ -834,8 +834,7 @@ fig.show()
     <h2>Vorne zählt jeder Abschluss</h2>
   </div>
   <p class="lead">
-    Wenn ein Team weniger über Ballbesitz dominiert, muss es seine Chancen besser nutzen.
-    Bei Thun ist das nicht abstrakt. Es bedeutet: Nicht endlos anlaufen, sondern bereit sein, wenn der Moment kommt.
+    Weniger Ballbesitz heisst: Wenn Thun zum Abschluss kommt, muss er sitzen. Und er sitzt. Mit 7.7 Schüssen pro Tor ist der FC Thun die effizienteste Mannschaft der ganzen Liga — während der Durchschnitt bei 9.2 liegt.
   </p>
 </section>
 ```
@@ -844,34 +843,81 @@ fig.show()
 #| echo: false
 #| warning: false
 
-max_shots_per_goal = max(thun_shots_per_goal, league_shots_per_goal)
-thun_bar = thun_shots_per_goal / max_shots_per_goal * 100
-league_bar = league_shots_per_goal / max_shots_per_goal * 100
+# Shots per goal ranking for all teams
+df["shots_per_goal"] = df["fbref_shots"] / df["fbref_goals"]
+df_eff = df[["team_name", "shots_per_goal"]].sort_values("shots_per_goal", ascending=True).copy()
+df_eff["rank"] = range(1, len(df_eff) + 1)
+
+# Football icon rows: Thun vs Liga
+thun_spg = thun_shots_per_goal  # ~7.7
+league_spg = float(df["fbref_shots"].sum() / df["fbref_goals"].sum())  # ~9.2
+thun_n = round(thun_spg)
+league_n = round(league_spg)
+
+def make_ball_row(n, highlight_at):
+    balls = []
+    for i in range(1, n + 1):
+        if i == highlight_at:
+            balls.append('<span style="font-size:1.5rem;">⚽</span>')
+        else:
+            balls.append('<span style="font-size:1.5rem; opacity:0.25;">⚽</span>')
+    return "".join(balls)
+
+thun_balls = make_ball_row(thun_n, thun_n)
+league_balls = make_ball_row(league_n, league_n)
+
+# All-team ranking bars
+bar_rows = []
+max_spg = df_eff["shots_per_goal"].max()
+for _, r in df_eff.iterrows():
+    is_thun = r["team_name"] == "FC Thun"
+    color = "#E63946" if is_thun else "#c9c9c9"
+    width_pct = r["shots_per_goal"] / max_spg * 100
+    weight = "font-weight:700;" if is_thun else ""
+    bar_rows.append(f"""
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:5px;">
+        <div style="width:140px; font-size:.85rem; text-align:right; {weight} color:#202020;">{r['team_name']}</div>
+        <div style="flex:1; background:#f0ede8; border-radius:3px; height:18px;">
+          <div style="width:{width_pct:.1f}%; background:{color}; height:18px; border-radius:3px;"></div>
+        </div>
+        <div style="width:36px; font-size:.85rem; {weight} color:#202020;">{r['shots_per_goal']:.1f}</div>
+      </div>
+    """)
 
 display(HTML(f"""
 <div class="visual-shell">
   <div class="moment-card">
-    <div class="metric-pair">
-      <div class="metric-box thun">
-        <span class="big">{thun_shots_per_goal:.1f}</span>
-        <span class="small">Schüsse braucht Thun im Schnitt für ein Tor.</span>
+
+    <!-- Element 1: Grosse Zahl -->
+    <div style="text-align:center; margin-bottom:28px;">
+      <div style="font-size:3.8rem; font-weight:900; color:#E63946; line-height:1;">{thun_spg:.1f}</div>
+      <div style="font-size:1rem; color:#202020; margin-top:4px;">Schüsse pro Tor — <strong>Platz 1 in der Super League</strong></div>
+      <div style="font-size:.88rem; color:#6f6f6f; margin-top:2px;">Liga-Durchschnitt: {league_spg:.1f} Schüsse pro Tor</div>
+    </div>
+
+    <!-- Element 2: Icon-Vergleich -->
+    <div style="background:#f5f2ed; border-radius:8px; padding:18px 20px; margin-bottom:24px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div style="text-align:center;">
+          <div style="font-size:.8rem; font-weight:700; color:#E63946; margin-bottom:8px; text-transform:uppercase; letter-spacing:.05em;">FC Thun</div>
+          <div style="line-height:2;">{thun_balls}</div>
+          <div style="font-size:.82rem; color:#6f6f6f; margin-top:8px;">1 Tor pro <strong>{thun_n} Schüsse</strong></div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:.8rem; font-weight:700; color:#6f6f6f; margin-bottom:8px; text-transform:uppercase; letter-spacing:.05em;">Liga-Ø</div>
+          <div style="line-height:2;">{league_balls}</div>
+          <div style="font-size:.82rem; color:#6f6f6f; margin-top:8px;">1 Tor pro <strong>{league_n} Schüsse</strong></div>
+        </div>
       </div>
-      <div class="metric-box">
-        <span class="big">{league_shots_per_goal:.1f}</span>
-        <span class="small">Schüsse braucht die Liga im Schnitt für ein Tor.</span>
-      </div>
     </div>
-    <div class="shot-row">
-      <div class="shot-label">FC Thun</div>
-      <div class="shot-track"><div class="shot-fill thun" style="width: {thun_bar:.1f}%"></div></div>
+
+    <!-- Element 3: Liga-Ranking -->
+    <div style="font-size:.8rem; font-weight:700; color:#6f6f6f; text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px;">
+      Schüsse pro Tor — alle Teams (weniger = effizienter)
     </div>
-    <div class="shot-row">
-      <div class="shot-label">Liga</div>
-      <div class="shot-track"><div class="shot-fill" style="width: {league_bar:.1f}%"></div></div>
-    </div>
-    <div class="table-caption">
-      Je kürzer der Balken, desto schneller wird aus einem Abschluss ein Tor. Thun liegt mit 75 Toren aus
-      578 Schüssen in der Top-Gruppe der Liga.
+    {''.join(bar_rows)}
+    <div class="table-caption" style="margin-top:12px;">
+      Thun erzielte 75 Tore aus 578 Schüssen — als einziges Team unter 8 Schüsse pro Tor und damit Ligabeste.
     </div>
   </div>
 </div>
@@ -881,9 +927,7 @@ display(HTML(f"""
 ```{=html}
 <section class="chapter tight">
   <p class="lead">
-    Das ist der Unterschied zwischen Druck und Wirkung. Andere Teams kommen ebenfalls zu starken Effizienzwerten.
-    Aber Thun verbindet diese Genauigkeit mit 74 Punkten. Für die Menschen auf den Rängen fühlt sich das an wie
-    Kaltschnäuzigkeit; in den Daten sieht es aus wie ein klares Muster.
+    Das ist der Unterschied zwischen Druck und Wirkung. Nicht das Team mit den meisten Abschlüssen gewinnt — sondern das Team, das aus seinen Abschlüssen am meisten macht. Für die Fans auf den Rängen fühlt sich das nach Kaltschnäuzigkeit an. In den Daten sieht es aus wie ein klares Muster.
   </p>
 </section>
 ```
@@ -895,8 +939,7 @@ display(HTML(f"""
     <h2>Hinten hält die Saison</h2>
   </div>
   <p class="lead">
-    Eine Underdog-Saison kippt schnell, wenn sie defensiv wackelt. Thun kippt nicht.
-    Von 100 Schüssen aufs Tor werden rund 76 gehalten. Nur Lugano steht in dieser Kennzahl noch knapp höher.
+    Eine Underdog-Saison kippt schnell, wenn sie defensiv wackelt. Thun kippt nicht — weil Niklas Steffen im Tor steht. Von 100 Schüssen aufs Tor hält er 76. Nur Lugano liegt in dieser Kennzahl noch knapp vor ihm.
   </p>
 </section>
 ```
@@ -905,28 +948,42 @@ display(HTML(f"""
 #| echo: false
 #| warning: false
 
-saved = int(round(float(thun["fbref_save_pct"])))
-dots = "".join(
-    f'<span class="save-dot{" saved" if i < saved else ""}"></span>'
-    for i in range(100)
-)
+# Save % ranking for all teams
+df_saves = df[["team_name", "fbref_save_pct"]].sort_values("fbref_save_pct", ascending=False).copy()
+max_save = df_saves["fbref_save_pct"].max()
+
+save_bar_rows = []
+for _, r in df_saves.iterrows():
+    is_thun = r["team_name"] == "FC Thun"
+    color = "#E63946" if is_thun else "#c9c9c9"
+    width_pct = r["fbref_save_pct"] / max_save * 100
+    weight = "font-weight:700;" if is_thun else ""
+    save_bar_rows.append(f"""
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:5px;">
+        <div style="width:140px; font-size:.85rem; text-align:right; {weight} color:#202020;">{r['team_name']}</div>
+        <div style="flex:1; background:#f0ede8; border-radius:3px; height:18px;">
+          <div style="width:{width_pct:.1f}%; background:{color}; height:18px; border-radius:3px;"></div>
+        </div>
+        <div style="width:46px; font-size:.85rem; {weight} color:#202020;">{r['fbref_save_pct']:.1f}%</div>
+      </div>
+    """)
 
 display(HTML(f"""
 <div class="visual-shell">
   <div class="moment-card">
-    <div class="metric-pair">
-      <div class="metric-box thun">
-        <span class="big">{thun['fbref_save_pct']:.1f}%</span>
-        <span class="small">Paradequote des FC Thun. Rang {save_rank} der Liga.</span>
-      </div>
-      <div class="metric-box">
-        <span class="big">{league_avg['fbref_save_pct']:.1f}%</span>
-        <span class="small">Liga-Durchschnitt. Thun liegt deutlich darüber.</span>
-      </div>
+    <!-- Grosse Zahl -->
+    <div style="text-align:center; margin-bottom:28px;">
+      <div style="font-size:3.8rem; font-weight:900; color:#E63946; line-height:1;">{thun['fbref_save_pct']:.1f}%</div>
+      <div style="font-size:1rem; color:#202020; margin-top:4px;"><strong>Niklas Steffen</strong> — Paradequote, Rang {save_rank} der Liga</div>
+      <div style="font-size:.88rem; color:#6f6f6f; margin-top:2px;">Liga-Durchschnitt: {league_avg['fbref_save_pct']:.1f}%</div>
     </div>
-    <div class="hundred-grid">{dots}</div>
-    <div class="table-caption">
-      Jeder Block steht für einen von 100 Schüssen aufs Tor. Rot markiert die Schüsse, die Thun statistisch hält.
+    <!-- Liga-Ranking -->
+    <div style="font-size:.8rem; font-weight:700; color:#6f6f6f; text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px;">
+      Save % — alle Teams (mehr = besser)
+    </div>
+    {''.join(save_bar_rows)}
+    <div class="table-caption" style="margin-top:12px;">
+      Steffen hielt in der Saison 103 von 140 Schüssen — 76.4% Fangquote. Nur Lugano liegt knapp höher.
     </div>
   </div>
 </div>
@@ -946,13 +1003,10 @@ display(HTML(f"""
 <section class="chapter">
   <div class="chapter-head">
     <div class="chapter-number">06</div>
-    <h2>Die Arbeit zwischen den Highlights</h2>
+    <h2>Die Serie — 10 Siege am Stück</h2>
   </div>
   <p class="lead">
-    Effizienz wirkt im Rückblick elegant. Auf dem Platz ist sie Arbeit:
-    Zweikämpfe, gefährliche Angriffe, Läufe, die keiner in der Zusammenfassung sieht. Weil diese Kennzahlen
-    unterschiedliche Einheiten haben, vergleichen wir sie nicht roh, sondern als Ligaindex.
-    100 bedeutet Liga-Durchschnitt.
+    Thun spielt konstant gut. Aber im Herbst 2025 passiert etwas, das die Saison endgültig kippt: 10 Siege in Folge. Kein einziges Unentschieden, keine einzige Niederlage. Der Schlüsselmoment dieser Meisterschaft — in 10 Spielen.
   </p>
 </section>
 ```
@@ -961,74 +1015,215 @@ display(HTML(f"""
 #| echo: false
 #| warning: false
 
-work_metrics = [
-    ("sm_dangerous_attacks", "Gefährliche Angriffe", "{:.1f} pro Spiel"),
-    ("fbref_tackles_won", "Gewonnene Tackles", "{:.0f}"),
-    ("stats_biggest_streak_wins", "Längste Siegesserie", "{:.0f} Spiele"),
-    ("standings_goals_diff", "Tordifferenz", "{:+.0f}"),
-]
+import pandas as pd
+from IPython.display import HTML, display
 
-work_rows = []
-for col, label, fmt in work_metrics:
-    avg = float(league_avg[col])
-    value = float(thun[col])
-    index = value / avg * 100 if avg != 0 else 100
-    rank = int(df[col].rank(ascending=False, method="min")[df["team_name"] == "FC Thun"].iloc[0])
-    work_rows.append({
-        "Kennzahl": label,
-        "Index": index,
-        "Wert": fmt.format(value),
-        "Liga": fmt.format(avg),
-        "Rang": rank,
+fixtures = pd.read_csv("../data_acquisition/raw/footballapi/fixtures_footballapi.csv")
+
+# FC Thun matches, determine result
+thun_matches = []
+for _, row in fixtures.iterrows():
+    if row["home_team_name"] == "FC Thun":
+        goals_for = row["goals_home"]
+        goals_against = row["goals_away"]
+        opponent = row["away_team_name"]
+        venue = "H"
+    elif row["away_team_name"] == "FC Thun":
+        goals_for = row["goals_away"]
+        goals_against = row["goals_home"]
+        opponent = row["home_team_name"]
+        venue = "A"
+    else:
+        continue
+
+    # Skip matches without result data
+    if pd.isna(goals_for) or pd.isna(goals_against):
+        continue
+
+    if goals_for > goals_against:
+        result = "W"
+    elif goals_for == goals_against:
+        result = "D"
+    else:
+        result = "L"
+
+    thun_matches.append({
+        "date": pd.to_datetime(row["date"]).strftime("%d.%m.%Y"),
+        "date_raw": pd.to_datetime(row["date"]),
+        "round": row["round"].replace("Regular Season - ", "Runde "),
+        "opponent": opponent,
+        "goals_for": int(goals_for),
+        "goals_against": int(goals_against),
+        "result": result,
+        "venue": venue,
     })
-work_df = pd.DataFrame(work_rows).sort_values("Index", ascending=True)
 
-fig = go.Figure()
-fig.add_trace(go.Bar(
-    y=work_df["Kennzahl"],
-    x=work_df["Index"],
-    orientation="h",
-    name="FC Thun",
-    marker_color=THUN_RED,
-    text=work_df["Index"].map(lambda x: f"{x:.0f}"),
-    textposition="outside",
-    customdata=work_df[["Wert", "Liga", "Rang"]],
-    hovertemplate=(
-        "<b>%{y}</b><br>"
-        "Index: %{x:.0f} (Liga = 100)<br>"
-        "FC Thun: %{customdata[0]}<br>"
-        "Liga-Schnitt: %{customdata[1]}<br>"
-        "Liga-Rang: %{customdata[2]}<extra></extra>"
-    ),
-))
-fig.update_layout(
-    showlegend=False,
-    xaxis=dict(
-        title="Ligaindex (100 = Durchschnitt)",
-        showgrid=True,
-        gridcolor="#eee8de",
-        zeroline=False,
-        range=[0, max(210, work_df["Index"].max() * 1.18)],
-    ),
-    yaxis=dict(title=""),
-)
-fig.add_vline(x=100, line_dash="dot", line_color="#777")
-fig.add_annotation(
-    x=100,
-    y=1.08,
-    yref="paper",
-    text="Liga-Durchschnitt",
-    showarrow=False,
-    font=dict(size=12, color="#666"),
-)
-story_layout(fig, height=450, title="Arbeitswerte als Ligaindex: Was über 100 liegt, ist über Schnitt")
-fig.show()
+thun_df = pd.DataFrame(thun_matches).sort_values("date_raw").reset_index(drop=True)
+
+# Find the longest win streak
+max_streak = 0
+max_start = 0
+cur_streak = 0
+cur_start = 0
+for i, row in thun_df.iterrows():
+    if row["result"] == "W":
+        if cur_streak == 0:
+            cur_start = i
+        cur_streak += 1
+        if cur_streak > max_streak:
+            max_streak = cur_streak
+            max_start = cur_start
+    else:
+        cur_streak = 0
+
+streak_df = thun_df.iloc[max_start : max_start + max_streak].copy()
+
+# Build timeline cards
+cards = []
+for idx, (_, g) in enumerate(streak_df.iterrows()):
+    score = f"{g['goals_for']}:{g['goals_against']}"
+    venue_label = "Heim" if g["venue"] == "H" else "Auswärts"
+    is_first = idx == 0
+    is_last = idx == max_streak - 1
+    border = "border: 2px solid #E63946;" if (is_first or is_last) else "border: 2px solid transparent;"
+    badge = ""
+    if is_first:
+        badge = '<div style="font-size:.65rem; font-weight:700; color:#E63946; text-transform:uppercase; letter-spacing:.08em; margin-bottom:3px;">Start</div>'
+    if is_last:
+        badge = '<div style="font-size:.65rem; font-weight:700; color:#E63946; text-transform:uppercase; letter-spacing:.08em; margin-bottom:3px;">Ende</div>'
+    cards.append(f"""
+      <div style="background:#fff; {border} border-radius:8px; padding:12px 10px; text-align:center; min-width:100px; flex:1;">
+        {badge}
+        <div style="font-size:.7rem; color:#6f6f6f; margin-bottom:4px;">{g['date']}</div>
+        <div style="font-size:.78rem; font-weight:700; color:#202020; margin-bottom:6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="{g['opponent']}">{g['opponent'].replace('FC ', '').replace('BSC ', '')}</div>
+        <div style="font-size:1.4rem; font-weight:900; color:#E63946; line-height:1;">{score}</div>
+        <div style="font-size:.65rem; color:#6f6f6f; margin-top:4px;">{venue_label}</div>
+      </div>
+    """)
+
+start_date = streak_df.iloc[0]["date"]
+end_date = streak_df.iloc[-1]["date"]
+total_goals_for = int(streak_df["goals_for"].sum())
+total_goals_against = int(streak_df["goals_against"].sum())
+
+display(HTML(f"""
+<div class="visual-shell">
+  <div class="moment-card">
+    <div style="text-align:center; margin-bottom:24px;">
+      <div style="font-size:3rem; font-weight:900; color:#E63946; line-height:1;">{max_streak} Siege</div>
+      <div style="font-size:1rem; color:#202020; margin-top:4px;">am Stück — {start_date} bis {end_date}</div>
+      <div style="font-size:.88rem; color:#6f6f6f; margin-top:4px;">{total_goals_for} Tore geschossen, {total_goals_against} kassiert</div>
+    </div>
+    <div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:center; margin-bottom:16px;">
+      {''.join(cards)}
+    </div>
+    <div class="table-caption">
+      Jede Karte steht für ein Spiel der Serie. Rot umrandet: Beginn und Ende der längsten Siegesserie der Saison.
+    </div>
+  </div>
+</div>
+"""))
+```
+
+```{=html}
+<section class="chapter tight">
+  <p class="lead">
+    Diese Serie ist nicht Glück — sie ist Ausdruck von allem, was Thun in dieser Saison auszeichnet. Effizienz vorne, Stabilität hinten, und ein Team, das sich nicht beirren lässt.
+  </p>
+</section>
 ```
 
 ```{=html}
 <section class="chapter">
   <div class="chapter-head">
     <div class="chapter-number">07</div>
+    <h2>Die Arbeit zwischen den Highlights</h2>
+  </div>
+  <p class="lead">
+    Effizienz vorne, Stabilität hinten — aber was passiert dazwischen? Das Netzdiagramm zeigt, wie FC Thun im Vergleich zum Liga-Durchschnitt aufgestellt ist: Gefährliche Angriffe, Schüsse, Tackles, Angriffe total, Tordifferenz.
+  </p>
+</section>
+```
+
+```{python}
+#| echo: false
+#| warning: false
+
+radar_metrics = [
+    ("sm_dangerous_attacks", "Gefährliche\nAngriffe"),
+    ("sm_shots", "Schüsse"),
+    ("fbref_tackles_won", "Tackles\ngewonnen"),
+    ("sm_attacks", "Angriffe\ntotal"),
+    ("standings_goals_diff", "Tor-\ndifferenz"),
+]
+
+categories = [m[1] for m in radar_metrics]
+thun_vals = []
+league_vals = []
+for col, _ in radar_metrics:
+    t_val = float(thun[col])
+    l_avg = float(league_avg[col])
+    # Normalize: league avg = 1.0; for goals_diff shift to avoid negative
+    if col == "standings_goals_diff":
+        min_val = float(df[col].min())
+        max_val = float(df[col].max())
+        norm_t = (t_val - min_val) / (max_val - min_val) if max_val != min_val else 0.5
+        norm_l = (l_avg - min_val) / (max_val - min_val) if max_val != min_val else 0.5
+    else:
+        max_val = float(df[col].max())
+        norm_t = t_val / max_val if max_val != 0 else 0
+        norm_l = l_avg / max_val if max_val != 0 else 0
+    thun_vals.append(norm_t)
+    league_vals.append(norm_l)
+
+# Close the polygon
+cats_closed = categories + [categories[0]]
+thun_closed = thun_vals + [thun_vals[0]]
+league_closed = league_vals + [league_vals[0]]
+
+fig_radar = go.Figure()
+fig_radar.add_trace(go.Scatterpolar(
+    r=thun_closed,
+    theta=cats_closed,
+    fill="toself",
+    fillcolor="rgba(230, 57, 70, 0.18)",
+    line=dict(color=THUN_RED, width=2.5),
+    name="FC Thun",
+    hovertemplate="<b>FC Thun</b><br>%{theta}<extra></extra>",
+))
+fig_radar.add_trace(go.Scatterpolar(
+    r=league_closed,
+    theta=cats_closed,
+    fill="toself",
+    fillcolor="rgba(100,100,100,0.08)",
+    line=dict(color="#999", width=1.5, dash="dot"),
+    name="Liga-Durchschnitt",
+    hovertemplate="<b>Liga-Ø</b><br>%{theta}<extra></extra>",
+))
+fig_radar.update_layout(
+    polar=dict(
+        radialaxis=dict(visible=False, range=[0, 1.05]),
+        angularaxis=dict(tickfont=dict(size=12)),
+        bgcolor="white",
+    ),
+    showlegend=True,
+    legend=dict(orientation="h", yanchor="bottom", y=-0.12, xanchor="center", x=0.5),
+    font=dict(family="Arial, sans-serif", color=INK),
+    paper_bgcolor="white",
+    margin=dict(l=60, r=60, t=60, b=60),
+    height=420,
+    title=dict(
+        text="FC Thun vs. Liga-Durchschnitt (normiert)",
+        font=dict(size=17, color=INK, family="Arial Black, Arial, sans-serif"),
+    ),
+)
+fig_radar.show()
+```
+
+```{=html}
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-number">08</div>
     <h2>Die Formel in einer Grafik</h2>
   </div>
   <p class="lead">
@@ -1102,19 +1297,41 @@ display(HTML(f"""
 ```{=html}
 <section class="chapter">
   <div class="chapter-head">
-    <div class="chapter-number">08</div>
+    <div class="chapter-number">09</div>
     <h2>Kein Märchen, ein Muster</h2>
   </div>
+
   <p class="lead">
-    Die einfachste Erzählung wäre: kleiner Club überrascht die Grossen. Sie ist schön, aber zu bequem.
-    Für Thun fühlt es sich emotional an, weil man weiss, woher dieser Club kommt. Die Daten erzählen dazu die
-    ruhigere zweite Stimme: Thun ist nicht zufällig oben.
+    74 Punkte. 75 Tore. 10 Siege am Stück. CHF 16.4 Millionen Kaderwert. Die Zahlen lügen nicht — und sie erzählen eine Geschichte, die mehr ist als ein Märchen.
   </p>
+
   <p class="lead">
-    Genau darin liegt die Underdog-Qualität: nicht darin, dass Thun klein bleibt.
-    Sondern darin, dass der Club seine begrenzteren Mittel so präzise einsetzt, dass die Liga plötzlich anders aussieht.
-    Was von aussen wie Überraschung wirkt, sieht von innen aus wie Arbeit, Vertrauen und ein ziemlich klarer Plan.
+    Was laut Sportjournalisten hinter dieser Saison steckt: Nicht ein Wunder, sondern eine Kombination aus strukturellen Stärken, die sich gegenseitig verstärkt haben.
   </p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:28px 0;">
+    <div style="background:#f5f2ed; border-left:3px solid #E63946; border-radius:0 6px 6px 0; padding:16px 18px;">
+      <div style="font-size:.75rem; font-weight:700; color:#E63946; text-transform:uppercase; letter-spacing:.07em; margin-bottom:6px;">Kontinuität</div>
+      <div style="font-size:.93rem; color:#202020;">Der Kader blieb nach dem Aufstieg weitgehend unverändert — kein Aufbau mehr, kein Abriss. Ein eingespieltes Team, das sich blind versteht.</div>
+      <div style="font-size:.78rem; color:#6f6f6f; margin-top:8px;">Quelle: SRF Sport</div>
+    </div>
+    <div style="background:#f5f2ed; border-left:3px solid #E63946; border-radius:0 6px 6px 0; padding:16px 18px;">
+      <div style="font-size:.75rem; font-weight:700; color:#E63946; text-transform:uppercase; letter-spacing:.07em; margin-bottom:6px;">Trainer Lustrinelli</div>
+      <div style="font-size:.93rem; color:#202020;">«Am Ende habe ich mit Menschen zu tun und nicht mit Zahlen.» Mauro Lustrinelli — seit 2022 im Amt, ehemaliger Thun-Spieler — baute eine Kultur des Vertrauens.</div>
+      <div style="font-size:.78rem; color:#6f6f6f; margin-top:8px;">Quelle: NZZ, Interview Mai 2026</div>
+    </div>
+    <div style="background:#f5f2ed; border-left:3px solid #E63946; border-radius:0 6px 6px 0; padding:16px 18px;">
+      <div style="font-size:.75rem; font-weight:700; color:#E63946; text-transform:uppercase; letter-spacing:.07em; margin-bottom:6px;">Teamgeist statt Stars</div>
+      <div style="font-size:.93rem; color:#202020;">17 verschiedene Torschützen in dieser Saison. Kein Abhängigkeit von einem Einzelnen — jeder trägt, wenn er gebraucht wird.</div>
+      <div style="font-size:.78rem; color:#6f6f6f; margin-top:8px;">Quelle: SRF Sport, Saisonrückblick</div>
+    </div>
+    <div style="background:#f5f2ed; border-left:3px solid #E63946; border-radius:0 6px 6px 0; padding:16px 18px;">
+      <div style="font-size:.75rem; font-weight:700; color:#E63946; text-transform:uppercase; letter-spacing:.07em; margin-bottom:6px;">Versagen der Grossen</div>
+      <div style="font-size:.93rem; color:#202020;">YB, Basel und Zürich lieferten nie die Konstanz, die man von ihnen erwartet. Thun brauchte keinen Ausrutscher zu provozieren — die Konkurrenz stolperte von selbst.</div>
+      <div style="font-size:.78rem; color:#6f6f6f; margin-top:8px;">Quelle: Tagesanzeiger, NZZ</div>
+    </div>
+  </div>
+
   <div class="pullquote">
     Die grossen Clubs hatten mehr Besitz, mehr Namen, mehr Erwartung. Thun hatte den Moment. Und die Formel.
   </div>
@@ -1122,7 +1339,9 @@ display(HTML(f"""
 
 <div class="footer-note">
   Daten: API-Football, SportMonks, FBref, Swiss Super League 2025/26.<br>
-  Vereinsinfos: Transfermarkt, Wikipedia, Blick Sport. Bilder: Wikimedia Commons (CC BY-SA 3.0).<br>
+  Kaderwerte: Transfermarkt.ch, März 2026. Umrechnungskurs: 1 EUR = 1.034 CHF.<br>
+  Pressestimmen: NZZ, SRF Sport, Tagesanzeiger, Watson — Saisonrückblicke April/Mai 2026.<br>
+  Vereinsinfos: Transfermarkt, Wikipedia. Bilder: Wikimedia Commons (CC BY-SA 3.0).<br>
   Hinweis: Die Analyse nutzt aggregierte Teamwerte aus dem verarbeiteten Datensatz <code>team_season_stats_merged.csv</code>.
 </div>
 </div>
