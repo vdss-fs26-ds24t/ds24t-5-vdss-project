@@ -834,7 +834,7 @@ fig.show()
     <h2>Vorne zählt jeder Abschluss</h2>
   </div>
   <p class="lead">
-    Weniger Ballbesitz heisst: Wenn Thun zum Abschluss kommt, muss er sitzen. Und er sitzt. Mit 7.7 Schüssen pro Tor ist der FC Thun die effizienteste Mannschaft der ganzen Liga, während der Durchschnitt bei 9.2 liegt.
+    Weniger Ballbesitz heisst: Wenn Thun zum Abschluss kommt, muss er sitzen. Und er sitzt. Mit 7.7 Schüssen pro Tor ist der FC Thun die zweiteffizienteste Mannschaft der Liga, nur übertroffen von den BSC Young Boys mit 7.5
   </p>
 </section>
 ```
