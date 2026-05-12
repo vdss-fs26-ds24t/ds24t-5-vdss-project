@@ -564,7 +564,7 @@ def story_layout(fig, height=500, title=None):
   <div class="hero-copy">
     <div class="eyebrow">Swiss Super League 2025/26</div>
     <h1>Die Thun-Formel</h1>
-    <p>74 Punkte. 14 Punkte Vorsprung. Schweizer Meister — als Aufsteiger. Während die Grossen rechneten, gewann der FC Thun einfach weiter. Die Daten zeigen: Das ist kein Zufall. Das ist Methode.</p>
+    <p>74 Punkte. 14 Punkte Vorsprung. Schweizer Meister, als Aufsteiger. Während die Grossen rechneten, gewann der FC Thun einfach weiter. Die Daten zeigen: Das ist kein Zufall. Das ist Methode.</p>
   </div>
 </section>
 ```
@@ -576,7 +576,7 @@ def story_layout(fig, height=500, title=None):
     <h2>Der Club, der nicht in diese Tabelle passen sollte</h2>
   </div>
   <p class="lead">
-    Sommer 2025: Der FC Thun kehrt zurück in die Super League. Das Ziel? Klassenerhalt. Vielleicht Top 6, wenn alles passt. Niemand spricht von Titel. Nicht mal in Thun selbst. Auf dem Papier ist das ein kleiner Club aus einer mittelgrossen Stadt — und das waren auch die Erwartungen.
+    Sommer 2025: Der FC Thun kehrt zurück in die Super League. Das Ziel? Klassenerhalt. Vielleicht Top 6, wenn alles passt. Niemand spricht von Titel. Nicht mal in Thun selbst. Auf dem Papier ist das ein kleiner Club aus einer mittelgrossen Stadt und das waren auch die Erwartungen.
   </p>
   <div class="stat-grid">
     <div class="stat-card">
@@ -593,11 +593,11 @@ def story_layout(fig, height=500, title=None):
     </div>
   </div>
   <div class="note" style="margin-top: 16px;">
-    <strong>Zum Vergleich:</strong> YB, teuerster Club der Liga: <strong>CHF 68.0M</strong> — Liga-Durchschnitt: <strong>CHF 33.1M</strong>.<br>
+    <strong>Zum Vergleich:</strong> YB, teuerster Club der Liga: <strong>CHF 68.0M</strong>  Liga-Durchschnitt: <strong>CHF 33.1M</strong>.<br>
     <span style="font-size: 0.85em; color: var(--muted);">Quelle: Transfermarkt, März 2026. Umrechnungskurs: 1 EUR = 1.034 CHF.</span>
   </div>
   <p class="lead" style="margin-top: 24px;">
-    Thun gewinnt nicht, weil es die grösste Bühne oder die teuersten Namen hat. Der Club kostet einen Bruchteil von dem, was YB oder Basel aufbieten — und gewinnt trotzdem die Meisterschaft. Weil er aus seinen Momenten mehr macht als andere aus ihrer Überlegenheit.
+    Thun gewinnt nicht, weil es die grösste Bühne oder die teuersten Namen hat. Der Club kostet einen Bruchteil von dem, was YB oder Basel aufbieten und gewinnt trotzdem die Meisterschaft. Weil er aus seinen Momenten mehr macht als andere aus ihrer Überlegenheit.
   </p>
 </section>
 ```
@@ -610,7 +610,7 @@ def story_layout(fig, height=500, title=None):
   </div>
   <p class="lead">
     Die Geschichte beginnt nicht mit einer taktischen Feinheit, sondern mit einem Blick auf die Tabelle.
-    FC Thun: Rang 1. 74 Punkte. 14 Punkte Vorsprung auf St. Gallen. Für einen frischgebackenen Aufsteiger ist das keine gute Saison — das ist eine Sensation.
+    FC Thun: Rang 1. 74 Punkte. 14 Punkte Vorsprung auf St. Gallen. Für einen frischgebackenen Aufsteiger ist das keine gute Saison, das ist eine Sensation.
   </p>
 </section>
 ```
@@ -834,7 +834,7 @@ fig.show()
     <h2>Vorne zählt jeder Abschluss</h2>
   </div>
   <p class="lead">
-    Weniger Ballbesitz heisst: Wenn Thun zum Abschluss kommt, muss er sitzen. Und er sitzt. Mit 7.7 Schüssen pro Tor ist der FC Thun die effizienteste Mannschaft der ganzen Liga — während der Durchschnitt bei 9.2 liegt.
+    Weniger Ballbesitz heisst: Wenn Thun zum Abschluss kommt, muss er sitzen. Und er sitzt. Mit 7.7 Schüssen pro Tor ist der FC Thun die effizienteste Mannschaft der ganzen Liga, während der Durchschnitt bei 9.2 liegt.
   </p>
 </section>
 ```
@@ -891,7 +891,7 @@ display(HTML(f"""
     <!-- Element 1: Grosse Zahl -->
     <div style="text-align:center; margin-bottom:28px;">
       <div style="font-size:3.8rem; font-weight:900; color:#E63946; line-height:1;">{thun_spg:.1f}</div>
-      <div style="font-size:1rem; color:#202020; margin-top:4px;">Schüsse pro Tor — <strong>Platz 1 in der Super League</strong></div>
+      <div style="font-size:1rem; color:#202020; margin-top:4px;">Schüsse pro Tor: <strong>Platz 1 in der Super League</strong></div>
       <div style="font-size:.88rem; color:#6f6f6f; margin-top:2px;">Liga-Durchschnitt: {league_spg:.1f} Schüsse pro Tor</div>
     </div>
 
@@ -913,11 +913,11 @@ display(HTML(f"""
 
     <!-- Element 3: Liga-Ranking -->
     <div style="font-size:.8rem; font-weight:700; color:#6f6f6f; text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px;">
-      Schüsse pro Tor — alle Teams (weniger = effizienter)
+      Schüsse pro Tor von allen Teams (weniger = effizienter)
     </div>
     {''.join(bar_rows)}
     <div class="table-caption" style="margin-top:12px;">
-      Thun erzielte 75 Tore aus 578 Schüssen — als einziges Team unter 8 Schüsse pro Tor und damit Ligabeste.
+      Thun erzielte 75 Tore aus 578 Schüssen
     </div>
   </div>
 </div>
@@ -927,7 +927,7 @@ display(HTML(f"""
 ```{=html}
 <section class="chapter tight">
   <p class="lead">
-    Das ist der Unterschied zwischen Druck und Wirkung. Nicht das Team mit den meisten Abschlüssen gewinnt — sondern das Team, das aus seinen Abschlüssen am meisten macht. Für die Fans auf den Rängen fühlt sich das nach Kaltschnäuzigkeit an. In den Daten sieht es aus wie ein klares Muster.
+    Das ist der Unterschied zwischen Druck und Wirkung. Nicht das Team mit den meisten Abschlüssen gewinnt, sondern das Team, das aus seinen Abschlüssen am meisten macht. Für die Fans auf den Rängen fühlt sich das nach Kaltschnäuzigkeit an. In den Daten sieht es aus wie ein klares Muster.
   </p>
 </section>
 ```
@@ -939,7 +939,7 @@ display(HTML(f"""
     <h2>Hinten hält die Saison</h2>
   </div>
   <p class="lead">
-    Eine Underdog-Saison kippt schnell, wenn sie defensiv wackelt. Thun kippt nicht — weil Niklas Steffen im Tor steht. Von 100 Schüssen aufs Tor hält er 76. Nur Lugano liegt in dieser Kennzahl noch knapp vor ihm.
+    Eine Underdog-Saison kippt schnell, wenn sie defensiv wackelt. Thun kippt nicht weil Niklas Steffen im Tor steht. Von 100 Schüssen aufs Tor hält er 76. Nur Lugano liegt in dieser Kennzahl noch knapp vor ihm.
   </p>
 </section>
 ```
@@ -974,16 +974,16 @@ display(HTML(f"""
     <!-- Grosse Zahl -->
     <div style="text-align:center; margin-bottom:28px;">
       <div style="font-size:3.8rem; font-weight:900; color:#E63946; line-height:1;">{thun['fbref_save_pct']:.1f}%</div>
-      <div style="font-size:1rem; color:#202020; margin-top:4px;"><strong>Niklas Steffen</strong> — Paradequote, Rang {save_rank} der Liga</div>
+      <div style="font-size:1rem; color:#202020; margin-top:4px;"><strong>Niklas Steffen</strong> Paradequote, Rang {save_rank} der Liga</div>
       <div style="font-size:.88rem; color:#6f6f6f; margin-top:2px;">Liga-Durchschnitt: {league_avg['fbref_save_pct']:.1f}%</div>
     </div>
     <!-- Liga-Ranking -->
     <div style="font-size:.8rem; font-weight:700; color:#6f6f6f; text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px;">
-      Save % — alle Teams (mehr = besser)
+      Save % von allen Teams (mehr = besser)
     </div>
     {''.join(save_bar_rows)}
     <div class="table-caption" style="margin-top:12px;">
-      Steffen hielt in der Saison 103 von 140 Schüssen — 76.4% Fangquote. Nur Lugano liegt knapp höher.
+      Steffen hielt in der Saison 103 von 140 Schüssen. Nur Lugano liegt knapp höher.
     </div>
   </div>
 </div>
@@ -1003,10 +1003,10 @@ display(HTML(f"""
 <section class="chapter">
   <div class="chapter-head">
     <div class="chapter-number">06</div>
-    <h2>Die Serie — 10 Siege am Stück</h2>
+    <h2>Die Serie: 10 Siege am Stück</h2>
   </div>
   <p class="lead">
-    Thun spielt konstant gut. Aber im Herbst 2025 passiert etwas, das die Saison endgültig kippt: 10 Siege in Folge. Kein einziges Unentschieden, keine einzige Niederlage. Der Schlüsselmoment dieser Meisterschaft — in 10 Spielen.
+    Thun spielt konstant gut. Aber im Herbst 2025 passiert etwas, das die Saison endgültig kippt: 10 Siege in Folge. Kein einziges Unentschieden, keine einzige Niederlage. Der Schlüsselmoment dieser Meisterschaft.
   </p>
 </section>
 ```
@@ -1110,8 +1110,8 @@ display(HTML(f"""
 <div class="visual-shell">
   <div class="moment-card">
     <div style="text-align:center; margin-bottom:24px;">
-      <div style="font-size:3rem; font-weight:900; color:#E63946; line-height:1;">{max_streak} Siege</div>
-      <div style="font-size:1rem; color:#202020; margin-top:4px;">am Stück — {start_date} bis {end_date}</div>
+      <div style="font-size:3rem; font-weight:900; color:#E63946; line-height:1;">{max_streak} Siege am Stück</div>
+      <div style="font-size:1rem; color:#202020; margin-top:4px;">{start_date} bis {end_date}</div>
       <div style="font-size:.88rem; color:#6f6f6f; margin-top:4px;">{total_goals_for} Tore geschossen, {total_goals_against} kassiert</div>
     </div>
     <div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:center; margin-bottom:16px;">
@@ -1128,7 +1128,7 @@ display(HTML(f"""
 ```{=html}
 <section class="chapter tight">
   <p class="lead">
-    Diese Serie ist nicht Glück — sie ist Ausdruck von allem, was Thun in dieser Saison auszeichnet. Effizienz vorne, Stabilität hinten, und ein Team, das sich nicht beirren lässt.
+    Diese Serie ist nicht Glück, sie ist Ausdruck von allem, was Thun in dieser Saison auszeichnet. Effizienz vorne, Stabilität hinten, und ein Team, das sich nicht beirren lässt.
   </p>
 </section>
 ```
@@ -1140,7 +1140,7 @@ display(HTML(f"""
     <h2>Die Arbeit zwischen den Highlights</h2>
   </div>
   <p class="lead">
-    Effizienz vorne, Stabilität hinten — aber was passiert dazwischen? Das Netzdiagramm zeigt, wie FC Thun im Vergleich zum Liga-Durchschnitt aufgestellt ist: Gefährliche Angriffe, Schüsse, Tackles, Angriffe total, Tordifferenz.
+    Effizienz vorne, Stabilität hinten, aber was passiert dazwischen? Das Netzdiagramm zeigt, wie FC Thun im Vergleich zum Liga-Durchschnitt aufgestellt ist: Gefährliche Angriffe, Schüsse, Tackles, Angriffe total, Tordifferenz.
   </p>
 </section>
 ```
@@ -1302,7 +1302,7 @@ display(HTML(f"""
   </div>
 
   <p class="lead">
-    74 Punkte. 75 Tore. 10 Siege am Stück. CHF 16.4 Millionen Kaderwert. Die Zahlen lügen nicht — und sie erzählen eine Geschichte, die mehr ist als ein Märchen.
+    74 Punkte. 75 Tore. 10 Siege am Stück. CHF 16.4 Millionen Kaderwert. Die Zahlen lügen nicht und sie erzählen eine Geschichte, die mehr ist als ein Märchen.
   </p>
 
   <p class="lead">
@@ -1312,22 +1312,22 @@ display(HTML(f"""
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:28px 0;">
     <div style="background:#f5f2ed; border-left:3px solid #E63946; border-radius:0 6px 6px 0; padding:16px 18px;">
       <div style="font-size:.75rem; font-weight:700; color:#E63946; text-transform:uppercase; letter-spacing:.07em; margin-bottom:6px;">Kontinuität</div>
-      <div style="font-size:.93rem; color:#202020;">Der Kader blieb nach dem Aufstieg weitgehend unverändert — kein Aufbau mehr, kein Abriss. Ein eingespieltes Team, das sich blind versteht.</div>
+      <div style="font-size:.93rem; color:#202020;">Der Kader blieb nach dem Aufstieg weitgehend unverändert. Kein Aufbau mehr, kein Abriss. Ein eingespieltes Team, das sich blind versteht.</div>
       <div style="font-size:.78rem; color:#6f6f6f; margin-top:8px;">Quelle: SRF Sport</div>
     </div>
     <div style="background:#f5f2ed; border-left:3px solid #E63946; border-radius:0 6px 6px 0; padding:16px 18px;">
       <div style="font-size:.75rem; font-weight:700; color:#E63946; text-transform:uppercase; letter-spacing:.07em; margin-bottom:6px;">Trainer Lustrinelli</div>
-      <div style="font-size:.93rem; color:#202020;">«Am Ende habe ich mit Menschen zu tun und nicht mit Zahlen.» Mauro Lustrinelli — seit 2022 im Amt, ehemaliger Thun-Spieler — baute eine Kultur des Vertrauens.</div>
+      <div style="font-size:.93rem; color:#202020;">«Am Ende habe ich mit Menschen zu tun und nicht mit Zahlen.» Mauro Lustrinelli ,seit 2022 im Amt, ehemaliger Thun-Spieler, baute eine Kultur des Vertrauens.</div>
       <div style="font-size:.78rem; color:#6f6f6f; margin-top:8px;">Quelle: NZZ, Interview Mai 2026</div>
     </div>
     <div style="background:#f5f2ed; border-left:3px solid #E63946; border-radius:0 6px 6px 0; padding:16px 18px;">
       <div style="font-size:.75rem; font-weight:700; color:#E63946; text-transform:uppercase; letter-spacing:.07em; margin-bottom:6px;">Teamgeist statt Stars</div>
-      <div style="font-size:.93rem; color:#202020;">17 verschiedene Torschützen in dieser Saison. Kein Abhängigkeit von einem Einzelnen — jeder trägt, wenn er gebraucht wird.</div>
+      <div style="font-size:.93rem; color:#202020;">17 verschiedene Torschützen in dieser Saison. Kein Abhängigkeit von einem Einzelnen, jeder trägt, wenn er gebraucht wird.</div>
       <div style="font-size:.78rem; color:#6f6f6f; margin-top:8px;">Quelle: SRF Sport, Saisonrückblick</div>
     </div>
     <div style="background:#f5f2ed; border-left:3px solid #E63946; border-radius:0 6px 6px 0; padding:16px 18px;">
       <div style="font-size:.75rem; font-weight:700; color:#E63946; text-transform:uppercase; letter-spacing:.07em; margin-bottom:6px;">Versagen der Grossen</div>
-      <div style="font-size:.93rem; color:#202020;">YB, Basel und Zürich lieferten nie die Konstanz, die man von ihnen erwartet. Thun brauchte keinen Ausrutscher zu provozieren — die Konkurrenz stolperte von selbst.</div>
+      <div style="font-size:.93rem; color:#202020;">YB, Basel und Zürich lieferten nie die Konstanz, die man von ihnen erwartet. Thun brauchte keinen Ausrutscher zu provozieren, sondern die Konkurrenz stolperte von selbst.</div>
       <div style="font-size:.78rem; color:#6f6f6f; margin-top:8px;">Quelle: Tagesanzeiger, NZZ</div>
     </div>
   </div>
@@ -1340,7 +1340,7 @@ display(HTML(f"""
 <div class="footer-note">
   Daten: API-Football, SportMonks, FBref, Swiss Super League 2025/26.<br>
   Kaderwerte: Transfermarkt.ch, März 2026. Umrechnungskurs: 1 EUR = 1.034 CHF.<br>
-  Pressestimmen: NZZ, SRF Sport, Tagesanzeiger, Watson — Saisonrückblicke April/Mai 2026.<br>
+  Pressestimmen: NZZ, SRF Sport, Tagesanzeiger, Watson - Saisonrückblicke April/Mai 2026.<br>
   Vereinsinfos: Transfermarkt, Wikipedia. Bilder: Wikimedia Commons (CC BY-SA 3.0).<br>
   Hinweis: Die Analyse nutzt aggregierte Teamwerte aus dem verarbeiteten Datensatz <code>team_season_stats_merged.csv</code>.
 </div>
