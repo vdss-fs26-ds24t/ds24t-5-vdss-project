@@ -2,13 +2,13 @@
 
 ## Kontext und Geltungsbereich
 
-Im Schweizer Fussball sorgt derzeit der FC Thun für Aufmerksamkeit: Der FC Thun, traditionell ein Club aus der Berner Oberland-Stadt Thun, hat sich in der Super League (der höchsten Schweizer Fussballliga) als überraschend starkes Team etabliert und übertrifft dabei Teams mit weitaus grösseren Budgets und Fanbasen.
+Im Schweizer Fussball sorgt derzeit der FC Thun für Aufmerksamkeit: Der FC Thun, traditionell ein Club aus der Berner Oberland-Stadt Thun, hat sich in der Super League (der höchsten Schweizer Fussballliga) als überraschend starkes Team etabliert und übertrifft dabei Teams mit weitaus grösseren Budgets und Fanbasen. Diese Geschichte ist eine klassische Underdog-Story. Ein kleiner Club leistet Grosses, womit kaum jemand gerechnet hätte.
 
 Dieses Visualisierungsprojekt untersucht die Frage: **Warum ist der FC Thun so erfolgreich und was unterscheidet ihn von vermeintlich stärkeren Clubs in der Super League?**
 
-Ziel ist es, anhand von Spiel- und Teamstatistiken aus der API-Football-Datenbank eine datengetriebene Antwort auf diese Frage zu liefern. Die Erkenntnisse werden in Form eines digitalen Blog-Artikels mit eingebettetem interaktivem Dashboard veröffentlicht und auf GitHub Pages öffentlich zugänglich gemacht.
+Das Projektteam tritt dabei in der Rolle von Sportjournalisten auf und erzählt diese Geschichte datengetrieben, mit Quellen und einer packenden Erzählweise. Ziel ist es, anhand von Spiel- und Teamstatistiken aus der API-Football-Datenbank eine nachvollziehbare, quellengestützte Antwort zu liefern. Die Erkenntnisse werden als digitale Data Story veröffentlicht und auf GitHub Pages öffentlich zugänglich gemacht.
 
-Angesprochen werden Fussballfans, Sportjournalisten und Dateninteressierte, die ein tieferes Verständnis der Leistungsfaktoren hinter den Tabellenplatzierungen erhalten möchten.
+Zielgruppe sind in erster Linie Bürgerinnen und Bürger aus Thun und dem Berner Oberland sowie das breite Schweizer Fussballpublikum. Menschen, die eine gut erzählte, datenbasierte Geschichte über das Erstaunliche lesen möchten, das ein kleiner Club vollbracht hat.
 
 ---
 
@@ -16,10 +16,10 @@ Angesprochen werden Fussballfans, Sportjournalisten und Dateninteressierte, die 
 
 ### Projektziele
 
-- Nutzer sollen verstehen, welche sportlichen Kennzahlen den sportlichen Erfolg des FC Thun im Vergleich zu anderen Super-League-Teams erklären.
-- Nutzer sollen in der Lage sein, den FC Thun mit mehreren Teams der Super League anhand zentraler Leistungskennzahlen direkt vergleichen können.
-- Nutzer sollen sowohl eine geführte Analyse (Blogartikel) lesen als auch die Daten selbst über ein interaktives Dashboard explorieren können.
-- Die Inhalte müssen auf Deutsch verfasst und für ein breites Publikum ohne tiefe Statistikkenntnisse verständlich sein.
+- Leserinnen und Leser sollen die Underdog-Story des FC Thun verstehen und emotional nachvollziehen können, weshalb dieser Erfolg aussergewöhnlich ist.
+- Leserinnen und Leser sollen verstehen, welche sportlichen Kennzahlen den Erfolg des FC Thun im Vergleich zu anderen Super-League-Teams erklären.
+- Die Data Story soll auf Quellen basieren und eine überzeugende, journalistisch aufbereitete Erzählung bieten.
+- Die Inhalte müssen auf Deutsch verfasst und für das breite Schweizer Fussballpublikum (Bürger von Thun und der ganzen Schweiz) ohne tiefe Statistikkenntnisse verständlich sein.
 
 ### Erfolgskriterien
 
@@ -27,8 +27,7 @@ Angesprochen werden Fussballfans, Sportjournalisten und Dateninteressierte, die 
 |---|---|---|
 | Datenabdeckung | Anzahl vollständiger Spiel-Datensätze | Aktuelle Saison |
 | Merkmale | Anzahl verwendeter Variablen pro Spiel/Team | ≥ 6 (inkl. numerisch und kategorisch) |
-| Visualisierungen | Anzahl eingebetteter Charts im Blog | ≥ 5 verschiedene Visualisierungen |
-| Interaktivität | Dashboard-Filteroptionen | Mind. Team-Auswahl |
+| Visualisierungen | Anzahl eingebetteter Charts in der Data Story | ≥ 5 verschiedene Visualisierungen |
 | Zugänglichkeit | Öffentliche Online-Verfügbarkeit | GitHub Pages live |
 | Verständlichkeit | Lesbarkeit ohne Fachkenntnisse | Bewertung der Verständlichkeit durch mindestens 2 Testleser |
 
@@ -37,6 +36,7 @@ Angesprochen werden Fussballfans, Sportjournalisten und Dateninteressierte, die 
 - Live-Daten während laufender Spiele
 - Spielerindividuelle Leistungsanalysen (Fokus liegt ausschliesslich auf Teamstatistiken)
 - Wettkampf-/Wettdaten
+- Interaktives Dashboard
 
 ---
 
@@ -44,54 +44,57 @@ Angesprochen werden Fussballfans, Sportjournalisten und Dateninteressierte, die 
 
 | Stakeholder | Rolle | Interesse | Einfluss |
 |---|---|---|---|
-| Projektteam | Entwickler & Autoren | Erfolgreiches Projekt | Hoch |
+| Projektteam (als Sportjournalisten) | Entwickler & Autoren | Erfolgreiches Projekt, glaubwürdige Story | Hoch |
 | Dozierende | Auftraggeber / Bewerter | Qualität, Methodik | Hoch |
+| Bürger von Thun / Schweizer Fussballpublikum | Primäre Zielgruppe | Unterhaltung, Stolz, Überraschung über Underdog-Story | Mittel |
+| Sportjournalistinnen / Medienschaffende | Sekundäre Zielgruppe, Multiplikatoren | Fundierte Quellen, zitierfähige Visualisierungen | Mittel |
 | API-Football | Datenlieferant | Korrekte Nutzung gemäss Lizenz | Mittel |
-| Fussballfans / Leser | Endnutzer Blog | Unterhaltung, Informationen über FC Thun | Gering |
 | FC Thun | Indirekt Betroffener | Positive/neutrale Darstellung | Gering |
 
 **Stakeholder Map:**
 
 ```
-             [Dozierende]                                  [Projektteam]
-          Auftraggeber/Bewerter   ──── bewertet ──────►   Entwickler & Autoren
-                                                                  │
-                                                               erstellt
-                                                                  │
-                                                                  ▼
-                                                       [Blog + Dashboard]
-                                                                  │
-                                              ┌───────────────────┤
-                                              │                   │
-                                     gelesen von            nutzt Daten von
-                                              │                   │
-                                              ▼                   ▼
-                                   [Fussballfans / Leser]   [API-Football]
-                                      Endnutzer Blog        Datenlieferant
-                                              │
-                                    betrifft indirekt
-                                              │
-                                              ▼
-                                          [FC Thun]
+             [Dozierende]                            [Projektteam als Sportjournalisten]
+          Auftraggeber/Bewerter   ── bewertet ──►    Entwickler & Autoren
+                                                              │
+                                                           erstellt
+                                                              │
+                                                              ▼
+                                                    [Data Story (GitHub Pages)]
+                                                              │
+                                         ┌────────────────────┤
+                                         │                    │
+                              gelesen von (primär)    gelesen von (sekundär)
+                                         │                    │
+                                         ▼                    ▼
+                              [Bürger von Thun /    [Sportjournalist. /
+                               Schweizer Publik.]    Medienschaffende]
+                                         │
+                                 betrifft indirekt
+                                         │
+                                         ▼
+                                     [FC Thun]
+
+                              [API-Football] ──► liefert Daten an Projektteam
 ```
 
 ---
 
 ## Nutzeranalyse
 
-### Persona 1: Der neugierige Fussballfan
+### Persona 1: Der stolze Thuner Fussballfan
 
-**Name:** Luca, 27 Jahre, kaufmännischer Angestellter aus Thun  
-**Geräte:** Smartphone, Laptop  
-**Data Literacy:** Niedrig: kennt Tabellen, aber keine xG-Werte  
-**Nutzungsfrequenz:** Einmalig (teilt Artikel mit Freunden)  
-**Domain Expertise:** Kennt Spielregeln, Tabelle und Vereinsgeschichte, aber kein Wissen über Statistikmethoden oder Datenanalyse
+**Name:** Luca, 27 Jahre, kaufmännischer Angestellter aus Thun
+**Geräte:** Smartphone, Laptop
+**Data Literacy:** Niedrig: kennt Tabellen, aber keine xG-Werte
+**Nutzungsfrequenz:** Einmalig (teilt Artikel mit Freunden und Familie)
+**Domain Expertise:** Kennt Spielregeln, Tabelle und Vereinsgeschichte des FC Thun, aber kein Wissen über Statistikmethoden oder Datenanalyse
 
 **User Tasks (Jobs):**
 
-- *Funktional:* Verstehen, warum der FC Thun gut spielt
-- *Sozial:* Artikel mit Freunden teilen
-- *Emotional:* Stolz auf den lokalen Club
+- *Funktional:* Verstehen, warum der FC Thun trotz kleinem Budget so erfolgreich spielt
+- *Sozial:* Artikel mit Freunden teilen und die Underdog-Story weitererzählen
+- *Emotional:* Stolz auf den lokalen Club und die Überraschung, was die Kleinen leisten können
 
 **Pains:**
 
@@ -103,35 +106,72 @@ Angesprochen werden Fussballfans, Sportjournalisten und Dateninteressierte, die 
 
 - Klare, intuitive Grafiken die man sofort versteht
 - Kurze Erklärungen direkt bei den Charts
-- "Aha-Erlebnis" beim Lesen
+- "Aha-Erlebnis" beim Lesen: Das Staunen, dass ein so kleiner Verein das schafft
+- Eine Geschichte, die man gerne weitererzählt
 
 ---
 
-### Persona 2: Die datenhungrige Sportjournalistin
+### Persona 2: Die Sportjournalistin
 
-**Name:** Miriam, 34 Jahre, Sportredakteurin bei einem regionalen Medienportal  
-**Geräte:** Laptop, Desktop im Büro  
-**Data Literacy:** Mittel-hoch: kennt Grundstatistiken, interessiert an neuen Metriken  
-**Nutzungsfrequenz:** Einmalig, als Recherche-Grundlage für eigene Artikel  
+**Name:** Miriam, 34 Jahre, Sportredakteurin bei einem regionalen Medienportal
+**Geräte:** Laptop, Desktop im Büro
+**Data Literacy:** Mittel-hoch: kennt Grundstatistiken, interessiert an neuen Metriken
+**Nutzungsfrequenz:** Einmalig, als Recherche-Grundlage für eigene Artikel
 **Domain Expertise:** Tiefes Wissen über Schweizer Fussball, Vereinsstrukturen und Transfermarkt. Vertraut mit Grundstatistiken aber wenig Erfahrung mit erweiterten Metriken
 
 **User Tasks (Jobs):**
 
-- *Funktional:* Fundierte Argumente für eigene Berichte finden
-- *Sozial:* Glaubwürdige Quellen zitieren
+- *Funktional:* Fundierte, quellengestützte Argumente für eigene Berichte finden
+- *Sozial:* Glaubwürdige Quellen zitieren und die Geschichte weiterverbreiten
 - *Emotional:* Stolz auf einen gut recherchierten, datenbasierten Artikel sein
 
 **Pains:**
 
 - Fehlende Quellenangaben bei Visualisierungen
 - Unklare Methodik hinter den Daten
-- Kein Exportformat für eigene Weiterverwendung
+- Visualisierungen, die sich nicht als Referenz in eigene Artikel einbetten lassen
 
 **Gains:**
 
 - Klar dokumentierte Datenquellen und Methodik
-- Interaktive Filtermöglichkeiten
 - Klare Visualisierungen mit nachvollziehbarer Datenquelle, die als Referenz für eigene Artikel genutzt werden können
+- Eine bereits aufbereitete Underdog-Narrative mit Datenbasis, die sie direkt als Ausgangspunkt für eigene Recherchen verwenden kann
+
+---
+
+### Anti-Persona 1: Der Datenanalyst ohne Bezug zur Story
+
+**Name:** Patrick, 31 Jahre, Business Intelligence Analyst aus Zürich
+**Geräte:** Laptop, mehrere Bildschirme
+**Data Literacy:** Sehr hoch: arbeitet täglich mit Dashboards, SQL und statistischen Modellen
+**Nutzungsfrequenz:** Einmalig (kommt auf der Suche nach rohen Daten oder technischer Methodik)
+**Domain Expertise:** Hohe technische Kompetenz, aber geringes Interesse an der narrativen Story hinter dem FC Thun
+
+**Warum er nicht die Zielgruppe ist:**
+
+Patrick ist an Rohdaten, API-Dokumentation und reproduzierbarer Methodik interessiert und nicht an einer geführten Erzählung. Er würde die Data Story als zu vereinfacht empfinden und direkt zur Datenquelle wechseln. Die emotionale Underdog-Erzählung spricht ihn nicht an.
+
+**Konsequenz für das Design:**
+
+Wir schreiben nicht für Patrick. Charts müssen nicht selbsterklärend für Experten sein, sondern verständlich für ein breites Publikum. Methodische Details kommen als optionaler Anhang und nicht als Hauptinhalt.
+
+---
+
+### Anti-Persona 2: Der desinteressierte Gelegenheitsnutzer
+
+**Name:** Sandra, 45 Jahre, Lehrerin aus Bern, kein Fussball-Interesse
+**Geräte:** Smartphone
+**Data Literacy:** Niedrig
+**Nutzungsfrequenz:** Nie (würde den Artikel gar nicht öffnen)
+**Domain Expertise:** Kein Wissen über Schweizer Fussball oder Statistik
+
+**Warum sie nicht die Zielgruppe ist:**
+
+Sandra hat keinen emotionalen Bezug zum FC Thun, zum Schweizer Fussball oder zur Underdog-Thematik. Kein noch so gutes Design oder Storytelling würde ihr Interesse wecken, weil der Inhalt schlicht nicht relevant für sie ist.
+
+**Konsequenz für das Design:**
+
+Wir versuchen nicht, alle anzusprechen. Die Story setzt ein minimales Grundinteresse an Fussball voraus. Erklärungen richten sich an Fussballfans ohne Statistikwissen und nicht an Personen ohne jeden Bezug zum Thema.
 
 ---
 
@@ -162,10 +202,9 @@ Angesprochen werden Fussballfans, Sportjournalisten und Dateninteressierte, die 
 
 ### Produkt
 
-Das Visualisierungsprodukt besteht aus zwei komplementären Teilen:
+Das Visualisierungsprodukt ist eine digitale Data Story: Eine journalistisch aufbereitete, narrative Erzählung, die die Leserin und den Leser Schritt für Schritt durch die Underdog-Story des FC Thun führt. Und das von der überraschenden Tabellenposition über die Analyse der Stärken bis zur "Geheimformel" des kleinen Clubs.
 
-1. **Digitaler Blog-Artikel**: Eine narrative Data Story, die den Leser Schritt für Schritt durch die Analyse führt. Von der Tabellenübersicht über Defensiv-/Offensivstatistiken bis zur "Geheimformel" des FC Thun.
-2. **Interaktives Dashboard**: Ein exploratives Tool, das es dem Nutzer erlaubt, Teams selbst zu vergleichen und eigene Fragen zu stellen.
+Der Fokus liegt vollständig auf der Data Story. Ein separates interaktives Dashboard ist nicht Teil des Projekts. Interaktivität wird dort eingebaut, wo sie die Erzählung direkt unterstützt aber nicht als eigenständiges Explorationstool.
 
 ### Visual Encodings
 
@@ -180,22 +219,22 @@ Das Visualisierungsprodukt besteht aus zwei komplementären Teilen:
 
 ### Interaktivität
 
-- **Blog:** Tooltips auf Charts, minimale Interaktivität
-- **Dashboard:** Team-Auswahl-Dropdown, Saison-Filter, vergleichende Ansicht (2 Teams gleichzeitig)
+- Data Story: Tooltips auf Charts, minimale Interaktivität
+- Interaktivität dient der Geschichte, nicht der freien Exploration
 
 ### Erzählstruktur
 
-Der Blog folgt einer klaren Erzählstruktur:
+Die Data Story folgt einer klaren journalistischen Erzählstruktur mit Underdog-Dramaturgie:
 
-1. **Hook:** "Wie schlägt ein kleiner Club aus Thun die Grossen?"
-2. **Kontext:** Kurze Vorstellung der Super League und der Ausgangslage
-3. **Analyse:** Schritt-für-Schritt Aufdeckung der Stärken
-4. **Fazit:** Zusammenfassung der wichtigsten Erkenntnisse
+1. **Hook:** "Wie schlägt ein kleiner Club aus Thun die Grossen?" Das Staunen wecken
+2. **Kontext:** Kurze Vorstellung der Super League, der Ausgangslage und warum der FC Thun eigentlich als Aussenseiter gilt
+3. **Analyse:** Schritt-für-Schritt Aufdeckung der Stärken. Was die Daten verraten, womit niemand gerechnet hatte
+4. **Klimax:** Das entscheidende Argument: Die "Geheimformel" des FC Thun
+5. **Fazit:** Was dieser Erfolg bedeutet: Für den Club, für Thun, für den Schweizer Fussball
 
 ### Zielmedium
 
-- Blog: GitHub Pages (öffentlich zugänglich, responsive)
-- Dashboard: Streamlit
+- Data Story: GitHub Pages (öffentlich zugänglich, responsive, für Schweizer Fussballpublikum)
 
 ### Wertdimensionen
 
@@ -210,14 +249,15 @@ Einheitliches Farbschema, klares Layout ohne Informationsüberflutung, interakti
 
 ### Verknüpfung mit den Personas
 
-| Design-Entscheidung | Persona 1: Luca (Fussballfan) | Persona 2: Miriam (Journalistin) |
+| Design-Entscheidung | Persona 1: Luca (Thuner Fussballfan) | Persona 2: Miriam (Sportjournalistin) |
 |---|---|---|
-| Blog-Struktur | Führt ihn ohne Vorkenntnisse durch die Analyse (Pain: überfrachtete Statistikseiten) | Gibt ihr einen schnellen Überblick für die eigene Recherche |
+| Underdog-Narrative als roter Faden | Weckt Stolz und Staunen über "seinen" Club | Liefert den Story-Hook für eigene Berichterstattung |
+| Geführte Data-Story-Struktur | Führt ihn ohne Vorkenntnisse durch die Analyse (Pain: überfrachtete Statistikseiten) | Gibt ihr einen schnellen Überblick für die eigene Recherche |
 | Einfache Labels direkt im Chart | Erklärt Fachbegriffe wie xG ohne externes Nachschlagen (Gain: Aha-Erlebnis) | Spart Zeit beim Interpretieren der Grafiken |
 | Radar Chart | Intuitiver Vergleich ohne Zahlenkenntnisse | Liefert zitierfähige visuelle Belege für Artikel |
-| Interaktives Dashboard | Kann selbst FC Thun gegen andere Vereine stellen | Ermöglicht eigene explorative Analyse nach Bedarf |
+| Klare Quellenangaben bei allen Charts | Weniger relevant, aber stärkt Vertrauen | Direkte Anforderung, ohne Quellen nicht nutzbar (Pain) |
 | Einheitliches Farbschema | Emotionale Verbindung zum Verein, erhöht Engagement | Professionelle Konsistenz, stärkt Glaubwürdigkeit |
-| Öffentlich auf GitHub Pages | Einfach teilbar mit Freunden | Direkt verlinkbar als Quelle im eigenen Artikel |
+| Öffentlich auf GitHub Pages | Einfach teilbar mit Freunden (Sozial: Underdog-Story weitererzählen) | Direkt verlinkbar als Quelle im eigenen Artikel |
 
 ---
 
@@ -246,16 +286,15 @@ gantt
         Datenbericht besprechen             :milestone, m2, 2026-04-21, 1d
 
     section Visualisierung und Design
-        Blog-Struktur und Grundlayout       :a9, 2026-04-21, 7d
+        Data Story Struktur und Grundlayout :a9, 2026-04-21, 7d
         Visualisierungen und Charts         :a10, 2026-04-28, 14d
-        Data Story                          :a11, 2026-05-05, 14d
-        Dashboard-Prototyp                  :a12, 2026-05-05, 16d
+        Data Story (Narrativ & Text)        :a11, 2026-05-05, 16d
         Visualisierungsbericht              :a13, 2026-05-11, 10d
         Visualisierungsbericht abgeben      :milestone, m3, 2026-05-21, 1d
 
     section Evaluation und Abgabe
         Review und Ueberarbeitung           :a14, 2026-05-21, 7d
-        Deployment GitHub Pages Streamlit   :a15, 2026-05-21, 11d
+        Deployment GitHub Pages             :a15, 2026-05-21, 11d
         Praesentation vorbereiten           :a16, 2026-05-25, 7d
         Abgabe und Praesentation            :milestone, m4, 2026-06-01, 1d
 ```
