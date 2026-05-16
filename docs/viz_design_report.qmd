@@ -1,70 +1,98 @@
 # Visualization Design Report
-This report documents the visual encoding and design decisions made during the development of the visualization product. It translates the visualization concept outlined in the [Project Charta](project_charta.qmd) into concrete design specifications and documents the resulting prototype(s).
 
-## Design Overview
-Briefly summarise the visualization concept from the Project Charta and describe any refinements or changes that emerged during the design process. Reference the project objectives and user needs that drive the design.
+Dieses Dokument hält die konkreten Design- und Visualisierungsentscheide für die Data Story fest. Es übersetzt das Konzept aus der [Projektcharta](project_charta.qmd) in umsetzbare Spezifikationen und dokumentiert die getroffenen Entscheidungen.
 
-## Data-to-Visual Mapping
-Document the mapping of data variables to visual channels. For each view or chart in the visualization product, describe:
+---
 
-* **Data variables**: Which variables from the processed datasets (see [Data Report](data_report.qmd)) are represented?
-* **Marks**: What geometric primitives are used to represent data items – points, lines, areas, volumes?
-* **Visual channels**: How are data attributes encoded – position, length, angle, area, colour hue, colour saturation, brightness, shape, orientation, texture?
-* **Scale and axis design**: What scales are used (linear, logarithmic, categorical, temporal)? How are axes labelled and annotated?
-* **Colour design**: What colour palette is used and why? Consider colour-blindness accessibility (e.g. using `viridis`, `ColorBrewer` palettes) and semantic colour mappings (e.g. red for negative, green for positive).
+## Design-Übersicht
 
-A tabular overview can help provide a quick summary:
+Die Data Story erzählt die Geschichte des FC Thun als Schweizer Meister 2025/26, als Aufsteiger mit einem Kaderwert von einem Viertel des Liga-Durchschnitts. Das zentrale Designziel: Datengetriebene Argumente so aufbereiten, dass sie ohne Statistikkenntnisse verständlich sind und gleichzeitig journalistische Glaubwürdigkeit ausstrahlen.
 
-: Data-to-visual mapping overview. {#tbl-encoding-overview}
+**Leitprinzipien:**
 
-| View / Chart | Data variables | Mark type | Visual channels | Scale |
-|---|---|---|---|---|
-| e.g. Sales by Region | region (cat.), revenue (quant.) | bar | x-position, length, colour hue | categorical, linear |
-| ... | ... | ... | ... | ... |
+- **Story first:** Jede Visualisierung ist in eine Erzählpassage eingebettet.
+- **Eine Botschaft pro Chart:** Komplexe Zusammenhänge werden in mehrere einfache Schritte aufgeteilt.
+- **FC Thun immer hervorgehoben:** Eine einzige Akzentfarbe (Rot) markiert Thun konsistent in allen Visualisierungen.
+- **Kontext statt Rohdaten:** Ränge und Vergleiche ersetzen isolierte Zahlen.
 
-## Layout and Composition
-Describe how individual views are composed into the overall visualization product:
+---
 
-* **Spatial arrangement**: How are views arranged on the screen or page? Grid layout, free-form, scrollable narrative, etc.
-* **Coordination between views**: Are views linked (e.g. brushing and linking, shared filters, coordinated highlighting)?
-* **Hierarchy and navigation**: How does the user navigate between different levels of detail or different thematic sections?
-* **Responsive design**: How does the layout adapt to different screen sizes and devices, if applicable?
+## Farbpalette und Visual Identity
 
-Include annotated wireframes or layout sketches to illustrate the composition.
+| Token | Hex | Verwendung |
+|---|---|---|
+| `THUN_RED` | `#E63946` | FC Thun-Highlight: alle Balken, Ränge, Akzente, Borders |
+| `INK` | `#202020` | Primärer Text, Achsenbeschriftungen |
+| `MUTED` | `#6f6f6f` | Sekundärer Text, Labels, Captions |
+| `LIGHT` | `#f5f2ed` | Seitenhintergrund (Paper-Ton) |
+| `LINE` | `#ded8ce` | Trennlinien, Tabellenborders |
+| `GRAY` | `#c9c9c9` | Alle anderen Teams in Ranking-Charts |
+| (kein Token-Name) | `#191919` | Hintergrund, dunkle UI-Elemente |
 
-## Interaction Design
-If the visualization product includes interactive elements, document them here:
+**Farblogik:** Alle Visualisierungen unterscheiden genau zwei Zustände: FC Thun (Rot) vs. alle anderen (Grau). Das verhindert Farbüberlastung und führt das Auge automatisch zur Kernaussage.
 
-* **Interaction techniques**: Selection, filtering, zooming, panning, brushing, details-on-demand, drill-down, etc.
-* **Input modalities**: Mouse, touch, keyboard shortcuts, search fields, etc.
-* **State management**: How does the system respond to user interactions? What state transitions occur?
-* **Feedback and transitions**: How are changes communicated to the user – animations, highlighting, progressive disclosure?
+**Zugänglichkeit:** Rot-Grau-Kontrast ist auch für Rot-Grün-Farbenblindheit unterscheidbar, da der Kontrast über Helligkeit funktioniert.
 
-For each interaction, describe which user task (from the user analysis in the Project Charta) it supports and how it contributes to the cognitive, communicative or experiential value of the product.
+---
 
-## Visual Style and Aesthetics
-Document the overall visual design language:
+## Layout und Komposition
 
-* **Typography**: Font families, sizes, hierarchy of text elements (titles, labels, annotations, body text).
-* **Colour palette**: Primary and secondary colours, background, accent colours. Provide colour codes (hex/RGB).
-* **Spacing and alignment**: Grid system, margins, padding, whitespace strategy.
-* **Branding**: Integration of organisational identity, logos, visual style guides, if applicable.
-* **Accessibility**: Considerations for colour-blindness, contrast ratios, screen reader compatibility, font legibility.
+Die Story ist als **vertikaler Scroll-Artikel** angelegt, ähnlich einem digitalen Magazinbeitrag:
 
-## Prototype Description
-Document the developed prototype(s):
+- **Vollbreit (100vw):** Hero-Sektion und Bildbrecher
+- **Content-Spalte (max 980px, zentriert):** Text-Kapitel und die meisten Charts
+- **Überbreit (max 1500px):** Win-Streak-Scrolly (horizontale Timeline)
 
-* **Prototype fidelity**: Low-fidelity (sketches, wireframes), medium-fidelity (static mockups), high-fidelity (interactive implementation)?
-* **Screenshots and/or link**: Include representative screenshots of the prototype. If the prototype is accessible online, provide the URL.
-* **Technology stack**: Tools, libraries and frameworks used for implementation (e.g. D3.js, Plotly, Tableau, Power BI, Streamlit, Observable, etc.).
-* **Code and version control**: Link to the code repository, branch or tag corresponding to the current prototype version.
+**Navigation:** Keine Kapitelnavigation; der Leser scrollt linear durch die Geschichte. Jedes Kapitel ist nummeriert (01-09) und mit einer Überschrift eingeleitet.
 
-## Design Rationale and Iterations
-Document key design decisions, alternatives considered and the rationale for the chosen approach. This section ensures traceability and supports the evaluation phase.
+**Zielgerät:** Die Story ist primär auf Desktop-Browser ausgerichtet. Viele Gestaltungselemente (mehrspaltige Stat-Grids, die horizontale Win-Streak-Timeline, grossformatige Typografie) entfalten ihre Wirkung erst ab einer Bildschirmbreite von mindestens 900px. Mobile wird unterstützt, ist aber kein primäres Designziel.
 
-* **Design alternatives**: What alternative designs were considered? Sketches, mockups or descriptions of discarded approaches can be valuable for documentation.
-* **Design rationale**: Why was the chosen design preferred? Reference the project objectives, user needs (jobs, pains, gains) and the three value dimensions (cognitive, communicative, experiential).
-* **Iteration history**: If the design evolved through multiple iterations (e.g. based on informal feedback or internal reviews), briefly describe the key changes and their motivation.
+**Responsive:** Auf Mobilgeräten (< 760px) wechseln mehrspaltige Layouts (Stat-Grid, Formel-Board) auf einspaltiges Layout. Radar- und Scatter-Charts werden auf 390px Höhe geclippt.
 
-## Conclusions and Next Steps
-Summarise the key design decisions and their expected impact on the project objectives. Identify open questions, known limitations of the current prototype and topics to be addressed in the [Evaluation](evaluation.qmd) phase.
+---
+
+## Interaktionsdesign
+
+Die Data Story ist primär statisch. Der Leser scrollt linear. Interaktivität wird nur eingesetzt, wo sie die Erzählung direkt unterstützt:
+
+| Element | Interaktion | Zweck |
+|---|---|---|
+| Scatter Plot | Hover-Tooltip mit Rang-Infos | Neugierige können alle Teams erkunden |
+| Radar Chart | Hover-Tooltip | Exakte Werte für datenaffine Leser |
+| Win-Streak | Horizontales Scrollen | Zeitliche Abfolge räumlich erleben |
+| Win-Streak-Karten | Hover | Haptisches Feedback, betont Auswahl |
+
+---
+
+## Prototype
+
+**Fidelity:** High-Fidelity (vollständige Implementierung)
+
+**Technologie-Stack:**
+
+| Schicht | Werkzeug |
+|---|---|
+| Rendering | Quarto (HTML-Output) |
+| Interaktive Charts | Plotly (Python: `plotly.express`, `plotly.graph_objects`) |
+| Statische Custom-Visuals | HTML/CSS direkt in Quarto (`{=html}`-Blöcke) |
+| Datenzugriff | Pandas (liest `team_season_stats_merged.csv` und `fixtures_footballapi.csv`) |
+| Deployment | GitHub Pages |
+
+**Code:** [`docs/datastory.qmd`](datastory.qmd) · Datenbasis: [`data_acquisition/processed/team_season_stats_merged.csv`](../data_acquisition/processed/team_season_stats_merged.csv)
+
+---
+
+## Design-Entscheide und Alternativen
+
+| Entscheid | Gewählter Ansatz | Verworfene Alternative | Begründung |
+|---|---|---|---|
+| Produktformat | Reine Data Story (Scroll-Artikel) | Blog + separates Dashboard | Dashboard erhöht Komplexität ohne Mehrwert für Primärzielgruppe |
+| FC Thun-Hervorhebung | Einzelfarbe Rot, Rest Grau | Mehrfarbige Teampalette | Eine Farbe reicht, um die Fokus-Story zu erzählen; mehr würde ablenken |
+| Win-Streak | Ticket-Karten horizontal | Liniendiagramm Saison-Verlauf | Karten ermöglichen narrative Verdichtung pro Spiel; Liniendiagramm wäre zu abstrakt |
+| Interaktivität | Tooltips und Scroll | Filterdropdowns, Teamauswahl | Zielgruppe will geführt werden, nicht explorieren (Persona Luca) |
+
+---
+
+## Schlussfolgerung
+
+Die acht Visualisierungen decken gemeinsam den Bogen der Underdog-Story ab: Ausgangslage (Tabelle), Paradox (Ballbesitz vs. Wirkung), Effizienz (vorne und hinten) und Schlüsselmoment (Serie). Das Design bleibt in allen Teilen konsistent in Farbe, Typografie und Struktur und spricht die Primärzielgruppe (Fussballfans ohne Statistikkenntnisse sowie Sportjournalistinnen auf Recherche) direkt an.
