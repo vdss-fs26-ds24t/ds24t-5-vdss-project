@@ -787,6 +787,25 @@ def story_layout(fig, height=500, title=None):
     margin: 0 0 18px 0;
     font-weight: 950;
   }
+  .closing-image {
+    max-width: 980px;
+    margin: 8px auto 46px auto;
+    padding: 0 20px;
+  }
+  .closing-image img {
+    width: 100%;
+    display: block;
+    box-shadow: 0 14px 34px rgba(0,0,0,.10);
+  }
+  .closing-image .source {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: .82rem;
+    line-height: 1.4;
+  }
+  .closing-image .source a {
+    color: var(--muted);
+  }
   .footer-note {
     max-width: 980px;
     margin: 0 auto;
@@ -1739,11 +1758,18 @@ display(HTML(f"""
   </div>
 </section>
 
+<figure class="closing-image">
+  <img src="pics/7868591741733528.webp" alt="FC Thun feiert den Meistertitel">
+  <figcaption class="source">
+    Quelle: <a href="https://www.watson.ch/imgdb/46b0/Qx,A,0,0,8010,5340,3337,2225,1335,890/7868591741733528" target="_blank" rel="noopener">Watson</a>
+  </figcaption>
+</figure>
+
 <div class="footer-note">
   Daten: API-Football, SportMonks, FBref, Swiss Super League 2025/26.<br>
   Kaderwerte: Transfermarkt.ch, März 2026. Umrechnungskurs: 1 EUR = 1.034 CHF.<br>
   Pressestimmen: NZZ, SRF Sport, Tagesanzeiger, Watson - Saisonrückblicke April/Mai 2026.<br>
-  Vereinsinfos: Transfermarkt, Wikipedia. Bilder: Wikimedia Commons (CC BY-SA 3.0).<br>
+  Vereinsinfos: Transfermarkt, Wikipedia. Bilder: Wikimedia Commons (CC BY-SA 3.0), Watson.<br>
   Hinweis: Die Analyse nutzt aggregierte Teamwerte aus dem verarbeiteten Datensatz <code>team_season_stats_merged.csv</code>.
 </div>
 </div>
