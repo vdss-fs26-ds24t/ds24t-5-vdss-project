@@ -1095,52 +1095,60 @@ display(HTML(f"""
 #| warning: false
 
 plot_df = df.copy()
-plot_df["highlight"] = plot_df["team_name"].where(plot_df["team_name"] == "FC Thun", "Andere Teams")
-plot_df["label"] = plot_df["team_name"].where(plot_df["team_name"] == "FC Thun", "")
-plot_df["possession_rank"] = plot_df["sm_ball_possession_pct"].rank(ascending=False, method="min").astype(int)
-plot_df["danger_rank"] = plot_df["sm_dangerous_attacks"].rank(ascending=False, method="min").astype(int)
-plot_df["danger_eff_rank"] = plot_df["danger_per_possession"].rank(ascending=False, method="min").astype(int)
+plot_df["label"] = plot_df["team_name"] + " (" + plot_df["standings_rank"].astype(str) + ".)"
+
+TEAM_COLORS = {
+    "FC Thun":       THUN_RED,
+    "FC ST. Gallen": "#006633",
+    "FC Winterthur": "#CC0000",
+    "FC Sion":       "#D40000",
+    "Grasshoppers":  "#0057A8",
+    "FC Luzern":     "#003DA5",
+    "Lausanne":      "#0066CC",
+    "FC Zurich":     "#1A5BA6",
+    "Servette FC":   "#670823",
+    "BSC Young Boys":"#FFD700",
+    "FC Basel 1893": "#C8102E",
+    "FC Lugano":     "#1A1A1A",
+}
 
 fig = px.scatter(
     plot_df,
     x="sm_ball_possession_pct",
     y="sm_dangerous_attacks",
-    color="highlight",
-    color_discrete_map={"FC Thun": THUN_RED, "Andere Teams": GRAY},
+    color="team_name",
+    color_discrete_map=TEAM_COLORS,
     text="label",
     hover_name="team_name",
     custom_data=[
         "team_name",
-        "possession_rank",
-        "danger_rank",
-        "danger_eff_rank",
         "sm_ball_possession_pct",
         "sm_dangerous_attacks",
     ],
     labels={
         "sm_ball_possession_pct": "Durchschnittlicher Ballbesitz (%)",
         "sm_dangerous_attacks": "Gefährliche Angriffe pro Spiel",
-        "highlight": "",
+        "team_name": "",
     },
 )
 fig.update_traces(
     textposition="top center",
     marker=dict(size=15, line=dict(width=1.5, color="white"), opacity=0.88),
+    textfont=dict(color=INK, size=11),
     hovertemplate=(
         "<b>%{customdata[0]}</b><br>"
-        "Ballbesitz-Rang: %{customdata[1]}<br>"
-        "Rang gefährliche Angriffe: %{customdata[2]}<br>"
-        "Rang Gefahr pro Ballbesitz: %{customdata[3]}<br>"
-        "Ballbesitz: %{customdata[4]:.1f}%<br>"
-        "Gefährliche Angriffe: %{customdata[5]:.1f}<extra></extra>"
+        "Ballbesitz: %{customdata[1]:.1f}%<br>"
+        "Gefährliche Angriffe: %{customdata[2]:.1f}<extra></extra>"
     ),
 )
 fig.update_layout(
-    legend=dict(orientation="h", y=1.08, x=0),
-    xaxis=dict(showgrid=True, gridcolor="#eee8de", zeroline=False),
-    yaxis=dict(showgrid=True, gridcolor="#eee8de", zeroline=False),
+    dragmode=False,
+    showlegend=False,
+    xaxis=dict(showgrid=True, gridcolor="#eee8de", zeroline=False, title_font=dict(size=16)),
+    yaxis=dict(showgrid=True, gridcolor="#eee8de", zeroline=False, title_font=dict(size=16)),
 )
 fig.add_vline(x=league_avg["sm_ball_possession_pct"], line_dash="dot", line_color="#777")
+fig.add_hline(y=league_avg["sm_dangerous_attacks"], line_dash="dot", line_color="#777")
 fig.add_annotation(
     x=float(thun["sm_ball_possession_pct"]),
     y=float(thun["sm_dangerous_attacks"]),
@@ -1154,19 +1162,19 @@ fig.add_annotation(
     font=dict(size=13, color=INK),
 )
 story_layout(fig, height=500, title="Wenig Ballbesitz, viel Gefahr")
-fig.show()
+fig.show(config={"scrollZoom": False, "displayModeBar": False})
 ```
 
 ```{=html}
 <section class="chapter tight">
+  <div class="note">
+    Lesart: Die vertikale gestrichelte Linie markiert den Liga-Durchschnitt beim Ballbesitz, die horizontale den Liga-Durchschnitt bei den gefährlichen Angriffen.
+    Thun steht weit oben, aber nicht weit rechts. Genau dort liegt das Paradox.
+  </div><br>
   <p class="lead">
     Der Scatterplot ist nur noch der Beleg. Die einfachere Lesart steckt in den Rängen:
     Thun ist beim Ballbesitz kein Ligaprimus, aber bei der Gefahr, die daraus entsteht, ganz vorne.
   </p>
-  <div class="note">
-    Lesart: Die gestrichelte Linie markiert den Liga-Durchschnitt beim Ballbesitz.
-    Thun steht weit oben, aber nicht weit rechts. Genau dort liegt das Paradox.
-  </div>
 </section>
 ```
 
@@ -1201,7 +1209,7 @@ def make_ball_row(n, highlight_at):
     balls = []
     for i in range(1, n + 1):
         if i == highlight_at:
-            balls.append('<span style="font-size:1.5rem;">⚽</span>')
+            balls.append('<span style="font-size:1.5rem;">🎯</span>')
         else:
             balls.append('<span style="font-size:1.5rem; opacity:0.25;">⚽</span>')
     return "".join(balls)
@@ -1234,7 +1242,7 @@ display(HTML(f"""
     <!-- Element 1: Grosse Zahl -->
     <div style="text-align:center; margin-bottom:28px;">
       <div style="font-size:3.8rem; font-weight:900; color:#E63946; line-height:1;">{thun_spg:.1f}</div>
-      <div style="font-size:1rem; color:#202020; margin-top:4px;">Schüsse pro Tor: <strong>Platz 1 in der Super League</strong></div>
+      <div style="font-size:1rem; color:#202020; margin-top:4px;">Schüsse pro Tor: <strong>Platz 2 in der Super League</strong></div>
       <div style="font-size:.88rem; color:#6f6f6f; margin-top:2px;">Liga-Durchschnitt: {league_spg:.1f} Schüsse pro Tor</div>
     </div>
 
@@ -1575,7 +1583,7 @@ radar_metrics = [
     ("sm_shots", "Schüsse"),
     ("fbref_tackles_won", "Tackles\ngewonnen"),
     ("sm_attacks", "Angriffe\ntotal"),
-    ("standings_goals_diff", "Tor-\ndifferenz"),
+    ("standings_goals_diff", "Tordifferenz"),
 ]
 
 categories = [m[1] for m in radar_metrics]
@@ -1623,22 +1631,23 @@ fig_radar.add_trace(go.Scatterpolar(
 ))
 fig_radar.update_layout(
     polar=dict(
-        radialaxis=dict(visible=False, range=[0, 1.05]),
-        angularaxis=dict(tickfont=dict(size=12)),
+        radialaxis=dict(visible=False, range=[0, 1.15]),
+        angularaxis=dict(tickfont=dict(size=14)),
         bgcolor="white",
     ),
     showlegend=True,
-    legend=dict(orientation="h", yanchor="bottom", y=-0.12, xanchor="center", x=0.5),
+    legend=dict(orientation="h", yanchor="bottom", y=-0.15, xanchor="center", x=0.5),
     font=dict(family="Arial, sans-serif", color=INK),
     paper_bgcolor="white",
-    margin=dict(l=60, r=60, t=60, b=60),
-    height=420,
+    margin=dict(l=80, r=80, t=70, b=90),
+    height=520,
     title=dict(
         text="FC Thun vs. Liga-Durchschnitt (normiert)",
         font=dict(size=17, color=INK, family="Arial Black, Arial, sans-serif"),
     ),
 )
-fig_radar.show()
+fig_radar.update_layout(dragmode=False)
+fig_radar.show(config={"scrollZoom": False, "displayModeBar": False})
 ```
 
 ```{=html}
