@@ -901,6 +901,23 @@ def story_layout(fig, height=500, title=None):
   }
 </style>
 
+<div id="scroll-track" style="position:fixed;right:0;top:0;width:12px;height:100vh;background:rgba(0,0,0,0.08);z-index:9999;pointer-events:none;">
+  <div id="scroll-bar" style="width:100%;height:0%;background:#E63946;transition:height .05s linear;"></div>
+</div>
+<script>
+(function(){
+  function updateBar(){
+    var el = document.getElementById('scroll-bar');
+    if(!el) return;
+    var scrolled = window.scrollY || document.documentElement.scrollTop;
+    var total = document.body.scrollHeight - window.innerHeight;
+    el.style.height = (total > 0 ? Math.min(scrolled/total*100,100) : 0) + '%';
+  }
+  window.addEventListener('scroll', updateBar, {passive:true});
+  updateBar();
+})();
+</script>
+
 <div class="story-wrap">
 <section class="story-hero">
   <img src="pics/stockhorn_arena.jpg" alt="Stockhorn Arena in Thun">
@@ -916,7 +933,7 @@ def story_layout(fig, height=500, title=None):
 <section class="chapter tight">
   <div class="chapter-head">
     <div class="chapter-number">01</div>
-    <h2>Der Club, der nicht in diese Tabelle passen sollte</h2>
+    <h2>Aufsteiger, Aussenseiter, Meister</h2>
   </div>
   <p class="lead">
     Sommer 2025: Der FC Thun kehrt zurück in die Super League. Das Ziel? Klassenerhalt. Vielleicht Top 6, wenn alles passt. Niemand spricht von Titel. Nicht mal in Thun selbst. Auf dem Papier ist das ein kleiner Club aus einer mittelgrossen Stadt und das waren auch die Erwartungen.
@@ -1134,7 +1151,7 @@ fig = px.scatter(
 fig.update_traces(
     textposition="top center",
     marker=dict(size=15, line=dict(width=1.5, color="white"), opacity=0.88),
-    textfont=dict(color=INK, size=11),
+    textfont=dict(color=INK, size=12),
     hovertemplate=(
         "<b>%{customdata[0]}</b><br>"
         "Ballbesitz: %{customdata[1]:.1f}%<br>"
@@ -1144,8 +1161,8 @@ fig.update_traces(
 fig.update_layout(
     dragmode=False,
     showlegend=False,
-    xaxis=dict(showgrid=True, gridcolor="#eee8de", zeroline=False, title_font=dict(size=16)),
-    yaxis=dict(showgrid=True, gridcolor="#eee8de", zeroline=False, title_font=dict(size=16)),
+    xaxis=dict(showgrid=True, gridcolor="#eee8de", zeroline=False, title_font=dict(size=16), tickfont=dict(size=13)),
+    yaxis=dict(showgrid=True, gridcolor="#eee8de", zeroline=False, title_font=dict(size=16), tickfont=dict(size=13)),
 )
 fig.add_vline(x=league_avg["sm_ball_possession_pct"], line_dash="dot", line_color="#777")
 fig.add_hline(y=league_avg["sm_dangerous_attacks"], line_dash="dot", line_color="#777")
@@ -1198,6 +1215,7 @@ fig.show(config={"scrollZoom": False, "displayModeBar": False})
 df["shots_per_goal"] = df["fbref_shots"] / df["fbref_goals"]
 df_eff = df[["team_name", "shots_per_goal"]].sort_values("shots_per_goal", ascending=True).copy()
 df_eff["rank"] = range(1, len(df_eff) + 1)
+df_eff = df_eff.merge(df[["team_name", "standings_rank"]], on="team_name", how="left")
 
 # Football icon rows: Thun vs Liga
 thun_spg = thun_shots_per_goal  # ~7.7
@@ -1227,7 +1245,7 @@ for _, r in df_eff.iterrows():
     weight = "font-weight:700;" if is_thun else ""
     bar_rows.append(f"""
       <div style="display:flex; align-items:center; gap:10px; margin-bottom:5px;">
-        <div style="width:140px; font-size:.85rem; text-align:right; {weight} color:#202020;">{r['team_name']}</div>
+        <div style="width:160px; font-size:.85rem; text-align:right; {weight} color:#202020;">{r['team_name']} ({int(r['standings_rank'])}.)</div>
         <div style="flex:1; background:#f0ede8; border-radius:3px; height:18px;">
           <div style="width:{width_pct:.1f}%; background:{color}; height:18px; border-radius:3px;"></div>
         </div>
@@ -1248,17 +1266,11 @@ display(HTML(f"""
 
     <!-- Element 2: Icon-Vergleich -->
     <div style="background:#f5f2ed; border-radius:8px; padding:18px 20px; margin-bottom:24px;">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-        <div style="text-align:center;">
-          <div style="font-size:.8rem; font-weight:700; color:#E63946; margin-bottom:8px; text-transform:uppercase; letter-spacing:.05em;">FC Thun</div>
-          <div style="line-height:2;">{thun_balls}</div>
-          <div style="font-size:.82rem; color:#6f6f6f; margin-top:8px;">1 Tor pro <strong>{thun_n} Schüsse</strong></div>
-        </div>
-        <div style="text-align:center;">
-          <div style="font-size:.8rem; font-weight:700; color:#6f6f6f; margin-bottom:8px; text-transform:uppercase; letter-spacing:.05em;">Liga-Ø</div>
-          <div style="line-height:2;">{league_balls}</div>
-          <div style="font-size:.82rem; color:#6f6f6f; margin-top:8px;">1 Tor pro <strong>{league_n} Schüsse</strong></div>
-        </div>
+      <div style="display:grid; grid-template-columns:90px 1fr; gap:10px 16px; align-items:center;">
+        <div style="font-size:.8rem; font-weight:700; color:#E63946; text-transform:uppercase; letter-spacing:.05em; line-height:1.3;">FC Thun<br><span style="font-size:.78rem; color:#6f6f6f; font-weight:400;">{thun_n} Schüsse</span></div>
+        <div style="line-height:2.2;">{thun_balls}</div>
+        <div style="font-size:.8rem; font-weight:700; color:#6f6f6f; text-transform:uppercase; letter-spacing:.05em; line-height:1.3;">Liga-Ø<br><span style="font-size:.78rem; color:#6f6f6f; font-weight:400;">{league_n} Schüsse</span></div>
+        <div style="line-height:2.2;">{league_balls}</div>
       </div>
     </div>
 
@@ -1301,6 +1313,7 @@ display(HTML(f"""
 
 # Save % ranking for all teams
 df_saves = df[["team_name", "fbref_save_pct"]].sort_values("fbref_save_pct", ascending=False).copy()
+df_saves = df_saves.merge(df[["team_name", "standings_rank"]], on="team_name", how="left")
 max_save = df_saves["fbref_save_pct"].max()
 
 save_bar_rows = []
@@ -1311,7 +1324,7 @@ for _, r in df_saves.iterrows():
     weight = "font-weight:700;" if is_thun else ""
     save_bar_rows.append(f"""
       <div style="display:flex; align-items:center; gap:10px; margin-bottom:5px;">
-        <div style="width:140px; font-size:.85rem; text-align:right; {weight} color:#202020;">{r['team_name']}</div>
+        <div style="width:160px; font-size:.85rem; text-align:right; {weight} color:#202020;">{r['team_name']} ({int(r['standings_rank'])}.)</div>
         <div style="flex:1; background:#f0ede8; border-radius:3px; height:18px;">
           <div style="width:{width_pct:.1f}%; background:{color}; height:18px; border-radius:3px;"></div>
         </div>
@@ -1654,7 +1667,7 @@ fig_radar.show(config={"scrollZoom": False, "displayModeBar": False})
 <section class="chapter">
   <div class="chapter-head">
     <div class="chapter-number">08</div>
-    <h2>Die Formel in einer Grafik</h2>
+    <h2>Kein Märchen, eine Formel</h2>
   </div>
   <p class="lead">
     Am Ende braucht es kein kompliziertes Profil, um Thuns Saison zu verstehen.
@@ -1728,7 +1741,7 @@ display(HTML(f"""
 <section class="chapter">
   <div class="chapter-head">
     <div class="chapter-number">09</div>
-    <h2>Kein Märchen, ein Muster</h2>
+    <h2>Das Urteil ist eindeutig: Verdient</h2>
   </div>
 
   <p class="lead">
@@ -1779,7 +1792,6 @@ display(HTML(f"""
   Kaderwerte: Transfermarkt.ch, März 2026. Umrechnungskurs: 1 EUR = 1.034 CHF.<br>
   Pressestimmen: NZZ, SRF Sport, Tagesanzeiger, Watson - Saisonrückblicke April/Mai 2026.<br>
   Vereinsinfos: Transfermarkt, Wikipedia. Bilder: Wikimedia Commons (CC BY-SA 3.0), Watson.<br>
-  Hinweis: Die Analyse nutzt aggregierte Teamwerte aus dem verarbeiteten Datensatz <code>team_season_stats_merged.csv</code>.
 </div>
 </div>
 ```
