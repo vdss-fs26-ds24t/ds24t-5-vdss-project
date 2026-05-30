@@ -1,13 +1,10 @@
-# Overview 
+# Überblick
 
-This documentation describes the conception, development and evaluation of a data visualisation product. The goal of the project is to ....
+Dieses Projekt untersucht datengestützt, warum der FC Thun in der Schweizer Super League trotz kleinem Budget und überschaubarer Fanbasis zu einem der überraschend starken Teams avanciert ist. Das Visualisierungsprodukt ist eine digitale Data Story, die diese Underdog-Geschichte für ein breites Schweizer Fussballpublikum aufbereitet und auf GitHub Pages veröffentlicht.
 
-![The vizualization product development process](pics/vizproductprocess.png){#fig-vizprocess}
+Die Dokumentation gliedert sich in folgende vier Bereiche:
 
-The methodological procedure of this work follows the process model shown in @fig-vizprocess, which is based on the concepts on data product development outlined in @DoemerKempf2022_1000150238 and the [data science project-template](https://github.com/phonosync/dataviz-project-template) on github.
-
-It comprises the following four main phases with the corresponding documentation artefacts:
-
-* **Project Understanding** &rarr; [Project Charta](project_charta.qmd): Context analysis, stakeholder and user analysis (based on the Value Proposition Canvas), formulation of objectives, success criteria, constraints and the visualization concept.
-* **Data Acquisition and Exploration** &rarr; [Data Report](data_report.qmd): Identification and acquisition of relevant data sources, followed by exploratory data analysis to understand data quality and structure.
-* **Visual Encoding and Design** &rarr; [Visualization Design Report](viz_design_report.qmd): Documentation of the data-to-visual mapping, layout and composition, interaction design, visual style and the resulting prototype(s).
+* **Projektcharta** &rarr; [Projektcharta](project_charta.qmd): Kontextanalyse, Stakeholder- und Nutzendenprofil, Projektziele, Erfolgskriterien sowie das Visualisierungskonzept.
+* **Datenerhebung und -exploration** &rarr; [Datenbericht](data_report.qmd): Identifikation und Beschaffung relevanter Datenquellen über die API-Football-Datenbank sowie explorative Datenanalyse zur Einschätzung von Qualität und Struktur.
+* **Visuelles Encoding und Design** &rarr; [Visualisierungsdesignbericht](viz_design_report.qmd): Dokumentation der Abbildung, Layout, Interaktionsdesign, visuellem Stil und den resultierenden Prototypen.
+* **Data Story** &rarr; [Die Thun-Formel](datastory.qmd): Die fertige, journalistisch aufbereitete Datengeschichte über den Aufstieg des FC Thun.
